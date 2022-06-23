@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
 import { registerUser } from '../services/authentication';
 
-const RegisterPage = () => {
+const RegisterPage = (props) => {
   // const [name, setName] = useState('');
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
@@ -64,7 +64,6 @@ const RegisterPage = () => {
           value={user.picture}
           onChange={(event) => setUserState({ ...user, picture: event.target.value })}
         />
-
         <button>Register New Account</button>
       </form>
     </div>
