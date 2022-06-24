@@ -1,47 +1,68 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
 import { logInUser } from '../services/authentication';
+import Wrapper from '../assets/wrappers/auth-forms';
+import { FormRow } from '../components';
 
 const LogInPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
+
+  const [user, setUserState] = useState({
+    email: '',
+    password: '',
+  });
 
   const { setUser } = useContext(AuthenticationContext);
 
+  const handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value;
+    setUserState({ ...user, [name]: value })
+  };
+
   const handleLogIn = (event) => {
     event.preventDefault();
-    logInUser({ email, password }).then((data) => {
-      setUser(data.user);
-      navigate('/');
-    });
+    logInUser(user)
+      .then((data) => {
+        setUser(data.user);
+        navigate('/');
+      });
   };
 
   return (
-    <div>
+    <Wrapper>
+      <h1>Login</h1>
       <form onSubmit={handleLogIn}>
-        <label htmlFor="input-email">Email</label>
-        <input
-          id="input-email"
+
+        {/* email input */}
+        <FormRow
           type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          name="email"
+          value={user.email}
+          handleChange={handleChange}
         />
 
-        <label htmlFor="input-password">Password</label>
-        <input
-          id="input-password"
+        {/* password input */}
+        <FormRow
           type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          name="password"
+          value={user.password}
+          handleChange={handleChange}
         />
+
+        <div>
+          <p>Not yet a member?
+            <Link to="/register">Register</Link>
+          </p>
+        </div>
 
         <button>Log In to Existing Account</button>
       </form>
-    </div>
+    </Wrapper>
   );
 };
 

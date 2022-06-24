@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.scss';
 import AuthenticationContext from '../context/authentication';
 import { signOutUser } from './../services/authentication';
 
@@ -15,12 +14,10 @@ const Navbar = () => {
 
   return (
     <nav>
-      <Link to="/">Home</Link>
       {(user && (
         <>
-          <span>Welcome {user.name}</span>
+          <Link to={`/profile/${user._id}`}>{user.name}'s Profile </Link>
           <button onClick={handleSignOut}>Sign Out</button>
-          <Link to={`/profile/${user._id}`}>Profile </Link>
         </>
       )) || (
           <>
