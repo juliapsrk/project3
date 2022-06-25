@@ -14,8 +14,8 @@ router.get('/:id', (req, res, next) => {
     });
 })
 router.patch('/', (req, res, next) => {
-  const { name, email, password, picture } = req.body;
-  User.findByIdAndUpdate(req.user._id, { name, email, password, picture }, { new: true })
+  const { name, email, password, picture, description } = req.body;
+  User.findByIdAndUpdate(req.user._id, { name, email, password, picture, description }, { new: true })
     .then((user) => {
       res.json({ user })
     }).catch((error) => {

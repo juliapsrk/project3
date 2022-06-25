@@ -8,8 +8,10 @@ const ImageInput = (props) => {
   };
 
   const handleError = (error) => {
-    console.log(error);
-    props.handleChange('');
+    console.log({
+      error: `${error}`
+    })
+
   };
 
   return (
