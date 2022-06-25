@@ -1,28 +1,23 @@
 # Project3: Pet Adoption Application
 
-​
-
 ## Client
 
-​
-
 ### Pages
-
-​
 
 - Home - / - Display latest pets and posts
 - Register - /register - Allow visitor to create account with name, email, password and profile picture.
 - Log In - /log-in - Allows existing user to log-in.
-<!-- - Profile Search - /profile/search - Search for users. -->
+- Profile Search - /profile/search - Search for users.
 - Profile Edit - /profile/edit - Allows authenticated user to edit their profile.
 - Profile - /profile/:id - Visualize users' profile + Pet Bookmarks
   ​
-- Pet Detail - /pet/:id/detail - Display details on a single pet + comments/likes.
-- Pet Create - /pet/create - Allow user to add single pet to application.
-- Pet Edit - /pet/:id/edit - Allow user to update single pet.
-- Pet Delete - /pet/:id/delete - Allow user to delete single pet.
-- Pet Search - /pet/search - Search for pets.
-  <!-- - Pet Bookmark - /pet/bookmark ? -->
+- Pet Detail - /pet/:id/detail - Display details on a single pet + comments/likes. ✅
+- Pet Create - /pet/create - Allow user to add single pet to application. ✅
+- Pet Edit - /pet/:id/edit - Allow user to update single pet. ✅
+- Pet Delete - /pet/:id/delete - Allow user to delete single pet. ✅
+- Pet Search - /pet/search - Search for pets. ✅
+<!-- page needed for pet bookmark, or just component shown in Profile? -->
+- Pet Bookmark - /pet/bookmark -
   ​
 - Single Post - /post/:id - Displays single post.
 - Post Create - /post/create - Allow user to add single post.
@@ -31,22 +26,20 @@
 - Adoption Center - /center/:id - Displays adoption center information, incl. listed pets and posts
   ​
 - Message Thread List - /message/list - Displays message thread list
-- Message Thread Detail - /message/:id - Displays message thread (with edit and delete button for message creator)
+- Message Thread Detail - /message/:id - Displays message thread <!-- with edit and delete button for message creator -->
 - Message Thread Create - /message/create - Displays message creation form
   ​
 
 ### Services
 
-​
-
-- listPets - issue GET to '/pet/list' list pets <!-- centers --> ({pets[], centeres[], ? profiles[]})?
-- loadPet - issue a GET to '/pet/:id' Load details on a single pet.
-- editPet - issues PATCH to '/pet/:id' - Edit single pet.
-- deletePet - issues DELETE to '/pet:/id' Delete single pet.
-- createPet - issues POST to '/pet/' Creates single pet.
-- petSearch - issues GET to '/pet/search' - Allows user to search for pets (type, area(google api), sub-filters maybe related to the pet/type).
+- listPets - issue GET to '/pet/list' list pets ✅ <!-- centers --> ({pets[], centers[], ? profiles[]})?
+- loadPet - issue a GET to '/pet/:id' Load details on a single pet. ✅
+- editPet - issues PATCH to '/pet/:id' - Edit single pet. ✅
+- deletePet - issues DELETE to '/pet:/id' Delete single pet. ✅
+- createPet - issues POST to '/pet' Creates single pet. ✅
+- petSearch - issues GET to '/pet/search' - Allows user to search for pets ✅ (type, area(google api), sub-filters maybe related to the pet/type).
   ​
-  <!-- display posts of user on user's profile -->
+  <!-- display posts + bookmarked pets of user on user's profile -->
   ​
 - loadPost - issue a GET to '/post/:id' Load details on a single post.
 - editPost - issues PATCH to '/post/:id' - Edit single post.
@@ -73,13 +66,9 @@
 
 ## Server
 
-​
-
 ### Models
 
-​
-User
-​
+User (Ilan)
 
 - name: String, required, trim
 - email: String, required, trim, lowercase
@@ -87,20 +76,23 @@ User
 - picture: String
 - description: String, max: 500
 - Bookmark
-- type: String, enum ['private', 'center'] ('center' displays extra component in profile with center information)
+- type: String, enum ['private', 'center'] <!-- 'center' displays extra component in profile with center information -->
   ​
-  Pet
+  Pet (Julia)
+
+- name: String, required​ ✅
+- animal: String, [ 'dog', 'cat', 'rabbit', 'bird', 'reptile', 'fish' ], required ✅ <!-- expand options list -->
+- breed: String, trim, default ✅
+- age: Number, min: 0 ✅
+- location: { type: String, default: 'Point', coordinates: [ Number ] } ✅ <!-- or with latlng -->
+- listed: Boolean, required ✅
+- adopted: Boolean, required (adopted, upForAdoption) ✅
+- owner: ObjectId, ref: 'User', required ✅
+- description: String, maxLength: 5000, trim ✅
+- picture: String ✅
+- timestamp ✅
   ​
-- type: String, [ 'dog', 'cat', 'rabbit', 'bird', 'reptile', 'fish' ], required (expand options list)
-- breed: String, trim, default
-- age: Number, required, min: 0
-- location: { type: String, default: 'Point', coordinates: [ Number ] } (or with latlng)
-- listed: Boolean, required
-- status: Boolean, required (adopted, upForAdoption)
-- owner: ObjectId, ref: 'User', required
-- description: String, maxLength: 5000, trim
-  ​
-  Post
+  Post (Nina)
   ​
 - title: String, required
 - description: String, maxLength: 5000, trim
@@ -112,19 +104,16 @@ User
 - content: String, required, minlength: 1, maxlength: 5000, trim
 - sender: ObjectId, ref: 'User', required
 - receiver: ObjectId, ref: 'User', required
-- createdAt: Date (setting timestamps option on schema to true)
-  ​
+- createdAt: Date <!-- setting timestamps option on schema to true -->
 
 ### Request Handlers
 
-​
-
-- GET - '/pet/list' - list pets
-- GET - '/pet/:id' - Load details on a single pet.
-- PATCH - '/pet/:id' - Edit single pet.
-- DELETE - '/pet:/id' Delete single pet.
-- POST - '/pet/' Creates single pet.
-- GET - '/pet/search' - Allows user to search for pets (type, area(google api), sub-filters maybe related to the pet/type).
+- GET - '/pet/list' - list pets. ✅
+- GET - '/pet/:id' - Load details on a single pet. ✅
+- PATCH - '/pet/:id' - Edit single pet. ✅
+- DELETE - '/pet:/id' Delete single pet. ✅
+- POST - '/pet/create' Creates single pet. ✅
+- GET - '/pet/search' - Allows user to search for pets. ✅ <!-- type, area(google api), sub-filters maybe related to the pet/type -->
   ​
 - GET - '/post/:id' - Load details on a single post.
 - PATCH - '/post/:id' - Edit single post.
