@@ -6,6 +6,9 @@ import RegisterPage from './pages/RegisterPage';
 import LogInPage from './pages/LogInPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEditPage from './pages/ProfileEditPage';
+import SinglePostPage from './pages/SinglePostPage';
+import CreatePostPage from './pages/CreatePostPage';
+import PostEditPage from './pages/PostEditPage';
 
 import Header from './components/Header';
 import AuthenticationContext from './context/authentication';
@@ -30,7 +33,10 @@ const App = () => {
           <Route path="/log-in" element={<LogInPage />} />
           <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/profile/edit" element={<ProfileEditPage />} />
-          <Route path="*" element={"404 page"} />
+          <Route path="/post/:id" element={<SinglePostPage />} />
+          <Route path="/post" element={<CreatePostPage />} />
+          <Route path="/post/:id/edit" element={<PostEditPage />} />
+          <Route path="*" element={'404 page'} />
         </Routes>
       </BrowserRouter>
     </AuthenticationContext.Provider>
