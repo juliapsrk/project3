@@ -22,8 +22,9 @@ const ProfilePage = () => {
     <div className='profile-page'>
       {profile && (
         <div>
-          <img src={profile.picture} alt={profile.name} style={{ maxWidth: 150 }} />
-          <h2>{profile.name}</h2>
+          <img src={profile.picture} alt={profile.name} style={{ maxWidth: '150px', borderRadius: '50%' }} />
+          <h2>{profile.name.charAt(0).toUpperCase() + profile.name.slice(1).toLowerCase()}</h2>
+          <p>{profile.description}</p>
         </div>
       )}
       {user && user._id === id && (

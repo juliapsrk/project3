@@ -14,6 +14,17 @@ const schema = new mongoose.Schema({
   passwordHashAndSalt: {
     type: String
   },
+  description: {
+    type: String,
+    maxLength: 5000,
+    trim: true
+  },
+  userType: {
+    type: String,
+    required: true,
+    default: 'private',
+    enum: ['private', 'center']
+  },
   picture: {
     type: String
   }
