@@ -11,6 +11,7 @@ import CreatePostPage from './pages/CreatePostPage';
 import PostEditPage from './pages/PostEditPage';
 
 import Header from './components/Header';
+import PageWrapper from './assets/wrappers/PageWrapper';
 import AuthenticationContext from './context/authentication';
 import { loadUserInformation } from './services/authentication';
 
@@ -27,17 +28,19 @@ const App = () => {
     <AuthenticationContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/log-in" element={<LogInPage />} />
-          <Route path="/profile/:id" element={<ProfilePage />} />
-          <Route path="/profile/edit" element={<ProfileEditPage />} />
-          <Route path="/post/:id" element={<SinglePostPage />} />
-          <Route path="/post" element={<CreatePostPage />} />
-          <Route path="/post/:id/edit" element={<PostEditPage />} />
-          <Route path="*" element={'404 page'} />
-        </Routes>
+        <PageWrapper>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/log-in" element={<LogInPage />} />
+            <Route path="/profile/:id" element={<ProfilePage />} />
+            <Route path="/profile/edit" element={<ProfileEditPage />} />
+            <Route path="/post/:id" element={<SinglePostPage />} />
+            <Route path="/post" element={<CreatePostPage />} />
+            <Route path="/post/:id/edit" element={<PostEditPage />} />
+            <Route path="*" element={'404 page'} />
+          </Routes>
+        </PageWrapper>
       </BrowserRouter>
     </AuthenticationContext.Provider>
   );

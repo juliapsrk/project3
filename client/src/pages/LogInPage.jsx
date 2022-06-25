@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
 import { logInUser } from '../services/authentication';
 import Wrapper from '../assets/wrappers/auth-forms';
-import { FormRow } from '../components';
+import { FormInput } from '../components/FormRow';
 
 const LogInPage = () => {
   // const [email, setEmail] = useState('');
@@ -39,7 +39,7 @@ const LogInPage = () => {
       <form onSubmit={handleLogIn}>
 
         {/* email input */}
-        <FormRow
+        <FormInput
           type="email"
           name="email"
           value={user.email}
@@ -47,7 +47,7 @@ const LogInPage = () => {
         />
 
         {/* password input */}
-        <FormRow
+        <FormInput
           type="password"
           name="password"
           value={user.password}

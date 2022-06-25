@@ -11,7 +11,8 @@ const ProfileEditPage = () => {
     name: '',
     email: '',
     password: '',
-    picture: ''
+    picture: '',
+    description: ''
   });
   const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ const ProfileEditPage = () => {
     event.preventDefault();
     profileEdit(profile).then((data) => {
       setUser(data.user);
-      navigate('/');
+      navigate(`/profile/${user._id}`);
     });
   };
 
@@ -36,6 +37,7 @@ const ProfileEditPage = () => {
     <Wrapper>
       {/* <FormRow type='text' name='test' value='test'></FormRow> */}
       <form onSubmit={handleProfileEdit}>
+
         <label htmlFor="input-name">Name</label>
         <input
           id="input-name"
@@ -59,6 +61,15 @@ const ProfileEditPage = () => {
           placeholder="Picture"
           value={profile.picture}
           onChange={(event) => setProfile({ ...profile, picture: event.target.value })}
+        />
+
+        <label htmlFor="input-description">Description</label>
+        <input
+          id="input-description"
+          type="text"
+          placeholder="Description"
+          value={profile.description}
+          onChange={(event) => setProfile({ ...profile, description: event.target.value })}
         />
 
 
