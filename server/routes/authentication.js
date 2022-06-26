@@ -13,10 +13,10 @@ router.post('/sign-up', (req, res, next) => {
       return User.create({
         name,
         email,
+        passwordHashAndSalt: hash,
         picture,
         description,
-        userType,
-        passwordHashAndSalt: hash
+        userType
       });
     })
     .then((user) => {

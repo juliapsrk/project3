@@ -27,24 +27,28 @@ const RegisterPage = () => {
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-
     setUserState({ ...user, [name]: value })
-
   };
+
+  const handleImageChange = (picture) => {
+    setUserState(prevUser => ({ ...prevUser, picture }))
+  }
 
   const handleRegistration = (event) => {
     event.preventDefault();
     if (user.name) {
       registerUser(user)
         .then((data) => {
+          const id = data.user._id;
           setUser(data.user);
-          navigate('/');
+          navigate(`/profile/${id}`);
           setUserState('');
         });
     } else {
       console.log("error");
     }
   };
+
 
   return (
     <Wrapper>
@@ -75,14 +79,19 @@ const RegisterPage = () => {
         />
 
         {/* picture file */}
-        <FormInput
+        {/* <FormInput
           type="text"
           name="picture"
           value={user.picture}
           handleChange={handleChange}
-        />
+        /> */}
 
-        {/* <ImageInput /> */}
+        <ImageInput
+          image={user.picture}
+          name="picture"
+          value={user.picture}
+          handleChange={handleImageChange}
+        />
 
         {/* description textarea */}
 
@@ -114,7 +123,7 @@ const RegisterPage = () => {
           </p>
         </div>
 
-        <button type='submit'>Register New Account</button>
+        <button type='submit'>Register</button>
       </form>
     </Wrapper>
   );

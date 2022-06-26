@@ -1,29 +1,28 @@
 import { IKContext, IKUpload } from 'imagekitio-react';
 
 const ImageInput = (props) => {
+  const { image, handleChange } = props;
 
   const handleSuccess = (result) => {
+    //debugger
     const { url } = result;
-    props.handleChange(url);
+    handleChange(url);
   };
 
   const handleError = (error) => {
-    console.log({
-      error: `${error}`
-    })
-
+    console.log(error)
+    handleChange('');
   };
 
   return (
     <>
       {props.image && (
-        <img style={{ maxWidth: '20em' }} src={props.image} alt="Selected" />
+        <img style={{ maxWidth: '20em' }} src={image} alt="Selected" />
       )}
       <IKContext
-        publicKey="public_+pBjyiyzgSWxNPHRiOsBroVDZVU="
-        urlEndpoint="https://ik.imagekit.io/b2qsdwrpl"
-        transformationPosition="path"
-        authenticationEndpoint="/authentication"
+        publicKey={process.env.REACT_APP_IMAGEKIT_PUBLIC_API_KEY}
+        authenticationEndpoint={process.env.REACT_APP_IMAGEKIT_AUTH_ENDPOINT}
+        urlEndpoint={process.env.REACT_APP_IMAGEKIT_URL_ENDPOINT}
       >
         <IKUpload onSuccess={handleSuccess} onError={handleError} />
       </IKContext>
@@ -33,8 +32,6 @@ const ImageInput = (props) => {
 
 export default ImageInput;
 
-
 //In order to use the SDK, you need to provide it with a few configuration parameters. 
 //The configuration parameters can be applied directly to the IKImage component or using 
 //an IKContext component.
-

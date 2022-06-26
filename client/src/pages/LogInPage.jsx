@@ -60,7 +60,7 @@ const LogInPage = () => {
           </p>
         </div>
 
-        <button>Log In to Existing Account</button>
+        <button>Log In</button>
       </form>
     </Wrapper>
   );

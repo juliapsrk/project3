@@ -1,14 +1,16 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
 import { signOutUser } from './../services/authentication';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { user, setUser } = useContext(AuthenticationContext);
 
   const handleSignOut = () => {
     signOutUser().then(() => {
       setUser(null);
+      navigate(`/`);
     });
   };
 
@@ -16,7 +18,7 @@ const Navbar = () => {
     <nav>
       {(user && (
         <>
-          <Link to={`/profile/${user._id}`}>{user.name}'s Profile </Link>
+          <Link to={`/profile/${user._id}`}>{user.name} Profile </Link>
           <button onClick={handleSignOut}>Sign Out</button>
         </>
       )) || (

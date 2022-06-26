@@ -1,22 +1,36 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Wrapper from '../assets/wrappers/auth-forms';
-import { FormRow } from '../components';
 import AuthenticationContext from '../context/authentication';
+import Wrapper from '../assets/wrappers/auth-forms';
+import { FormInput, FormTextArea, FormSelect } from '../components/FormRow';
+import ImageInput from '../components/ImageInput';
+
 import { profileLoad, profileEdit } from '../services/profile';
 
 const ProfileEditPage = () => {
+
+  const navigate = useNavigate();
 
   const [profile, setProfile] = useState({
     name: '',
     email: '',
     password: '',
     picture: '',
-    description: ''
+    description: '',
+    userType: 'private'
   });
-  const navigate = useNavigate();
 
   const { user, setUser } = useContext(AuthenticationContext);
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setProfile({ ...user, [name]: value })
+  };
+
+  const handleImageChange = (picture) => {
+    setProfile(prevUser => ({ ...prevUser, picture }))
+  }
 
   useEffect(() => {
     if (user) {
@@ -26,55 +40,59 @@ const ProfileEditPage = () => {
 
   const handleProfileEdit = (event) => {
     event.preventDefault();
-    profileEdit(profile).then((data) => {
-      setUser(data.user);
-      navigate(`/profile/${user._id}`);
-    });
+    if (user.name) {
+      profileEdit(profile)
+        .then((data) => {
+          const id = data.user._id;
+          setUser(data.user);
+          navigate(`/profile/${id}`);
+        });
+    } else {
+      console.log("error");
+    }
   };
 
 
   return (
     <Wrapper>
-      {/* <FormRow type='text' name='test' value='test'></FormRow> */}
+      <h1>Edit Profile</h1>
+
       <form onSubmit={handleProfileEdit}>
 
-        <label htmlFor="input-name">Name</label>
-        <input
-          id="input-name"
-          placeholder="Name"
+        {/* name input */}
+        <FormInput
+          type="text"
+          name="name"
           value={profile.name}
-          onChange={(event) => setProfile({ ...profile, name: event.target.value })}
+          handleChange={handleChange}
         />
-
-        <label htmlFor="input-email">Email</label>
-        <input
-          id="input-email"
+        {/* email input */}
+        <FormInput
           type="email"
-          placeholder="Email"
+          name="email"
           value={profile.email}
-          onChange={(event) => setProfile({ ...profile, email: event.target.value })}
+          handleChange={handleChange}
         />
-        <label htmlFor="input-picture">Picture</label>
-        <input
-          id="input-picture"
-          type="text"
-          placeholder="Picture"
+
+        <ImageInput
+          image={profile.picture}
+          name="picture"
           value={profile.picture}
-          onChange={(event) => setProfile({ ...profile, picture: event.target.value })}
+          handleChange={handleImageChange}
         />
 
-        <label htmlFor="input-description">Description</label>
-        <input
-          id="input-description"
-          type="text"
-          placeholder="Description"
+        {/* description textarea */}
+
+        <FormTextArea
+          labelText='description'
+          name='description'
           value={profile.description}
-          onChange={(event) => setProfile({ ...profile, description: event.target.value })}
-        />
+          optionValue1='private'
+          optionValue2='center'
+          handleChange={handleChange}
+        ></FormTextArea>
 
-
-
-        <button>Register New Account</button>
+        <button>Edit Profile</button>
       </form>
     </Wrapper>
   );
