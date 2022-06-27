@@ -1,19 +1,27 @@
-import PetInputMap from './PetInputMap';
-import MultipleImageInput from './MultipleImageInput';
+// import PetInputMap from './PetInputMap';
+// import MultipleImageInput from './MultipleImageInput';
 
-const PetForm = ({ pet, onPetChange, onPetSubmit, buttonLabel }) => {
+const PetForm = ({
+  pet,
+  onPetChange,
+  onPetSubmit,
+  buttonLabel,
+  method,
+  action
+}) => {
   const handlePetFormSubmission = (event) => {
     event.preventDefault();
     onPetSubmit();
   };
 
   return (
-    <form onSubmit={handlePetFormSubmission}>
+    <form onSubmit={handlePetFormSubmission} method={method} action={action}>
       <label htmlFor='input-name'>Name of Pet</label>
       <input
         id='input-name'
         type='string'
         placeholder='Pet Name'
+        name='name'
         value={pet.name}
         onChange={(event) => onPetChange({ ...pet, name: event.target.value })}
       />
@@ -23,6 +31,7 @@ const PetForm = ({ pet, onPetChange, onPetSubmit, buttonLabel }) => {
         id='input-type'
         type='string'
         placeholder='Type of animal'
+        name='type'
         value={pet.type}
         onChange={(event) => onPetChange({ ...pet, type: event.target.value })}
       />
@@ -33,6 +42,7 @@ const PetForm = ({ pet, onPetChange, onPetSubmit, buttonLabel }) => {
         id='input-breed'
         type='string'
         placeholder='Breed of pet'
+        name='breed'
         value={pet.breed}
         onChange={(event) => onPetChange({ ...pet, breed: event.target.value })}
       />
@@ -44,6 +54,7 @@ const PetForm = ({ pet, onPetChange, onPetSubmit, buttonLabel }) => {
         type='number'
         min={0}
         placeholder='Age of pet'
+        name='age'
         value={pet.age}
         onChange={(event) => onPetChange({ ...pet, age: event.target.value })}
       />
@@ -53,6 +64,7 @@ const PetForm = ({ pet, onPetChange, onPetSubmit, buttonLabel }) => {
         <input
           id='input-listed'
           type='checkbox'
+          name='listed'
           value={pet.listed}
           onChange={(event) =>
             onPetChange({ ...pet, listed: event.target.checked })
@@ -68,6 +80,7 @@ const PetForm = ({ pet, onPetChange, onPetSubmit, buttonLabel }) => {
         <input
           id='input-adopted'
           type='checkbox'
+          name='adopted'
           value={pet.adopted}
           onChange={(event) =>
             onPetChange({ ...pet, adopted: event.target.checked })
@@ -88,18 +101,18 @@ const PetForm = ({ pet, onPetChange, onPetSubmit, buttonLabel }) => {
         }
       />
 
-      <PetInputMap
+      {/* <PetInputMap
         location={pet.location}
         onlocationChange={(location) => onPetChange({ ...pet, location })}
-      />
+      /> */}
 
       <label>Pet Pictures</label>
-      <MultipleImageInput
+      {/* <MultipleImageInput
         images={pet.pictures}
         onImagesChange={(pictures) => onPetChange({ ...pet, pictures })}
-      />
+      /> */}
 
-      <button>{buttonLabel}</button>
+      <button type='submit'>{buttonLabel}</button>
     </form>
   );
 };

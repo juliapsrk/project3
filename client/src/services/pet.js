@@ -1,10 +1,5 @@
 import api from './api';
 
-/*
-The URLSearchParams class encodes a JS object as a URL query string
-Eg. { foo: 'bar', abc: 123 } => 'foo=bar&abc=123' 
-*/
-
 export const petSearch = (filters) =>
   api
     .get(`/pet/search?${new URLSearchParams(filters).toString()}`)

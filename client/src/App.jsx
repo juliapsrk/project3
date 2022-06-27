@@ -6,6 +6,9 @@ import RegisterPage from './pages/RegisterPage';
 import LogInPage from './pages/LogInPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEditPage from './pages/ProfileEditPage';
+import PetDetailPage from './pages/PetDetailPage';
+import PetCreationPage from './pages/PetCreationPage';
+import PetEditPage from './pages/PetEditPage';
 import SinglePostPage from './pages/SinglePostPage';
 import CreatePostPage from './pages/CreatePostPage';
 import PostEditPage from './pages/PostEditPage';
@@ -30,15 +33,18 @@ const App = () => {
         <Header />
         <PageWrapper>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/log-in" element={<LogInPage />} />
-            <Route path="/profile/:id" element={<ProfilePage />} />
-            <Route path="/profile/edit" element={<ProfileEditPage />} />
-            <Route path="/post/:id" element={<SinglePostPage />} />
-            <Route path="/post" element={<CreatePostPage />} />
-            <Route path="/post/:id/edit" element={<PostEditPage />} />
-            <Route path="*" element={'404 page'} />
+            <Route path='/' element={<HomePage />} />
+            <Route path='/register' element={<RegisterPage />} />
+            <Route path='/log-in' element={<LogInPage />} />
+            <Route path='/profile/:id' element={<ProfilePage />} />
+            <Route path='/profile/edit' element={<ProfileEditPage />} />
+            <Route path='/pet/:id' element={<PetDetailPage />} />
+            <Route path='/pet' element={<PetCreationPage />} />
+            <Route path='/pet/:id/edit' element={<PetEditPage />} />
+            <Route path='/post/:id' element={<SinglePostPage />} />
+            <Route path='/post' element={<CreatePostPage />} />
+            <Route path='/post/:id/edit' element={<PostEditPage />} />
+            <Route path='*' element={'404 page'} />
           </Routes>
         </PageWrapper>
       </BrowserRouter>

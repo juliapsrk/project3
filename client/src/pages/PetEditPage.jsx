@@ -27,6 +27,8 @@ const PetEditPage = () => {
           onPetChange={setPet}
           onPetSubmit={handlePetEdit}
           buttonLabel='Edit Pet Listing'
+          method='PATCH'
+          action={`/pet/${id}`}
         />
       )}
     </div>

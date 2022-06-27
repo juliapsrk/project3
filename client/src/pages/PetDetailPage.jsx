@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import ProfileCard from '../components/ProfileCard';
+// import ProfileCard from '../components/ProfileCard';
 import AuthenticationContext from '../context/authentication';
-import { PetLoad } from '../services/pet';
+import { petLoad } from '../services/pet';
 
 const PetDetailPage = () => {
   const { id } = useParams();
@@ -10,7 +10,7 @@ const PetDetailPage = () => {
   const [pet, setPet] = useState(null);
 
   useEffect(() => {
-    PetLoad(id).then((data) => setPet(data.pet));
+    petLoad(id).then((data) => setPet(data.pet));
   }, [id]);
 
   const { user } = useContext(AuthenticationContext);
@@ -25,13 +25,13 @@ const PetDetailPage = () => {
               {pet.breed} {pet.type}
             </h3>
           </header>
-
+          {/* 
           <section>
             <h3>Pictures</h3>
             {pet.pictures.map((picture) => (
               <img key={picture} src={picture} />
             ))}
-          </section>
+          </section> */}
 
           <section>
             <p>{pet.description}</p>
@@ -39,9 +39,9 @@ const PetDetailPage = () => {
 
           <aside>
             <h4>Owned by</h4>
-            <ProfileCard profile={pet.owner} />
+            {/* <ProfileCard profile={pet.owner} /> */}
             <h4>Actions</h4>
-            {(user && (
+            {/* {(user && (
               <>
                 {pet.owner._id === user._id && (
                   <Link to={`/house/${id}/edit`} className='btn'>
@@ -53,7 +53,7 @@ const PetDetailPage = () => {
               <Link to='/register' className='btn'>
                 Register to Message Owner or Bookmark Listing
               </Link>
-            )}
+            )} */}
           </aside>
         </>
       )}
