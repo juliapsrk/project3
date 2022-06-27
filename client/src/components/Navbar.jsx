@@ -16,6 +16,10 @@ const Navbar = () => {
 
   return (
     <nav>
+      <Link to="/">Centers</Link>
+      <Link to="/">Adopt</Link>
+      <Link to="/">How to Adopt</Link>
+      <Link to="/">About</Link>
       {(user && (
         <>
           <Link to={`/profile/${user._id}`}>{user.name} Profile </Link>

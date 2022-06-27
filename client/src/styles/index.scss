@@ -11,6 +11,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cabin&family=Roboto+Condensed:wght@400;700&display=swap');

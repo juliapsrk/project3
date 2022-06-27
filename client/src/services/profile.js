@@ -1,5 +1,13 @@
 import api from './api';
 
+
+
+export const listProfiles = () =>
+  api.get(`/profile`).then((response) => response.data);
+
+export const profileSearch = (term) =>
+  api.get(`/profile/search?term=${term}`).then((response) => response.data);
+
 export const profileLoad = (id) =>
   api.get(`/profile/${id}`).then((response) => response.data);
 

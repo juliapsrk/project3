@@ -53,7 +53,15 @@ const ProfilePage = () => {
             <h2>Pet Bookmarks</h2>
             <p>listing user's Bookmarks</p>
           </div>
+
+          <div style={{ borderBottom: "1px solid gray" }}>
+            <Link className="btn" to={`/message/${id}`}>
+              Message This User
+            </Link>
+          </div>
         </div>
+
+
 
       )}
       {user && user._id === id && (

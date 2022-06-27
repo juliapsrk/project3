@@ -12,6 +12,7 @@ const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
 const profileRouter = require('./routes/profile');
 const postRouter = require('./routes/post');
+const messageRouter = require('./routes/message');
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/profile', profileRouter);
 app.use('/post', postRouter);
+app.use('/message', messageRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
