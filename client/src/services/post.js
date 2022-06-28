@@ -1,5 +1,8 @@
 import api from './api';
 
+export const listPosts = () =>
+  api.get('/post/list').then((response) => response.data);
+
 export const postLoad = (id) =>
   api.get(`/post/${id}`).then((response) => response.data);
 
