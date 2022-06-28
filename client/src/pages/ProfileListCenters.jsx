@@ -13,22 +13,17 @@ const ListAllCenters = () => {
 
   useEffect(() => {
     listProfiles()
-
       .then((data) => {
         setProfiles(data.profiles);
-        console.log(data.profiles)
       });
   }, []);
 
   return (
     <div>
-      {<input type='text' placeholder='Search ...' onChange={(e) => setQuery(e.target.value)} style={{
-        width: '100%', paddingBlock: '0.5rem'
-      }} />}
       {profiles.filter((profile) =>
-        profile.name.toLowerCase().includes(query)
+        profile.userType.toLowerCase() === "center"
       ).map((profile) => (
-        <CardWrapper>
+        <CardWrapper key={profile._id}>
           <Link to={`/profile/${profile._id}`} className="picture">
 
             {profile.picture && (

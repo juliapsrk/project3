@@ -15,9 +15,7 @@ const ListAllProfiles = () => {
   useEffect(() => {
     listProfiles()
       .then((data) => {
-
         setProfiles(data.profiles);
-        console.log(data.profiles)
       });
   }, []);
 
@@ -29,7 +27,7 @@ const ListAllProfiles = () => {
       {profiles.filter((profile) =>
         profile.name.toLowerCase().includes(query)
       ).map((profile) => (
-        <CardWrapper>
+        <CardWrapper key={profile._id}>
           <Link to={`/profile/${profile._id}`} className="picture">
 
             {profile.picture && (
