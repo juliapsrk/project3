@@ -94,19 +94,14 @@
 - timestamp ✅
   ​
 
-#### Post (Nina)
-
-​
+#### Post (Nina)​
 
 - title: String, required
 - description: String, maxLength: 5000, trim
 - type: String, [ 'petForAdoption', 'lookingForPet' ], required
-- owner: ObjectId, ref: 'User', required
-  ​
+- owner: ObjectId, ref: 'User', required ​
 
 ### Message
-
-​
 
 - content: String, required, minlength: 1, maxlength: 5000, trim
 - sender: ObjectId, ref: 'User', required
