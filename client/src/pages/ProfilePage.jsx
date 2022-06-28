@@ -24,7 +24,7 @@ const ProfilePage = () => {
         <div>
 
           <div style={{ borderBottom: "1px solid gray" }}>
-            <img src={profile.picture} alt={profile.name} style={{ maxWidth: '150px', borderRadius: '50%' }} />
+            <img src={profile.picture} alt={profile.name} style={{ maxWidth: '150px', borderRadius: '50%', aspectRatio: '1/1', objectFit: 'cover' }} />
             <h2>{profile.name.charAt(0).toUpperCase() + profile.name.slice(1).toLowerCase()}</h2>
             <p>{profile.description}</p>
           </div>
@@ -46,7 +46,7 @@ const ProfilePage = () => {
 
           <div style={{ borderBottom: "1px solid gray" }}>
             <h3>Messages</h3>
-            <p>listing user's messages</p>
+            <Link to={`/message/list/`} style={{ display: 'block', marginBlock: "2rem", color: 'crimson' }}>View your message inbox</Link>
           </div>
 
           <div style={{ borderBottom: "1px solid gray" }}>

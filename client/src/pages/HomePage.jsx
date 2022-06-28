@@ -1,8 +1,9 @@
+import Wrapper from "../assets/wrappers/HomeWrapper";
 const HomePage = () => {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <Wrapper>
+      <div className="hero"></div>
+    </Wrapper>
   );
 };
 

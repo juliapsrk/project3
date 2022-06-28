@@ -16,21 +16,25 @@ const Navbar = () => {
 
   return (
     <nav>
-      <Link to="/">Centers</Link>
       <Link to="/">Adopt</Link>
+      <Link to="/profile">Members</Link>
       <Link to="/">How to Adopt</Link>
+      <Link to="/">Centers</Link>
       <Link to="/">About</Link>
-      {(user && (
-        <>
-          <Link to={`/profile/${user._id}`}>{user.name} Profile </Link>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </>
-      )) || (
+      <div className="auth-links">
+        {(user && (
           <>
-            <Link to="/log-in">Log In</Link>
-            <Link to="/register">Register</Link>
+            <Link to={`/profile/${user._id}`}>{user.name} Profile </Link>
+            <button onClick={handleSignOut}>Sign Out</button>
           </>
-        )}
+
+        )) || (
+            <>
+              <Link to="/log-in">Log In</Link>
+              <Link to="/register">Register</Link>
+            </>
+          )}
+      </div>
     </nav>
   );
 };

@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { listProfiles } from "../services/profile";
+import CardWrapper from '../assets/wrappers/CardWrappr';
 import AuthenticationContext from '../context/authentication';
 
 
 const ListAllProfiles = () => {
 
   const [profiles, setProfiles] = useState([]);
+  const [query, setQuery] = useState('');
   const { user } = useContext(AuthenticationContext);
 
   useEffect(() => {
@@ -18,18 +20,31 @@ const ListAllProfiles = () => {
       });
   }, []);
 
-
-
-
   return (
     <div>
-      {profiles.map((profile) => (
-        <li>
-          <Link to={`/message/${profile._id}`}>
-            <img src={profile.picture} alt={profile.name} />
-            {profile.name}
-          </Link>
-        </li>
+      {<input type='text' placeholder='Search ...' onChange={(e) => setQuery(e.target.value)} style={{
+        width: '100%', paddingBlock: '0.5rem'
+      }} />}
+      {profiles.filter((profile) =>
+        profile.name.toLowerCase().includes(query)
+      ).map((profile) => (
+        <CardWrapper>
+          <Link to={`/profile/${profile._id}`} className="picture">
+            <img src={profile.picture} alt={profile.name} /></Link>
+          <div className="content">
+            <h3>{profile.name}</h3>
+            <p>{profile.description}</p>
+            <div className="buttons">
+              <Link to={`/message/${profile._id}`} className="btn">Message</Link>
+              {profile.userType && profile.userType !== 'center' && (
+                <Link to={`/profile/${profile._id}`} className="btn">Profile</Link>
+              )}
+              {profile.userType && profile.userType === 'center' && (
+                <Link to={`/profile/${profile._id}`} className="btn brown">{profile.userType}</Link>
+              )}
+            </div>
+          </div>
+        </CardWrapper>
       ))}
     </div>
   );

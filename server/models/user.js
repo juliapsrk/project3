@@ -1,18 +1,27 @@
+'use strict';
+
 const mongoose = require('mongoose');
+const { isEmail } = require('validator');
 
 const schema = new mongoose.Schema({
   name: {
     type: String,
+    required: [true, 'Please enter a name'],
+    minlength: [4, 'Minimum Name length is 4 characters'],
     trim: true
   },
   email: {
     type: String,
-    required: true,
+    required: [true, 'Please enter an email'],
+    unique: [true, ' That email is already registered'],
     lowercase: true,
+    validate: [isEmail, 'Please enter a valid email'],
     trim: true
   },
   passwordHashAndSalt: {
-    type: String
+    type: String,
+    required: [true, 'Please enter an email'],
+    minlength: [6, 'Minimum Password length is 6 characters'],
   },
   description: {
     type: String,

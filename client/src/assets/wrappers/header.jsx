@@ -3,51 +3,47 @@ import styled from 'styled-components';
 const Wrapper = styled.header`
   display: flex;
   align-items: center;
-  background: crimson;
-  padding: 1rem 2rem;
-  gap: 4rem;
+  padding: 1rem 3rem;
+  border-top: 5px var(--color-crimson) solid;
+  justify-content: center;
 
-  button {
-    border: 1px #fff solid;
-    padding: 0.5rem 1rem;
-    border-radius: 2px;
-    background: crimson;
-    color: #fff;
-    cursor: pointer;
+  .logo {
+    margin-right: auto;
+    flex: 1;
   }
 
-  h1 {
-    padding: 0;
-    margin: 0;
-    color: #fff;
+  nav {
+    flex: 2;
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 2rem;
-    letter-spacing: 2px;
+    color: var(--color-crimson);
+    gap: 2rem;
+    font-size: 1.2rem;
+    text-transform: capitalize;
 
     a {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      line-height: normal;
-    }
-    span {
-      font-size: 0.9rem;
-      margin-inline: 1rem;
-      text-transform: capitalize;
+      border-bottom: 1px transparent solid;
+      transition: all 0.3s linear;
+
+      &:hover,
+      &.active {
+        border-bottom: 1px var(--color-crimson) solid;
+      }
     }
 
-    svg {
-      font-size: 3rem;
+    .auth-links {
+      margin-left: auto;
+      display: flex;
+      gap: 2rem;
+
+      a {
+        color: var(--color-text);
+
+        &:hover,
+        &.active {
+          border-bottom: 1px var(--color-text) solid;
+        }
+      }
     }
-  }
-  nav {
-    display: flex;
-    color: #fff;
-    gap: 1rem;
-    align-items: center;
-    text-transform: capitalize;
   }
 `;
 export default Wrapper;

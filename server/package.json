@@ -19,7 +19,8 @@
     "imagekit": "^3.2.5",
     "mongoose": "^6.2.11",
     "morgan": "^1.10.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "mocha": "^9.2.2",
