@@ -11,6 +11,7 @@ const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js')
 const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
 const profileRouter = require('./routes/profile');
+const petRouter = require('./routes/pet');
 const postRouter = require('./routes/post');
 const messageRouter = require('./routes/message');
 
@@ -52,6 +53,7 @@ app.use(bindUserToViewLocals);
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/profile', profileRouter);
+app.use('/pet', petRouter);
 app.use('/post', postRouter);
 app.use('/message', messageRouter);
 

@@ -20,7 +20,7 @@ const PetCreationPage = () => {
 
   const handlePetCreation = () => {
     petCreate(pet).then((data) => {
-      const id = data.house._id;
+      const id = data.pet._id;
       navigate(`/pet/${id}`);
     });
   };
@@ -33,6 +33,8 @@ const PetCreationPage = () => {
         onPetChange={setPet}
         onPetSubmit={handlePetCreation}
         buttonLabel='Add Pet Listing'
+        method='POST'
+        action='/pet'
       />
     </div>
   );
