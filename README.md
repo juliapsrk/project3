@@ -5,10 +5,10 @@
 ### Pages
 
 - Home - / - Display latest pets and posts
-- Register - /register - Allow visitor to create account with name, email, password and profile picture.
-- Log In - /log-in - Allows existing user to log-in.
-- Profile Search - /profile/search - Search for users.
-- Profile Edit - /profile/edit - Allows authenticated user to edit their profile.
+- Register - /register - Allow visitor to create account with name, email, password and profile picture. ✅
+- Log In - /log-in - Allows existing user to log-in. ✅
+- Profile Search - /profile/search - Search for users. ✅
+- Profile Edit - /profile/edit - Allows authenticated user to edit their profile. ✅
 - Profile - /profile/:id - Visualize users' profile + Pet Bookmarks
   ​
 - Pet Detail - /pet/:id/detail - Display details on a single pet + comments/likes. ✅
@@ -68,7 +68,7 @@
 
 ### Models
 
-User (Ilan)
+#### User (Ilan)
 
 - name: String, required, trim
 - email: String, required, trim, lowercase
@@ -78,7 +78,8 @@ User (Ilan)
 - Bookmark
 - type: String, enum ['private', 'center'] <!-- 'center' displays extra component in profile with center information -->
   ​
-  Pet (Julia)
+
+#### Pet (Julia)
 
 - name: String, required​ ✅
 - animal: String, [ 'dog', 'cat', 'rabbit', 'bird', 'reptile', 'fish' ], required ✅ <!-- expand options list -->
@@ -92,15 +93,21 @@ User (Ilan)
 - picture: String ✅
 - timestamp ✅
   ​
-  Post (Nina)
-  ​
+
+#### Post (Nina)
+
+​
+
 - title: String, required
 - description: String, maxLength: 5000, trim
 - type: String, [ 'petForAdoption', 'lookingForPet' ], required
 - owner: ObjectId, ref: 'User', required
   ​
-  Message
-  ​
+
+### Message
+
+​
+
 - content: String, required, minlength: 1, maxlength: 5000, trim
 - sender: ObjectId, ref: 'User', required
 - receiver: ObjectId, ref: 'User', required
