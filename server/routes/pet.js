@@ -65,7 +65,6 @@ router.patch('/:id', routeGuard, (req, res, next) => {
   const { name, type, breed, age, location, picture } = req.body;
   Pet.findByIdAndUpdate(
     id,
-    // which properties need to be listed here?
     { name, type, breed, age, location, picture },
     { new: true }
   )
