@@ -22,6 +22,7 @@ router.get('/search', (req, res, next) => {
 router.get('/', (req, res, next) => {
 
   User.find()
+    .sort({ createdAt: -1 })
     .then((users) => {
       res.json({ profiles: users });
     })

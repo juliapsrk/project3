@@ -6,16 +6,15 @@ import placeholder from '../assets/images/placeholder.png';
 import AuthenticationContext from '../context/authentication';
 
 
-const ListAllProfiles = () => {
+const ListAllCenters = () => {
 
   const [profiles, setProfiles] = useState([]);
-  const [query, setQuery] = useState('');
   const { user } = useContext(AuthenticationContext);
 
   useEffect(() => {
     listProfiles()
-      .then((data) => {
 
+      .then((data) => {
         setProfiles(data.profiles);
         console.log(data.profiles)
       });
@@ -57,4 +56,4 @@ const ListAllProfiles = () => {
   );
 }
 
-export default ListAllProfiles;
+export default ListAllCenters;
