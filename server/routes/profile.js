@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
+const Post = require('../models/post');
 const routeGuard = require('./../middleware/route-guard');
 
 const router = new express.Router();
@@ -20,7 +21,6 @@ router.get('/search', (req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
-
   User.find()
     .then((users) => {
       res.json({ profiles: users });
@@ -30,24 +30,33 @@ router.get('/', (req, res, next) => {
     });
 });
 
-
-
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
+  let user;
   User.findById(id)
-    .then((user) => {
-      res.json({ user })
-    }).catch((error) => {
-      next(error)
+    .then((doc) => {
+      user = doc;
+      return Post.find({ owner: id });
+    })
+    .then((posts) => {
+      res.json({ user, posts });
+    })
+    .catch((error) => {
+      next(error);
     });
-})
+});
 router.patch('/', (req, res, next) => {
   const { name, email, password, picture, description } = req.body;
-  User.findByIdAndUpdate(req.user._id, { name, email, password, picture, description }, { new: true })
+  User.findByIdAndUpdate(
+    req.user._id,
+    { name, email, password, picture, description },
+    { new: true }
+  )
     .then((user) => {
-      res.json({ user })
-    }).catch((error) => {
-      next(error)
+      res.json({ user });
+    })
+    .catch((error) => {
+      next(error);
     });
-})
+});
 module.exports = router;

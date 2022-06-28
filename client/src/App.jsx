@@ -36,33 +36,21 @@ const App = () => {
         <Header />
         <PageWrapper>
           <Routes>
-<<<<<<< HEAD
             <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/log-in" element={<LogInPage />} />
             <Route path="/profile/" element={<ListAllProfiles />} />
             <Route path="/profile/:id" element={<ProfilePage />} />
             <Route path="/profile/edit" element={<ProfileEditPage />} />
+            <Route path="/pet/:id" element={<PetDetailPage />} />
+            <Route path="/pet" element={<PetCreationPage />} />
+            <Route path="/pet/:id/edit" element={<PetEditPage />} />
             <Route path="/post/:id" element={<SinglePostPage />} />
             <Route path="/post" element={<CreatePostPage />} />
             <Route path="/post/:id/edit" element={<PostEditPage />} />
             <Route path="/message/list" element={<MessageThreadListPage />} />
             <Route path="/message/:id" element={<MessageThreadDetailPage />} />
             <Route path="*" element={'404 page'} />
-=======
-            <Route path='/' element={<HomePage />} />
-            <Route path='/register' element={<RegisterPage />} />
-            <Route path='/log-in' element={<LogInPage />} />
-            <Route path='/profile/:id' element={<ProfilePage />} />
-            <Route path='/profile/edit' element={<ProfileEditPage />} />
-            <Route path='/pet/:id' element={<PetDetailPage />} />
-            <Route path='/pet' element={<PetCreationPage />} />
-            <Route path='/pet/:id/edit' element={<PetEditPage />} />
-            <Route path='/post/:id' element={<SinglePostPage />} />
-            <Route path='/post' element={<CreatePostPage />} />
-            <Route path='/post/:id/edit' element={<PostEditPage />} />
-            <Route path='*' element={'404 page'} />
->>>>>>> e0a54f7c1be6036d8bb5b4ccdca35402b05d8101
           </Routes>
         </PageWrapper>
       </BrowserRouter>
