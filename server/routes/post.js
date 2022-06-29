@@ -6,7 +6,7 @@ const Post = require('./../models/post');
 
 const routeGuard = require('./../middleware/route-guard');
 
-// load all latest posts
+// load all posts sorted by date
 router.get('/', (req, res, next) => {
   Post.find()
     .sort({ createdAt: -1 })
@@ -23,6 +23,19 @@ router.get('/list', (req, res, next) => {
   const owner = req.user._id;
   Post.find(owner)
     .sort({ createdAt: -1 })
+    .then((posts) => {
+      res.json({ posts });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+// load latest post sorted and limited
+router.get('/list/latest', (req, res, next) => {
+  Post.find()
+    .sort({ createdAt: -1 })
+    .limit(5)
     .then((posts) => {
       res.json({ posts });
     })

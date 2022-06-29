@@ -34,6 +34,19 @@ router.get('/list', (req, res, next) => {
     });
 });
 
+// load latest pets sorted and limited
+router.get('/list/latest', (req, res, next) => {
+  Pet.find()
+    .sort({ createdAt: -1 })
+    .limit(5)
+    .then((pets) => {
+      res.json({ pets });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 // GET - '/pet/:id' - Load details on a single pet
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
