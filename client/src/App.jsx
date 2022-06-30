@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LogInPage from './pages/LogInPage';
 import ListAllProfiles from './pages/ProfileList';
-import ListAllCenters from './pages/ProfileListCenters';
+// import ListAllCenters from './pages/ProfileListCenters';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEditPage from './pages/ProfileEditPage';
 import PetDetailPage from './pages/PetDetailPage';
@@ -37,23 +37,23 @@ const App = () => {
         <Header />
         <PageWrapper>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/centers" element={<ListAllCenters />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/log-in" element={<LogInPage />} />
-            <Route path="/profile/" element={<ListAllProfiles />} />
-            <Route path="/profile/:id" element={<ProfilePage />} />
-            <Route path="/profile/edit" element={<ProfileEditPage />} />
+            <Route path='/' element={<HomePage />} />
+            {/* <Route path='/centers' element={<ListAllCenters />} /> */}
+            <Route path='/register' element={<RegisterPage />} />
+            <Route path='/log-in' element={<LogInPage />} />
+            <Route path='/profile/' element={<ListAllProfiles />} />
+            <Route path='/profile/:id' element={<ProfilePage />} />
+            <Route path='/profile/edit' element={<ProfileEditPage />} />
             <Route path='/pet/:id' element={<PetDetailPage />} />
             <Route path='/pet/:id/edit' element={<PetEditPage />} />
             {/* <Route path='/pet/list' element={<PetListPage />} /> */}
             <Route path='/pet' element={<PetCreationPage />} />
-            <Route path="/post/:id" element={<SinglePostPage />} />
-            <Route path="/post" element={<CreatePostPage />} />
-            <Route path="/post/:id/edit" element={<PostEditPage />} />
-            <Route path="/message/list" element={<MessageThreadListPage />} />
-            <Route path="/message/:id" element={<MessageThreadDetailPage />} />
-            <Route path="*" element={'404 page'} />
+            <Route path='/post/:id' element={<SinglePostPage />} />
+            <Route path='/post' element={<CreatePostPage />} />
+            <Route path='/post/:id/edit' element={<PostEditPage />} />
+            <Route path='/message/list' element={<MessageThreadListPage />} />
+            <Route path='/message/:id' element={<MessageThreadDetailPage />} />
+            <Route path='*' element={'404 page'} />
           </Routes>
         </PageWrapper>
       </BrowserRouter>
