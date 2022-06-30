@@ -21,6 +21,7 @@ import Header from './components/Header';
 import PageWrapper from './assets/wrappers/PageWrapper';
 import AuthenticationContext from './context/authentication';
 import { loadUserInformation } from './services/authentication';
+import Bookmark from './pages/Bookmark';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -44,10 +45,11 @@ const App = () => {
             <Route path="/profile/" element={<ListAllProfiles />} />
             <Route path="/profile/:id" element={<ProfilePage />} />
             <Route path="/profile/edit" element={<ProfileEditPage />} />
-            <Route path='/pet/:id' element={<PetDetailPage />} />
-            <Route path='/pet/:id/edit' element={<PetEditPage />} />
+            <Route path="/pet/:id" element={<PetDetailPage />} />
+            <Route path="/pet/:id/edit" element={<PetEditPage />} />
             {/* <Route path='/pet/list' element={<PetListPage />} /> */}
-            <Route path='/pet' element={<PetCreationPage />} />
+            <Route path="/pet" element={<PetCreationPage />} />
+            <Route path="/pet/bookmarked" element={<Bookmark />} />
             <Route path="/post/:id" element={<SinglePostPage />} />
             <Route path="/post" element={<CreatePostPage />} />
             <Route path="/post/:id/edit" element={<PostEditPage />} />

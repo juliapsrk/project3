@@ -4,6 +4,7 @@ import { profileLoad } from '../services/profile';
 
 import AuthenticationContext from '../context/authentication';
 import { petCreate } from '../services/pet';
+import Bookmark from './Bookmark';
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -79,6 +80,7 @@ const ProfilePage = () => {
           <div style={{ borderBottom: '1px solid gray' }}>
             <h2>Pet Bookmarks</h2>
             <p>listing user's Bookmarks</p>
+            <Bookmark />
           </div>
 
           <div style={{ borderBottom: '1px solid gray' }}>
