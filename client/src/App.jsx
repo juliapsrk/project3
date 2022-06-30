@@ -49,7 +49,7 @@ const App = () => {
             <Route path="/pet/:id/edit" element={<PetEditPage />} />
             {/* <Route path='/pet/list' element={<PetListPage />} /> */}
             <Route path="/pet" element={<PetCreationPage />} />
-            <Route path="/pet/bookmarked" element={<Bookmark />} />
+            {/* <Route path="/pet/bookmarked" element={<Bookmark />} /> */}
             <Route path="/post/:id" element={<SinglePostPage />} />
             <Route path="/post" element={<CreatePostPage />} />
             <Route path="/post/:id/edit" element={<PostEditPage />} />
