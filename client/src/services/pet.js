@@ -1,7 +1,9 @@
 import api from './api';
 
 export const petSearch = (filters) =>
-  api.get(`/pet/search?${new URLSearchParams(filters).toString()}`).then((response) => response.data);
+  api
+    .get(`/pet/search?${new URLSearchParams(filters).toString()}`)
+    .then((response) => response.data);
 
 export const petLatest = () =>
   api.get('/pet/list/latest').then((response) => response.data);

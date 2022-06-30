@@ -87,7 +87,7 @@ const PetForm = ({
           }
         />
         <label htmlFor='input-adopted'>
-          {pet.adopted ? 'Adopted' : 'Looking for a home'}
+          {pet.adopted ? 'Looking for a home' : 'Found a home'}
         </label>
       </div>
 

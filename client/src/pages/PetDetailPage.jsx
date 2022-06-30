@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-// import ProfileCard from '../components/ProfileCard';
 import AuthenticationContext from '../context/authentication';
 import { petLoad } from '../services/pet';
 
@@ -25,35 +24,31 @@ const PetDetailPage = () => {
               {pet.breed} {pet.type}
             </h3>
           </header>
-          {/* 
+
           <section>
             <h3>Pictures</h3>
-            {pet.pictures.map((picture) => (
+            {/* {pet.pictures.map((picture) => (
               <img key={picture} src={picture} />
-            ))}
-          </section> */}
+            ))} */}
+          </section>
 
           <section>
             <p>{pet.description}</p>
           </section>
 
           <aside>
-            <h4>Owned by</h4>
-            {/* <ProfileCard profile={pet.owner} /> */}
-            <h4>Actions</h4>
-            {/* {(user && (
+            <h4>Owned by {pet.owner}</h4>
+            {/* Actions: */}
+            {user && (
               <>
-                {pet.owner._id === user._id && (
-                  <Link to={`/house/${id}/edit`} className='btn'>
-                    Message Owner
+                {pet.owner === user && (
+                  <Link to={`/pet/${id}/edit`} className='btn'>
+                    Edit Pet Listing
                   </Link>
                 )}
+                <button>Bookmark</button>
               </>
-            )) || (
-              <Link to='/register' className='btn'>
-                Register to Message Owner or Bookmark Listing
-              </Link>
-            )} */}
+            )}
           </aside>
         </>
       )}
