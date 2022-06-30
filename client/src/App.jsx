@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LogInPage from './pages/LogInPage';
 import ListAllProfiles from './pages/ProfileList';
-import ListAllCenters from './pages/ProfileListCenters';
+// import ListAllCenters from './pages/ProfileListCenters';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEditPage from './pages/ProfileEditPage';
 import PetDetailPage from './pages/PetDetailPage';
@@ -39,7 +39,7 @@ const App = () => {
         <PageWrapper>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/centers" element={<ListAllCenters />} />
+            {/* <Route path="/centers" element={<ListAllCenters />} /> */}
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/log-in" element={<LogInPage />} />
             <Route path="/profile/" element={<ListAllProfiles />} />
