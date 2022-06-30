@@ -24,7 +24,7 @@ export const bookmarkList = () =>
   api.get('/pet/bookmarked').then((response) => response.data);
 
 export const bookmarkAdd = (id) =>
-  api.post(`/pet/${id}/bookmark`).then((response) => response.data);
+  api.post(`/pet/bookmark/${id}`).then((response) => response.data);
 
 export const bookmarkRemove = (id) =>
   api.delete(`/pet/${id}/bookmark`).then((response) => response.data);
