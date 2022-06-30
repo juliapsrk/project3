@@ -19,7 +19,7 @@ const Navbar = () => {
       <Link to="/">Adopt</Link>
       <Link to="/profile">Members</Link>
       <Link to="/">How to Adopt</Link>
-      <Link to="/">Centers</Link>
+      <Link to="/centers">Centers</Link>
       <Link to="/">About</Link>
       <div className="auth-links">
         {(user && (
