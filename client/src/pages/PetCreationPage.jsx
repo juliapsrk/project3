@@ -5,11 +5,11 @@ import { petCreate } from '../services/pet';
 
 const PetCreationPage = () => {
   const [pet, setPet] = useState({
-    name: 'Mozarella',
-    type: 'dog',
-    breed: 'Samoyed',
-    age: 1,
-    description: 'Adorable floof ball called Mozarella',
+    name: '',
+    type: '',
+    breed: '',
+    age: '',
+    description: '',
     listed: true,
     adopted: false,
     // wrote 'picture' everywhere in singular form (Pet Model and Router)
@@ -21,6 +21,7 @@ const PetCreationPage = () => {
   const handlePetCreation = () => {
     petCreate(pet).then((data) => {
       const id = data.pet._id;
+      console.log(pet);
       navigate(`/pet/${id}`);
     });
   };
@@ -34,7 +35,7 @@ const PetCreationPage = () => {
         onPetSubmit={handlePetCreation}
         buttonLabel='Add Pet Listing'
         method='POST'
-        action='/pet'
+        action='/pet/:id'
       />
     </div>
   );

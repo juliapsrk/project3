@@ -5,12 +5,16 @@ import {
   bookmarkAdd,
   bookmarkList,
   bookmarkRemove,
-  petLoad
+  petLoad,
+  petDelete
 } from '../services/pet';
 // import Bookmark from './Bookmark';
 
 const PetDetailPage = () => {
   const { id } = useParams();
+
+  const navigate = useNavigate();
+  const { user } = useContext(AuthenticationContext);
 
   const [pet, setPet] = useState(null);
   const [bookmark, setBookmark] = useState(null);
@@ -26,15 +30,18 @@ const PetDetailPage = () => {
   useEffect(() => {
     petLoad(id).then((data) => {
       setPet(data.pet);
+      console.log(data.pet);
       let bookmarked = bookmarks.find((item) => item && item.startsWith(id));
       console.log(bookmarked);
       if (bookmarked) setBookmark(data.pet);
     });
   }, [id, bookmarks]);
 
-  const { user } = useContext(AuthenticationContext);
-
-  const navigate = useNavigate();
+  const handlePetDeletion = () => {
+    petDelete(id).then(() => {
+      navigate('/');
+    });
+  };
 
   const handleSetBookmark = () => {
     if (!bookmark)
@@ -58,10 +65,15 @@ const PetDetailPage = () => {
         <>
           <header>
             <h1>{pet.name}</h1>
-            <h3>
-              {pet.breed} {pet.type}
-            </h3>
+            <span>
+              {pet.type} | {pet.breed} | {pet.age} y/o
+            </span>
           </header>
+
+          <section>
+            <h4>More about {pet.name}:</h4>
+            <p>"{pet.description}"</p>
+          </section>
 
           <section>
             <h3>Pictures</h3>
@@ -70,39 +82,28 @@ const PetDetailPage = () => {
             ))} */}
           </section>
 
-          <section>
-            <p>{pet.description}</p>
-          </section>
-
           <aside>
             <h4>Owned by {pet.owner}</h4>
-            <h4>Actions</h4>
-            {
-              user && (
-                <>
-                  {(pet && !bookmark && (
-                    <button onClick={handleSetBookmark}>Bookmark</button>
-                  )) || (
-                    <button onClick={handleRemoveBookmark}>
-                      Remove bookmark
-                    </button>
-                  )}
-                  {/* <Bookmark bookmarks={bookmarks} /> */}
-                  {/* {(user && (
+            <br />
+            {user && (
               <>
-                {pet.owner === user && (
-                  <Link to={`/pet/${id}/edit`} className='btn'>
-                    Edit Pet Listing
-                  </Link>
-                  
-                )}*/}
-                </>
-              )
-              // )) || (
-              //   <Link to="/register" className="btn">
-              //     Register to Message Owner or Bookmark Listing
-              //   </Link>
-            }
+                {(pet && !bookmark && (
+                  <button onClick={handleSetBookmark}>Bookmark</button>
+                )) || (
+                  <button onClick={handleRemoveBookmark}>
+                    Remove bookmark
+                  </button>
+                )}
+                {(user && pet.owner === user._id && (
+                  <>
+                    <Link to={`/pet/${id}/edit`}>Edit Pet Listing</Link>
+                    <button onClick={handlePetDeletion}>
+                      Delete Pet Listing
+                    </button>
+                  </>
+                )) || <Link to='/register'>Register</Link>}
+              </>
+            )}
           </aside>
         </>
       )}
