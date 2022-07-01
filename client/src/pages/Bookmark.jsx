@@ -22,13 +22,20 @@ const Bookmark = () => {
       <div style={{ borderBottom: '1px solid gray' }}>
         {user && Boolean(bookmarks.length) && (
           <>
-            {bookmarks.map((pet) => {
-              console.log(pet);
-              if (pet) {
-                let item = pet.split(' ');
-                return <Link to={`/pet/${item[0]}`}>{item[1]}</Link>;
-              }
-            })}
+            <ul>
+              {bookmarks.map((pet) => {
+                console.log(pet);
+                if (pet) {
+                  let item = pet.split(' ');
+
+                  return (
+                    <li style={{ listStyle: 'none' }}>
+                      <Link to={`/pet/${item[0]}`}>{item[1]}</Link>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
           </>
         )}
       </div>

@@ -37,25 +37,16 @@ const PetDetailPage = () => {
   const navigate = useNavigate();
 
   const handleSetBookmark = () => {
-    // let bookmarked = bookmarks.find((item) => item.startsWith(id));
     if (!bookmark)
       bookmarkAdd(id).then((data) => {
-        // setBookmark([...bookmark, data.pet]);
-
         setBookmark(data);
-        // setBookmarks([...bookmarks, data]);
         console.log(data);
       });
   };
 
   const handleRemoveBookmark = () => {
-    // if (bookmark)
     bookmarkRemove(id).then(() => {
       setBookmark(null);
-      // const filteredOut = bookmarks.filter((item) => item.pet._id !== id);
-      // const index = bookmarks.indexOf(id);
-      // if (index) bookmarks.splice(index, 1);
-      // setBookmarks(bookmarks);
       navigate(`/pet/${id}`);
       console.log('removed!', id);
     });
