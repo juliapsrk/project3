@@ -5,12 +5,13 @@ const Wrapper = styled.div`
 
 .hero {
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
+  margin-block-start: 1rem;
   background-image: url(${petHeroImage});
   background-size: cover;
-  aspect-ratio: 2/4;
-    background-position: top center;
-    max-height: 615px;
+  aspect-ratio: 1/1;
+  background-position: top center;
+  max-height: 400px;
 }
 
 `
