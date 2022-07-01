@@ -10,7 +10,6 @@ const MessageThreadListPage = () => {
   useEffect(() => {
     messageThreadList().then((data) => {
       setThreads(data.threads);
-      console.log(threads);
     });
   }, []);
 

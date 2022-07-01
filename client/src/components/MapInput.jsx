@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from "@react-google-maps/api";
 import mapPointer from '../assets/images/paw.svg';
-import mapCompass from '../assets/images/compass.svg';
 import mapStyles from '../components/MapStyles'
 
 const MapInput = (props) => {

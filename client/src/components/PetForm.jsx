@@ -4,9 +4,6 @@ import MapInput from "./MapInput";
 // import PetInputMap from './PetInputMap';
 // import MultipleImageInput from './MultipleImageInput';
 
-
-
-
 const PetForm = ({
   pet,
   onPetChange,
@@ -19,7 +16,7 @@ const PetForm = ({
 
 }) => {
   const handlePetFormSubmission = (event) => {
-    console.log(pet);
+
     event.preventDefault();
     onPetSubmit();
   };
@@ -134,7 +131,7 @@ const PetForm = ({
       /> */}
 
       <button type='submit'>{buttonLabel}</button>
-    </form>
+    </form >
   );
 };
 

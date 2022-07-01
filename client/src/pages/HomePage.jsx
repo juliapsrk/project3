@@ -22,7 +22,6 @@ const HomePage = () => {
       .then((data) => {
         const latestPets = data.pets
         setPets(latestPets)
-        console.log(pets);
       })
   }, [])
 

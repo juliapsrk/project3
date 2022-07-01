@@ -21,7 +21,6 @@ const PetCreationPage = () => {
   const handlePetCreation = () => {
     petCreate(pet).then((data) => {
       const id = data.pet._id;
-      console.log(pet);
       navigate(`/pet/${id}`);
     });
   };

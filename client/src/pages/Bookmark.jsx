@@ -11,7 +11,6 @@ const Bookmark = () => {
 
   useEffect(() => {
     bookmarkList().then((data) => {
-      // console.log(data.pets);
       setBookmarks(data.pets);
     });
   }, []);
@@ -24,12 +23,12 @@ const Bookmark = () => {
           <>
             <ul>
               {bookmarks.map((pet) => {
-                console.log(pet);
+
                 if (pet) {
                   let item = pet.split(' ');
 
                   return (
-                    <li style={{ listStyle: 'none' }}>
+                    <li style={{ listStyle: 'none' }} key={bookmarks[0]}>
                       <Link to={`/pet/${item[0]}`}>{item[1]}</Link>
                     </li>
                   );

@@ -49,7 +49,6 @@ router.get('/list/latest', (req, res, next) => {
 
 // list all bookmarks by the user
 router.get('/bookmarked', routeGuard, (req, res, next) => {
-  console.log('Nina');
   const userId = req.user._id;
   Bookmark.find({ user: userId })
     .populate('pet')
@@ -59,7 +58,6 @@ router.get('/bookmarked', routeGuard, (req, res, next) => {
           return String(bookmark.pet._id + ' ' + bookmark.pet.name);
       });
       // const pets = bookmarks.map((bookmark) => bookmark.pet);
-      console.log(pets);
       res.json({ pets });
     })
     .catch((error) => {
@@ -72,6 +70,7 @@ router.get('/bookmarked', routeGuard, (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Pet.findById(id)
+    .populate('owner')
     .then((pet) => {
       res.json({ pet });
     })
@@ -94,12 +93,10 @@ router.delete('/:id', routeGuard, (req, res, next) => {
 
 // PATCH - '/pet/:id' - Edit single pet
 router.patch('/:id', routeGuard, (req, res, next) => {
-  const { id, owner } = req.params;
-  const { name, type, breed, age, description, picture, location } = req.body;
-  Pet.findByIdAndUpdate(
-    id,
-    owner,
-    { name, type, breed, age, description, picture, location },
+  const { id } = req.params;
+  const { name, type, breed, age, description, location, picture, position } = req.body;
+  const owner = req.user._id;
+  Pet.findByIdAndUpdate({ _id: id, owner }, { name, type, breed, age, description, picture, location, position },
     { new: true }
   )
     .then((pet) => {
@@ -137,7 +134,6 @@ router.post('/', routeGuard, (req, res, next) => {
 
 // set a bookmark
 router.post('/bookmark/:id', routeGuard, (req, res, next) => {
-  console.log('Ana');
   const { id } = req.params;
   const userId = req.user._id;
   Bookmark.findOne({ pet: id, user: userId })

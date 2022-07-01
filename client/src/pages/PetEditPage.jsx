@@ -8,15 +8,16 @@ const PetEditPage = () => {
   const [pet, setPet] = useState(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    petLoad(id).then((data) => setPet(data.pet));
+  }, [id]);
+
   const handlePetEdit = () => {
     petEdit(id, pet).then((data) => {
       navigate(`/pet/${id}`);
     });
   };
-
-  useEffect(() => {
-    petLoad(id).then((data) => setPet(data.pet));
-  }, [id]);
+  console.log(pet)
 
   return (
     <div>
@@ -28,6 +29,7 @@ const PetEditPage = () => {
           onPetSubmit={handlePetEdit}
           buttonLabel='Edit Pet Listing'
           method='PATCH'
+          marker={{ lat: 52.50009266700705, lng: 13.309002783203127 }}
           action={`/pet/${id}`}
         />
       )}

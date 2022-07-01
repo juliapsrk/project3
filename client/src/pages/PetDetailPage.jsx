@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import MapInput from '../components/MapInput';
 import AuthenticationContext from '../context/authentication';
 import {
   bookmarkAdd,
@@ -14,7 +15,6 @@ const PetDetailPage = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
-  const { user } = useContext(AuthenticationContext);
 
   const [pet, setPet] = useState(null);
   const [bookmark, setBookmark] = useState(null);
@@ -22,7 +22,6 @@ const PetDetailPage = () => {
 
   useEffect(() => {
     bookmarkList().then((data) => {
-      console.log(data);
       setBookmarks(data.pets);
     });
   }, []);
@@ -30,12 +29,12 @@ const PetDetailPage = () => {
   useEffect(() => {
     petLoad(id).then((data) => {
       setPet(data.pet);
-      console.log(data.pet);
       let bookmarked = bookmarks.find((item) => item && item.startsWith(id));
-      console.log(bookmarked);
       if (bookmarked) setBookmark(data.pet);
     });
   }, [id, bookmarks]);
+
+  const { user } = useContext(AuthenticationContext);
 
   const handlePetDeletion = () => {
     petDelete(id).then(() => {
@@ -47,7 +46,6 @@ const PetDetailPage = () => {
     if (!bookmark)
       bookmarkAdd(id).then((data) => {
         setBookmark(data);
-        console.log(data);
       });
   };
 
@@ -55,60 +53,52 @@ const PetDetailPage = () => {
     bookmarkRemove(id).then(() => {
       setBookmark(null);
       navigate(`/pet/${id}`);
-      console.log('removed!', id);
     });
   };
 
   return (
     <div>
+
       {pet && (
         <>
+
+          <MapInput marker={pet.position}></MapInput>
           <header>
-            <h1>{pet.name}</h1>
-            <span>
-              {pet.type} | {pet.breed} | {pet.age} y/o
-            </span>
+            <h1>Name: {pet.name}</h1>
+            <p>Type: {pet.type}</p>
+            <p>Age: {pet.age}</p>
+            <p>Adopted: {pet.adopted ? "Adopted" : "for Adoption"}</p>
+            <p>Breed: {pet.breed}</p>
+            <p>Listed: {pet.listed ? "Listed" : "Not Listed"}</p>
+            <p>description: {pet.description}</p>
+            <p>Position: {pet.position.lat}, {pet.position.lng}</p>
+            <p>Pet owner ID/Name: {pet.owner.name}</p>
           </header>
+          {user && (
+            <>
+              {(pet && !bookmark && (
+                <button onClick={handleSetBookmark}>Bookmark</button>
+              )) || (
+                  <button onClick={handleRemoveBookmark}>
+                    Remove bookmark
+                  </button>
+                )}
+              {(user && pet.owner._id === user._id && (
+                <>
+                  <Link to={`/pet/${id}/edit`}>Edit Pet Listing</Link>
+                  <button onClick={handlePetDeletion}>
+                    Delete Pet Listing
+                  </button>
+                </>
 
-          <section>
-            <h4>More about {pet.name}:</h4>
-            <p>"{pet.description}"</p>
-          </section>
+              ) || <Link to='/register'>Register</Link>)}
 
-          <section>
-            <h3>Pictures</h3>
-            {/* {pet.pictures.map((picture) => (
-              <img key={picture} src={picture} />
-            ))} */}
-          </section>
-
-          <aside>
-            <h4>Owned by {pet.owner}</h4>
-            <br />
-            {user && (
-              <>
-                {(pet && !bookmark && (
-                  <button onClick={handleSetBookmark}>Bookmark</button>
-                )) || (
-                    <button onClick={handleRemoveBookmark}>
-                      Remove bookmark
-                    </button>
-                  )}
-                {(user && pet.owner === user._id && (
-                  <>
-                    <Link to={`/pet/${id}/edit`}>Edit Pet Listing</Link>
-                    <button onClick={handlePetDeletion}>
-                      Delete Pet Listing
-                    </button>
-                  </>
-                )) || <Link to='/register'>Register</Link>}
-              </>
-            )}
-          </aside>
+            </>
+          )}
         </>
       )}
     </div>
   );
-};
+}
 
 export default PetDetailPage;
