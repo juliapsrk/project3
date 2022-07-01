@@ -54,7 +54,11 @@ router.get('/bookmarked', routeGuard, (req, res, next) => {
   Bookmark.find({ user: userId })
     .populate('pet')
     .then((bookmarks) => {
-      const pets = bookmarks.map((bookmark) => bookmark.pet);
+      const pets = bookmarks.map((bookmark) => {
+        if (bookmark.pet)
+          return String(bookmark.pet._id + ' ' + bookmark.pet.name);
+      });
+      // const pets = bookmarks.map((bookmark) => bookmark.pet);
       console.log(pets);
       res.json({ pets });
     })
@@ -149,7 +153,7 @@ router.post('/bookmark/:id', routeGuard, (req, res, next) => {
 });
 
 // delete a bookmark
-router.delete('/:id/bookmark', routeGuard, (req, res, next) => {
+router.delete('/bookmark/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
   const userId = req.user._id;
   Bookmark.findOneAndDelete({ pet: id, user: userId })

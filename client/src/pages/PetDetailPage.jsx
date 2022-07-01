@@ -17,27 +17,33 @@ const PetDetailPage = () => {
   const [bookmarks, setBookmarks] = useState([]);
 
   useEffect(() => {
-    petLoad(id).then((data) => setPet(data.pet));
-  }, [id]);
-
-  const { user } = useContext(AuthenticationContext);
+    bookmarkList().then((data) => {
+      console.log(data);
+      setBookmarks(data.pets);
+    });
+  }, []);
 
   useEffect(() => {
-    bookmarkList(user).then((data) => {
-      console.log(data);
-      setBookmarks(data.bookmarks);
+    petLoad(id).then((data) => {
+      setPet(data.pet);
+      let bookmarked = bookmarks.find((item) => item && item.startsWith(id));
+      console.log(bookmarked);
+      if (bookmarked) setBookmark(data.pet);
     });
-  }, [user]);
+  }, [id, bookmarks]);
+
+  const { user } = useContext(AuthenticationContext);
 
   const navigate = useNavigate();
 
   const handleSetBookmark = () => {
+    // let bookmarked = bookmarks.find((item) => item.startsWith(id));
     if (!bookmark)
       bookmarkAdd(id).then((data) => {
         // setBookmark([...bookmark, data.pet]);
 
         setBookmark(data);
-        setBookmarks([...bookmarks, data]);
+        // setBookmarks([...bookmarks, data]);
         console.log(data);
       });
   };
@@ -45,11 +51,11 @@ const PetDetailPage = () => {
   const handleRemoveBookmark = () => {
     // if (bookmark)
     bookmarkRemove(id).then(() => {
-      setBookmark('');
+      setBookmark(null);
       // const filteredOut = bookmarks.filter((item) => item.pet._id !== id);
-      const index = bookmarks.indexOf(id);
-      if (index) bookmarks.splice(index, 1);
-      setBookmarks(bookmarks);
+      // const index = bookmarks.indexOf(id);
+      // if (index) bookmarks.splice(index, 1);
+      // setBookmarks(bookmarks);
       navigate(`/pet/${id}`);
       console.log('removed!', id);
     });
