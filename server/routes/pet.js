@@ -94,12 +94,12 @@ router.delete('/:id', routeGuard, (req, res, next) => {
 
 // PATCH - '/pet/:id' - Edit single pet
 router.patch('/:id', routeGuard, (req, res, next) => {
-  const { id } = req.params;
-  // which properties need to be listed here?
-  const { name, type, breed, age, location, picture } = req.body;
+  const { id, owner } = req.params;
+  const { name, type, breed, age, description, picture, location } = req.body;
   Pet.findByIdAndUpdate(
     id,
-    { name, type, breed, age, location, picture },
+    owner,
+    { name, type, breed, age, description, picture, location },
     { new: true }
   )
     .then((pet) => {

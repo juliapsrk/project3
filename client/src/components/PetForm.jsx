@@ -19,6 +19,7 @@ const PetForm = ({
 
 }) => {
   const handlePetFormSubmission = (event) => {
+    console.log(pet);
     event.preventDefault();
     onPetSubmit();
   };
@@ -101,9 +102,15 @@ const PetForm = ({
       </div>
 
       <label htmlFor='input-description'>A short description of your pet</label>
-      <textarea
+      <input
         id='input-description'
+<<<<<<< HEAD
         placeholder='A short description of your pet'
+=======
+        type='string'
+        max={1000}
+        placeholder='Short description of your pet'
+>>>>>>> b8b04653d831553429335cc584b8a679d220ed00
         name='description'
         value={pet.description}
         onChange={(event) =>
