@@ -48,6 +48,14 @@ const schema = new mongoose.Schema(
       maxLength: 5000,
       trim: true
     },
+    position: {
+      lat: {
+        type: Number
+      },
+      lng: {
+        type: Number
+      }
+    },
     picture: [
       {
         type: String

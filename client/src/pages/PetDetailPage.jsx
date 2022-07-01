@@ -26,6 +26,7 @@ const PetDetailPage = () => {
   useEffect(() => {
     petLoad(id).then((data) => {
       setPet(data.pet);
+      console.log("pet data", pet)
       let bookmarked = bookmarks.find((item) => item && item.startsWith(id));
       console.log(bookmarked);
       if (bookmarked) setBookmark(data.pet);
@@ -57,10 +58,15 @@ const PetDetailPage = () => {
       {pet && (
         <>
           <header>
-            <h1>{pet.name}</h1>
-            <h3>
-              {pet.breed} {pet.type}
-            </h3>
+            <h1>Name: {pet.name}</h1>
+            <p>Type: {pet.type}</p>
+            <p>Age: {pet.age}</p>
+            <p>Adopted: {pet.adopted ? "Adopted" : "for Adoption"}</p>
+            <p>Breed: {pet.breed}</p>
+            <p>Listed: {pet.listed ? "Listed" : "Not Listed"}</p>
+            <p>description: {pet.description}</p>
+            <p>Position: {pet.position.lat}, {pet.position.lng}</p>
+            <p>Pet owner ID: ???????????/</p>
           </header>
 
           <section>
@@ -71,11 +77,10 @@ const PetDetailPage = () => {
           </section>
 
           <section>
-            <p>{pet.description}</p>
+
           </section>
 
           <aside>
-            <h4>Owned by {pet.owner}</h4>
             <h4>Actions</h4>
             {
               user && (
@@ -83,10 +88,10 @@ const PetDetailPage = () => {
                   {(pet && !bookmark && (
                     <button onClick={handleSetBookmark}>Bookmark</button>
                   )) || (
-                    <button onClick={handleRemoveBookmark}>
-                      Remove bookmark
-                    </button>
-                  )}
+                      <button onClick={handleRemoveBookmark}>
+                        Remove bookmark
+                      </button>
+                    )}
                   {/* <Bookmark bookmarks={bookmarks} /> */}
                   {/* {(user && (
               <>

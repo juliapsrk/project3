@@ -1,5 +1,11 @@
+import { useState } from "react";
+import MapInput from "./MapInput";
+
 // import PetInputMap from './PetInputMap';
 // import MultipleImageInput from './MultipleImageInput';
+
+
+
 
 const PetForm = ({
   pet,
@@ -7,7 +13,10 @@ const PetForm = ({
   onPetSubmit,
   buttonLabel,
   method,
-  action
+  action,
+  position,
+  marker
+
 }) => {
   const handlePetFormSubmission = (event) => {
     event.preventDefault();
@@ -95,11 +104,20 @@ const PetForm = ({
       <textarea
         id='input-description'
         placeholder='A short description of your pet'
+        name='description'
         value={pet.description}
         onChange={(event) =>
           onPetChange({ ...pet, description: event.target.value })
         }
       />
+
+      <MapInput
+        marker={pet.position}
+        onMarkerChange={(value) => {
+          onPetChange({ ...pet, position: value })
+
+        }}>
+      </MapInput>
 
       {/* <PetInputMap
         location={pet.location}

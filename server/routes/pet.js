@@ -113,7 +113,7 @@ router.patch('/:id', routeGuard, (req, res, next) => {
 // POST - '/pet' Creates single pet
 router.post('/', routeGuard, (req, res, next) => {
   // required properties need to be listed here
-  const { name, type, breed, age, listed, adopted /*, location, picture*/ } =
+  const { name, type, breed, age, listed, adopted, description, position /*, location, picture*/ } =
     req.body;
   const { owner } = req.params;
   Pet.create({
@@ -123,6 +123,8 @@ router.post('/', routeGuard, (req, res, next) => {
     age,
     listed,
     adopted,
+    position,
+    description,
     owner /*, location, picture*/
   })
     .then((pet) => {
