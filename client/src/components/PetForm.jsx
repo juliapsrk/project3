@@ -104,13 +104,9 @@ const PetForm = ({
       <label htmlFor='input-description'>A short description of your pet</label>
       <input
         id='input-description'
-<<<<<<< HEAD
-        placeholder='A short description of your pet'
-=======
         type='string'
         max={1000}
         placeholder='Short description of your pet'
->>>>>>> b8b04653d831553429335cc584b8a679d220ed00
         name='description'
         value={pet.description}
         onChange={(event) =>

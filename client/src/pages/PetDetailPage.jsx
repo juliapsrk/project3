@@ -30,11 +30,7 @@ const PetDetailPage = () => {
   useEffect(() => {
     petLoad(id).then((data) => {
       setPet(data.pet);
-<<<<<<< HEAD
-      console.log("pet data", pet)
-=======
       console.log(data.pet);
->>>>>>> b8b04653d831553429335cc584b8a679d220ed00
       let bookmarked = bookmarks.find((item) => item && item.startsWith(id));
       console.log(bookmarked);
       if (bookmarked) setBookmark(data.pet);
