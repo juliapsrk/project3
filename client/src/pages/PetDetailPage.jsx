@@ -62,7 +62,7 @@ const PetDetailPage = () => {
       {pet && (
         <>
 
-          <MapInput marker={pet.position}></MapInput>
+          {/* <MapInput marker={pet.position}></MapInput> */}
           <header>
             <h1>Name: {pet.name}</h1>
             <p>Type: {pet.type}</p>
