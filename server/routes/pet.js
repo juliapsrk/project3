@@ -154,7 +154,8 @@ router.post('/', routeGuard, (req, res, next) => {
     adopted,
     position,
     description,
-    owner /*, location, picture*/
+    owner /*, location, picture*/,
+    pictures
   })
     .then((pet) => {
       res.json({ pet });

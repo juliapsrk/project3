@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import MapInput from '../components/MapInput';
 import AuthenticationContext from '../context/authentication';
@@ -17,8 +17,7 @@ const PetDetailPage = () => {
   const navigate = useNavigate();
 
   const [pet, setPet] = useState(null);
-  const [bookmark, setBookmark] = useState(null);
-  const [bookmarks, setBookmarks] = useState([]);
+  const [bookmarks, setBookmarks] = useState(null);
 
   useEffect(() => {
     bookmarkList().then((data) => {
@@ -29,12 +28,13 @@ const PetDetailPage = () => {
   useEffect(() => {
     petLoad(id).then((data) => {
       setPet(data.pet);
-      let bookmarked = bookmarks.find((item) => item && item.startsWith(id));
-      if (bookmarked) setBookmark(data.pet);
     });
-  }, [id, bookmarks]);
+  }, [id]);
 
   const { user } = useContext(AuthenticationContext);
+
+  const bookmark =
+    bookmarks && bookmarks.some((item) => item && item.startsWith(id));
 
   const handlePetDeletion = () => {
     petDelete(id).then(() => {
@@ -43,17 +43,23 @@ const PetDetailPage = () => {
   };
 
   const handleSetBookmark = () => {
-    if (!bookmark)
-      bookmarkAdd(id).then((data) => {
-        setBookmark(data);
+    bookmarkAdd(id)
+      .then((data) => {
+        return bookmarkList();
+      })
+      .then((data) => {
+        setBookmarks(data.pets);
       });
   };
 
   const handleRemoveBookmark = () => {
-    bookmarkRemove(id).then(() => {
-      setBookmark(null);
-      navigate(`/pet/${id}`);
-    });
+    bookmarkRemove(id)
+      .then((data) => {
+        return bookmarkList();
+      })
+      .then((data) => {
+        setBookmarks(data.pets);
+      });
   };
 
   return (
@@ -77,17 +83,18 @@ const PetDetailPage = () => {
           </header>
           {user && (
             <>
-              {(pet && !bookmark && (
-                <button onClick={handleSetBookmark}>Bookmark</button>
-              )) || (
-                <button onClick={handleRemoveBookmark}>Remove bookmark</button>
-              )}
-              {(user && pet.owner._id === user._id && (
+              {bookmarks &&
+                ((bookmark && (
+                  <button onClick={handleRemoveBookmark}>
+                    Remove bookmark
+                  </button>
+                )) || <button onClick={handleSetBookmark}>Bookmark</button>)}
+              {(pet.owner._id === user._id && (
                 <>
                   <Link to={`/pet/${id}/edit`}>Edit</Link>
                   <button onClick={handlePetDeletion}>Delete</button>
                 </>
-              )) || <Link to='/register'>Register</Link>}
+              )) || <Link to="/register">Register</Link>}
             </>
           )}
         </>

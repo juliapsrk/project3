@@ -60,7 +60,7 @@ const schema = new mongoose.Schema(
         type: Number
       }
     },
-    picture: [
+    pictures: [
       {
         type: String
       }

@@ -14,7 +14,7 @@ const PetCreationPage = () => {
     listed: true,
     adopted: false,
     // wrote 'picture' everywhere in singular form (Pet Model and Router)
-    picture: []
+    pictures: []
   });
 
   const navigate = useNavigate();
@@ -33,9 +33,9 @@ const PetCreationPage = () => {
         pet={pet}
         onPetChange={setPet}
         onPetSubmit={handlePetCreation}
-        buttonLabel='Add Pet Listing'
-        method='POST'
-        action='/pet/:id'
+        buttonLabel="Add Pet Listing"
+        method="POST"
+        action="/pet/:id"
       />
     </div>
   );
