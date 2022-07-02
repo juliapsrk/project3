@@ -8,6 +8,9 @@ export const petSearch = (filters) =>
 export const petLatest = () =>
   api.get('/pet/list/latest').then((response) => response.data);
 
+export const petAll = () =>
+  api.get('/pet/list/').then((response) => response.data);
+
 export const petLoad = (id) =>
   api.get(`/pet/${id}`).then((response) => response.data);
 

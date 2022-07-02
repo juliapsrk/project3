@@ -16,6 +16,7 @@ import CreatePostPage from './pages/CreatePostPage';
 import PostEditPage from './pages/PostEditPage';
 import MessageThreadDetailPage from './pages/MessageThreadDetailPage';
 import MessageThreadListPage from './pages/MessageThreadListPage';
+import PetListPage from './pages/PetListPage';
 
 import Header from './components/Header';
 import PageWrapper from './assets/wrappers/PageWrapper';
@@ -47,7 +48,7 @@ const App = () => {
             <Route path="/profile/edit" element={<ProfileEditPage />} />
             <Route path="/pet/:id" element={<PetDetailPage />} />
             <Route path="/pet/:id/edit" element={<PetEditPage />} />
-            {/* <Route path='/pet/list' element={<PetListPage />} /> */}
+            <Route path='/pet/list' element={<PetListPage />} />
             <Route path="/pet" element={<PetCreationPage />} />
             {/* <Route path="/pet/bookmarked" element={<Bookmark />} /> */}
             <Route path="/post/:id" element={<SinglePostPage />} />

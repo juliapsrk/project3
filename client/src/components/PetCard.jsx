@@ -6,7 +6,7 @@ const PetCard = ({ pet }) => (
     <img src='' alt={pet.name} />
     <span>
       {/* if breed is known */}
-      {pet.breed} {pet.type} called {pet.name}
+      {pet.breed} {pet.type} {pet.name}
     </span>
     {/* if age is known */}
     <small>{pet.age}</small>

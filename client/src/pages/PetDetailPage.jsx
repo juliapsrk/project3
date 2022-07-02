@@ -62,7 +62,7 @@ const PetDetailPage = () => {
       {pet && (
         <>
 
-          {/* <MapInput marker={pet.position}></MapInput> */}
+          <MapInput marker={pet.position}></MapInput>
           <header>
             <h1>Name: {pet.name}</h1>
             <p>Type: {pet.type}</p>
@@ -71,7 +71,7 @@ const PetDetailPage = () => {
             <p>Breed: {pet.breed}</p>
             <p>Listed: {pet.listed ? "Listed" : "Not Listed"}</p>
             <p>description: {pet.description}</p>
-            {/* <p>Position: {pet.position.lat}, {pet.position.lng}</p> */}
+            <p>Position: {pet.position.lat}, {pet.position.lng}</p>
             <p>Pet owner ID/Name: {pet.owner.name}</p>
           </header>
           {user && (

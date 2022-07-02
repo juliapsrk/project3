@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import PetCard from '../components/PetCard';
-import { listPetData } from '../services/pet';
+import { petAll } from '../services/pet';
 
 const PetListPage = () => {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
-    listPetData().then((data) => {
+    petAll().then((data) => {
       setPets(data.pets);
     });
   }, []);
@@ -16,6 +16,7 @@ const PetListPage = () => {
   return (
     <div>
       {pets.map((pet) => (
+
         <PetCard key={pet._id} pet={pet} />
       ))}
     </div>

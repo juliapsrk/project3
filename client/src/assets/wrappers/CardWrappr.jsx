@@ -11,6 +11,7 @@ gap: 4rem;
 
   img {
     max-height: 150px;
+    max-width: 150px;
     border-radius: 50%;
     aspect-ratio: 2/2;
     object-fit: cover;

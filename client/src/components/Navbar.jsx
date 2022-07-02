@@ -16,11 +16,12 @@ const Navbar = () => {
 
   return (
     <nav>
-      <Link to="/">Adopt</Link>
+      <Link to="/pet/list">Adopt</Link>
+      <Link to="/pet/">Rehome a pet</Link>
       <Link to="/profile">Members</Link>
       <Link to="/">How to Adopt</Link>
       <Link to="/centers">Centers</Link>
-      <Link to="/">About</Link>
+      {/* <Link to="/">About</Link> */}
       <div className="auth-links">
         {(user && (
           <>
