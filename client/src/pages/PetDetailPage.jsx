@@ -62,16 +62,18 @@ const PetDetailPage = () => {
         <>
           {/* <MapInput marker={pet.position}></MapInput> */}
           <header>
-            <h1>Name: {pet.name}</h1>
-            <p>Type: {pet.type}</p>
-            <p>Age: {pet.age}</p>
-            <p>Gender: {pet.gender}</p>
-            <p>Adopted: {pet.adopted ? 'Adopted' : 'Up for Adoption'}</p>
-            <p>Breed: {pet.breed}</p>
-            <p>Listed: {pet.listed ? 'Listed' : 'Not Listed'}</p>
+            <h1>
+              {pet.name}, {pet.age}
+            </h1>
+            <p>
+              {pet.type} | {pet.breed} | {pet.gender}{' '}
+            </p>
+            <p>
+              {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
+            </p>
             <p>description: {pet.description}</p>
             {/* <p>Position: {pet.position.lat}, {pet.position.lng}</p> */}
-            <p>Pet owner ID/Name: {pet.owner.name}</p>
+            <p>Current owner: {pet.owner.name}</p>
           </header>
           {user && (
             <>
@@ -82,10 +84,8 @@ const PetDetailPage = () => {
               )}
               {(user && pet.owner._id === user._id && (
                 <>
-                  <Link to={`/pet/${id}/edit`}>Edit Pet Listing</Link>
-                  <button onClick={handlePetDeletion}>
-                    Delete Pet Listing
-                  </button>
+                  <Link to={`/pet/${id}/edit`}>Edit</Link>
+                  <button onClick={handlePetDeletion}>Delete</button>
                 </>
               )) || <Link to='/register'>Register</Link>}
             </>
