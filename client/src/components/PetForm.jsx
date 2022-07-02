@@ -111,12 +111,12 @@ const PetForm = ({
         }
       />
 
-      <MapInput
+      {/* <MapInput
         marker={pet.position}
         onMarkerChange={(value) => {
           onPetChange({ ...pet, position: value })
         }}>
-      </MapInput>
+      </MapInput> */}
 
       {/* <PetInputMap
         location={pet.location}
