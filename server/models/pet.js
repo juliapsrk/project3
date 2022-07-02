@@ -18,6 +18,11 @@ const schema = new mongoose.Schema(
       trim: true,
       default: true
     },
+    gender: {
+      type: String,
+      enum: ['male', 'female'],
+      required: true
+    },
     age: {
       type: Number,
       min: 0
@@ -34,7 +39,6 @@ const schema = new mongoose.Schema(
       required: true
     },
     adopted: {
-      // adopted vs upForAdoption
       type: Boolean,
       required: true
     },
@@ -56,7 +60,7 @@ const schema = new mongoose.Schema(
         type: Number
       }
     },
-    picture: [
+    pictures: [
       {
         type: String
       }

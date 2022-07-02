@@ -10,9 +10,10 @@ const PetSearch = () => {
     breed: 'husky',
     listed: true,
     adopted: false,
-    lat: 38.75,
-    lng: -9.25,
-    distance: 1
+    gender: '',
+    lat: '',
+    lng: '',
+    distance: ''
   });
 
   const [pets, setPets] = useState([]);

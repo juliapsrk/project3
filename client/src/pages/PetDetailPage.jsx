@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import MapInput from '../components/MapInput';
 import AuthenticationContext from '../context/authentication';
@@ -17,8 +17,7 @@ const PetDetailPage = () => {
   const navigate = useNavigate();
 
   const [pet, setPet] = useState(null);
-  const [bookmark, setBookmark] = useState(null);
-  const [bookmarks, setBookmarks] = useState([]);
+  const [bookmarks, setBookmarks] = useState(null);
 
   useEffect(() => {
     bookmarkList().then((data) => {
@@ -29,12 +28,13 @@ const PetDetailPage = () => {
   useEffect(() => {
     petLoad(id).then((data) => {
       setPet(data.pet);
-      let bookmarked = bookmarks.find((item) => item && item.startsWith(id));
-      if (bookmarked) setBookmark(data.pet);
     });
-  }, [id, bookmarks]);
+  }, [id]);
 
   const { user } = useContext(AuthenticationContext);
+
+  const bookmark =
+    bookmarks && bookmarks.some((item) => item && item.startsWith(id));
 
   const handlePetDeletion = () => {
     petDelete(id).then(() => {
@@ -43,62 +43,64 @@ const PetDetailPage = () => {
   };
 
   const handleSetBookmark = () => {
-    if (!bookmark)
-      bookmarkAdd(id).then((data) => {
-        setBookmark(data);
+    bookmarkAdd(id)
+      .then((data) => {
+        return bookmarkList();
+      })
+      .then((data) => {
+        setBookmarks(data.pets);
       });
   };
 
   const handleRemoveBookmark = () => {
-    bookmarkRemove(id).then(() => {
-      setBookmark(null);
-      navigate(`/pet/${id}`);
-    });
+    bookmarkRemove(id)
+      .then((data) => {
+        return bookmarkList();
+      })
+      .then((data) => {
+        setBookmarks(data.pets);
+      });
   };
 
   return (
     <div>
-
       {pet && (
         <>
-
-          <MapInput marker={pet.position}></MapInput>
+          {/* <MapInput marker={pet.position}></MapInput> */}
           <header>
-            <h1>Name: {pet.name}</h1>
-            <p>Type: {pet.type}</p>
-            <p>Age: {pet.age}</p>
-            <p>Adopted: {pet.adopted ? "Adopted" : "for Adoption"}</p>
-            <p>Breed: {pet.breed}</p>
-            <p>Listed: {pet.listed ? "Listed" : "Not Listed"}</p>
+            <h1>
+              {pet.name}, {pet.age}
+            </h1>
+            <p>
+              {pet.type} | {pet.breed} | {pet.gender}{' '}
+            </p>
+            <p>
+              {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
+            </p>
             <p>description: {pet.description}</p>
-            <p>Position: {pet.position.lat}, {pet.position.lng}</p>
-            <p>Pet owner ID/Name: {pet.owner.name}</p>
+            {/* <p>Position: {pet.position.lat}, {pet.position.lng}</p> */}
+            <p>Current owner: {pet.owner.name}</p>
           </header>
           {user && (
             <>
-              {(pet && !bookmark && (
-                <button onClick={handleSetBookmark}>Bookmark</button>
-              )) || (
+              {bookmarks &&
+                ((bookmark && (
                   <button onClick={handleRemoveBookmark}>
                     Remove bookmark
                   </button>
-                )}
-              {(user && pet.owner._id === user._id && (
+                )) || <button onClick={handleSetBookmark}>Bookmark</button>)}
+              {(pet.owner._id === user._id && (
                 <>
-                  <Link to={`/pet/${id}/edit`}>Edit Pet Listing</Link>
-                  <button onClick={handlePetDeletion}>
-                    Delete Pet Listing
-                  </button>
+                  <Link to={`/pet/${id}/edit`}>Edit</Link>
+                  <button onClick={handlePetDeletion}>Delete</button>
                 </>
-
-              ) || <Link to='/register'>Register</Link>)}
-
+              )) || <Link to="/register">Register</Link>}
             </>
           )}
         </>
       )}
     </div>
   );
-}
+};
 
 export default PetDetailPage;
