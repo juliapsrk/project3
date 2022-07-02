@@ -23,7 +23,7 @@ const MapInput = (props) => {
   };
 
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: 'AIzaSyDDOMx5CC9QFu2IyUtq5jN3_PCXmL5Rcno',
+    googleMapsApiKey: '',
     libraries,
   });
 
