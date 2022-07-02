@@ -13,8 +13,6 @@ const PetSearchForm = ({ filters, onFiltersChange }) => {
         <option value='cat'>Cat</option>
         <option value='rabbit'>Rabbit</option>
         <option value='bird'>Bird</option>
-        <option value='reptile'>Reptile</option>
-        <option value='fish'>Fish</option>
       </select>
 
       <label htmlFor='input-breed'>Breed</label>

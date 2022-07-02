@@ -71,7 +71,8 @@ const PetDetailPage = () => {
             <h1>Name: {pet.name}</h1>
             <p>Type: {pet.type}</p>
             <p>Age: {pet.age}</p>
-            <p>Adopted: {pet.adopted ? 'Adopted' : 'for Adoption'}</p>
+            <p>Gender: {pet.gender}</p>
+            <p>Adopted: {pet.adopted ? 'Adopted' : 'Up for Adoption'}</p>
             <p>Breed: {pet.breed}</p>
             <p>Listed: {pet.listed ? 'Listed' : 'Not Listed'}</p>
             <p>description: {pet.description}</p>
