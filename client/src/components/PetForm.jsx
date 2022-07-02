@@ -2,7 +2,7 @@ import { useState } from 'react';
 import MapInput from './MapInput';
 
 // import PetInputMap from './PetInputMap';
-// import MultipleImageInput from './MultipleImageInput';
+import MultipleImageInput from './MultipleImageInput';
 
 const PetForm = ({
   pet,
@@ -131,12 +131,12 @@ const PetForm = ({
         location={pet.location}
         onlocationChange={(location) => onPetChange({ ...pet, location })}
       /> */}
-      {/* 
+
       <label>Pet Pictures</label>
       <MultipleImageInput
         images={pet.pictures}
-        onImagesChange={(pictures) => onPetChange({ ...pet, pictures })}
-      /> */}
+        onChange={(pictures) => onPetChange({ ...pet, pictures })}
+      />
 
       <button type='submit'>{buttonLabel}</button>
     </form>

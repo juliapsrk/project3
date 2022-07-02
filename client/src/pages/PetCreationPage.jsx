@@ -13,7 +13,6 @@ const PetCreationPage = () => {
     description: '',
     listed: true,
     adopted: false,
-    // wrote 'picture' everywhere in singular form (Pet Model and Router)
     pictures: []
   });
 
@@ -33,9 +32,9 @@ const PetCreationPage = () => {
         pet={pet}
         onPetChange={setPet}
         onPetSubmit={handlePetCreation}
-        buttonLabel="Add Pet Listing"
-        method="POST"
-        action="/pet/:id"
+        buttonLabel='Add Pet Listing'
+        method='POST'
+        action='/pet/:id'
       />
     </div>
   );

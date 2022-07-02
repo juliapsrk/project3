@@ -141,7 +141,8 @@ router.post('/', routeGuard, (req, res, next) => {
     listed,
     adopted,
     description,
-    position /*, location, picture*/
+    position,
+    pictures
   } = req.body;
   const owner = req.user._id;
   Pet.create({
@@ -154,7 +155,7 @@ router.post('/', routeGuard, (req, res, next) => {
     adopted,
     position,
     description,
-    owner /*, location, picture*/,
+    owner,
     pictures
   })
     .then((pet) => {

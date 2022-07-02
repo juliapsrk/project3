@@ -18,7 +18,7 @@ const MultipleImageInput = (props) => (
       ))}
     </div> */}
     <ImageInput
-      onImageChange={(url) => props.onImagesChange([...props.images, url])}
+      handleChange={(url) => props.onChange([...props.images, url])}
     />
   </>
 );
