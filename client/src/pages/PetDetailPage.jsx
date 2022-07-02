@@ -72,7 +72,7 @@ const PetDetailPage = () => {
               {pet.name}, {pet.age}
             </h1>
             <p>
-              {pet.type} | {pet.breed} | {pet.gender}{' '}
+              {pet.type} | {pet.breed} | {pet.gender}
             </p>
             <p>
               {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
@@ -94,7 +94,7 @@ const PetDetailPage = () => {
                   <Link to={`/pet/${id}/edit`}>Edit</Link>
                   <button onClick={handlePetDeletion}>Delete</button>
                 </>
-              )) || <Link to="/register">Register</Link>}
+              )) || <Link to='/register'>Register</Link>}
             </>
           )}
         </>
