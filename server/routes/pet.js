@@ -94,9 +94,31 @@ router.delete('/:id', routeGuard, (req, res, next) => {
 // PATCH - '/pet/:id' - Edit single pet
 router.patch('/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
-  const { name, type, breed, age, description, location, picture, position } = req.body;
+  const {
+    name,
+    type,
+    breed,
+    age,
+    gender,
+    description,
+    location,
+    picture,
+    position
+  } = req.body;
   const owner = req.user._id;
-  Pet.findByIdAndUpdate({ _id: id, owner }, { name, type, breed, age, description, picture, location, position },
+  Pet.findByIdAndUpdate(
+    { _id: id, owner },
+    {
+      name,
+      type,
+      breed,
+      age,
+      gender,
+      description,
+      picture,
+      location,
+      position
+    },
     { new: true }
   )
     .then((pet) => {
@@ -110,13 +132,24 @@ router.patch('/:id', routeGuard, (req, res, next) => {
 // POST - '/pet' Creates single pet
 router.post('/', routeGuard, (req, res, next) => {
   // required properties need to be listed here
-  const { name, type, breed, age, listed, adopted, description, position /*, location, picture*/ } = req.body;
+  const {
+    name,
+    type,
+    breed,
+    age,
+    gender,
+    listed,
+    adopted,
+    description,
+    position /*, location, picture*/
+  } = req.body;
   const owner = req.user._id;
   Pet.create({
     name,
     type,
     breed,
     age,
+    gender,
     listed,
     adopted,
     position,

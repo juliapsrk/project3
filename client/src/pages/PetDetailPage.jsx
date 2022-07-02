@@ -58,18 +58,17 @@ const PetDetailPage = () => {
 
   return (
     <div>
-
       {pet && (
         <>
-
           {/* <MapInput marker={pet.position}></MapInput> */}
           <header>
             <h1>Name: {pet.name}</h1>
             <p>Type: {pet.type}</p>
             <p>Age: {pet.age}</p>
-            <p>Adopted: {pet.adopted ? "Adopted" : "for Adoption"}</p>
+            <p>Gender: {pet.gender}</p>
+            <p>Adopted: {pet.adopted ? 'Adopted' : 'Up for Adoption'}</p>
             <p>Breed: {pet.breed}</p>
-            <p>Listed: {pet.listed ? "Listed" : "Not Listed"}</p>
+            <p>Listed: {pet.listed ? 'Listed' : 'Not Listed'}</p>
             <p>description: {pet.description}</p>
             {/* <p>Position: {pet.position.lat}, {pet.position.lng}</p> */}
             <p>Pet owner ID/Name: {pet.owner.name}</p>
@@ -79,10 +78,8 @@ const PetDetailPage = () => {
               {(pet && !bookmark && (
                 <button onClick={handleSetBookmark}>Bookmark</button>
               )) || (
-                  <button onClick={handleRemoveBookmark}>
-                    Remove bookmark
-                  </button>
-                )}
+                <button onClick={handleRemoveBookmark}>Remove bookmark</button>
+              )}
               {(user && pet.owner._id === user._id && (
                 <>
                   <Link to={`/pet/${id}/edit`}>Edit Pet Listing</Link>
@@ -90,15 +87,13 @@ const PetDetailPage = () => {
                     Delete Pet Listing
                   </button>
                 </>
-
-              ) || <Link to='/register'>Register</Link>)}
-
+              )) || <Link to='/register'>Register</Link>}
             </>
           )}
         </>
       )}
     </div>
   );
-}
+};
 
 export default PetDetailPage;

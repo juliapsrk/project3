@@ -9,6 +9,7 @@ const PetCreationPage = () => {
     type: '',
     breed: '',
     age: '',
+    gender: '',
     description: '',
     listed: true,
     adopted: false,
