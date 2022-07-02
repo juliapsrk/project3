@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { bookmarkList } from '../services/pet';
@@ -23,7 +23,6 @@ const Bookmark = () => {
           <>
             <ul>
               {bookmarks.map((pet) => {
-
                 if (pet) {
                   let item = pet.split(' ');
 
