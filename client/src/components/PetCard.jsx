@@ -5,11 +5,13 @@ const PetCard = ({ pet }) => (
   <Link className='pet-card' to={`/pet/${pet._id}`}>
     <img src='' alt={pet.name} />
     <span>
-      {/* if breed is known */}
-      {pet.breed} {pet.type} {pet.name}
+      {pet.name} | {pet.type}
+      <br />
+      {/* show 'heart' icon for bookmark as button so 
+      user can immediately remove bookmarks from his 
+      profile page without having to go into pet/:id 
+      page first */}
     </span>
-    {/* if age is known */}
-    <small>{pet.age}</small>
   </Link>
 );
 
