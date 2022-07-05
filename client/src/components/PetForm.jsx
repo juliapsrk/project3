@@ -167,13 +167,13 @@ const PetForm = ({
       </div>
 
       {/* Pictures */}
-      <div>
+      {/* <div>
         <label>Pet Pictures</label>
         <MultipleImageInput
           images={pet.pictures}
           onChange={(pictures) => onPetChange({ ...pet, pictures })}
         />
-      </div>
+      </div> */}
 
       {/* Map stuff */}
       <div>
