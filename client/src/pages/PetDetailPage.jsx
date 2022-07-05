@@ -68,7 +68,7 @@ const PetDetailPage = () => {
       {pet && (
         <>
           {/* <MapInput marker={pet.position}></MapInput> */}
-          <div>
+          <div className="petdetail">
             <img src={pet.picture} alt={pet.name} />
           </div>
           <div className="top">
@@ -121,7 +121,7 @@ const PetDetailPage = () => {
               {user && (
                 <>
                   {(pet.owner._id === user._id && (
-                    <div className="buttons">
+                    <div className="buttons1">
                       <button className="btn">
                         <Link to={`/pet/${id}/edit`}>Edit</Link>
                       </button>
