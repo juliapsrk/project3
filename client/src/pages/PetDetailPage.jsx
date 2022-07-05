@@ -64,7 +64,7 @@ const PetDetailPage = () => {
 
   return (
     // <PetWrapper>
-    <div style={{ margin: '1rem' }}>
+    <div style={{ margin: '3.5rem' }}>
       {pet && (
         <>
           {/* <MapInput marker={pet.position}></MapInput> */}
@@ -122,19 +122,19 @@ const PetDetailPage = () => {
                 <>
                   {(pet.owner._id === user._id && (
                     <div className="buttons1">
-                      <button className="btn">
+                      <button className="btn1">
                         <Link to={`/pet/${id}/edit`}>Edit</Link>
                       </button>
-                      <button className="btn" onClick={handlePetDeletion}>
+                      <button className="btn1" onClick={handlePetDeletion}>
                         Delete
                       </button>
                     </div>
                   )) || (
-                    <button>
-                      <Link className="btn" to="/register">
-                        Register
-                      </Link>
-                    </button>
+                    <div className="buttons1">
+                      <button className="btn1">
+                        <Link to="/register">Register</Link>
+                      </button>
+                    </div>
                   )}
                 </>
               )}
