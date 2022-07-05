@@ -11,7 +11,7 @@ const PetCreationPage = () => {
     age: '',
     gender: '',
     description: '',
-    listed: true,
+    listed: false,
     adopted: false,
     pictures: []
   });

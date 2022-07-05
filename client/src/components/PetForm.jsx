@@ -31,15 +31,20 @@ const PetForm = ({
         onChange={(event) => onPetChange({ ...pet, name: event.target.value })}
       />
 
-      <label htmlFor='input-type'>Type of Animal</label>
-      <input
+      <select
         id='input-type'
         type='string'
         placeholder='Type of animal'
         name='type'
         value={pet.type}
         onChange={(event) => onPetChange({ ...pet, type: event.target.value })}
-      />
+      >
+        <option value=''>--Type of animal--</option>
+        <option value='dog'>Dog</option>
+        <option value='cat'>Cat</option>
+        <option value='rabbit'>Rabbit</option>
+        <option value='bird'>Bird</option>
+      </select>
 
       <label htmlFor='input-breed'>Breed</label>
       <input
