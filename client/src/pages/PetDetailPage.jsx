@@ -62,6 +62,12 @@ const PetDetailPage = () => {
       });
   };
 
+  const formatter = new Intl.DateTimeFormat('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit'
+  });
+
   return (
     // <PetWrapper>
     <div style={{ margin: '3.5rem' }}>
@@ -100,7 +106,7 @@ const PetDetailPage = () => {
               {pet.breed} | {pet.gender} | {pet.age} Year
               {pet.age !== 1 ? 's' : ''}
             </p>
-            <p id="last">{pet.createdAt}</p>
+            <p id="last">{formatter.format(Date.parse(pet.createdAt))}</p>
           </div>
           {pet.adopted ? 'Adopted' : 'Up for Adoption'} | Current owner:
           <Link
