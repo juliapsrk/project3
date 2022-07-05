@@ -1,0 +1,76 @@
+// import styled from 'styled-components';
+
+// const PetWrapper = styled.div`
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+
+  .btn {
+    display: block;
+    border: none;
+    color: #fff;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: var(--color-crimson);
+    cursor: pointer;
+  }
+}
+
+img {
+  width: 25%;
+}
+
+.header-part {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-items: center;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.description {
+  width: 75%;
+}
+
+.options {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.map {
+  margin-top: 1rem;
+  background-color: #c0c0c0;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  height: 300px;
+}
+
+.bookmarks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookmark {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  align-self: center;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+}
+// `;
+// export default PetWrapper;

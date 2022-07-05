@@ -9,7 +9,8 @@ import {
   petLoad,
   petDelete
 } from '../services/pet';
-// import Bookmark from './Bookmark';
+// import PetWrapper from '../assets/wrappers/PetDetailPageStyle';
+import './PetDetailPageStyle.scss';
 
 const PetDetailPage = () => {
   const { id } = useParams();
@@ -33,8 +34,7 @@ const PetDetailPage = () => {
 
   const { user } = useContext(AuthenticationContext);
 
-  const bookmark =
-    bookmarks && bookmarks.some((item) => item && item.startsWith(id));
+  const bookmark = bookmarks && bookmarks.some((item) => item._id === id);
 
   const handlePetDeletion = () => {
     petDelete(id).then(() => {
@@ -63,43 +63,88 @@ const PetDetailPage = () => {
   };
 
   return (
-    <div>
+    // <PetWrapper>
+    <div style={{ margin: '1rem' }}>
       {pet && (
         <>
           {/* <MapInput marker={pet.position}></MapInput> */}
-          <header>
+          <div>
+            <img src={pet.picture} alt={pet.name} />
+          </div>
+          <div className="top">
             <h1>
-              {pet.name}, {pet.age}
-            </h1>
+              {pet.name}, {pet.type}
+            </h1>{' '}
+            {user && (
+              <>
+                <div className="bookmarks">
+                  {bookmarks &&
+                    ((bookmark && (
+                      <button
+                        className="bookmark"
+                        onClick={handleRemoveBookmark}
+                      >
+                        ❤️
+                      </button>
+                    )) || (
+                      <button className="bookmark" onClick={handleSetBookmark}>
+                        🤍
+                      </button>
+                    ))}
+                </div>
+              </>
+            )}
+          </div>
+          <div className="header-part">
             <p>
-              {pet.type} | {pet.breed} | {pet.gender}
+              {pet.breed} | {pet.gender} | {pet.age} Year
+              {pet.age !== 1 ? 's' : ''}
             </p>
-            <p>
-              {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
-            </p>
-            <p>description: {pet.description}</p>
+            <p id="last">{pet.createdAt}</p>
+          </div>
+          {pet.adopted ? 'Adopted' : 'Up for Adoption'} | Current owner:
+          <Link
+            style={{ marginLeft: '0.3rem' }}
+            to={`/profile/${pet.owner._id}`}
+          >
+            {pet.owner.name}
+          </Link>
+          <div className="section">
+            <div className="description">
+              About: {pet.description} Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Deleniti minus, voluptatum iure ex optio ut, vel
+              ea adipisci aspernatur veniam perferendis architecto amet quo
+              eaque inventore voluptates rerum, cum reprehenderit?
+            </div>
             {/* <p>Position: {pet.position.lat}, {pet.position.lng}</p> */}
-            <p>Current owner: {pet.owner.name}</p>
-          </header>
-          {user && (
-            <>
-              {bookmarks &&
-                ((bookmark && (
-                  <button onClick={handleRemoveBookmark}>
-                    Remove bookmark
-                  </button>
-                )) || <button onClick={handleSetBookmark}>Bookmark</button>)}
-              {(pet.owner._id === user._id && (
+            <div className="options">
+              {user && (
                 <>
-                  <Link to={`/pet/${id}/edit`}>Edit</Link>
-                  <button onClick={handlePetDeletion}>Delete</button>
+                  {(pet.owner._id === user._id && (
+                    <div className="buttons">
+                      <button className="btn">
+                        <Link to={`/pet/${id}/edit`}>Edit</Link>
+                      </button>
+                      <button className="btn" onClick={handlePetDeletion}>
+                        Delete
+                      </button>
+                    </div>
+                  )) || (
+                    <button>
+                      <Link className="btn" to="/register">
+                        Register
+                      </Link>
+                    </button>
+                  )}
                 </>
-              )) || <Link to='/register'>Register</Link>}
-            </>
-          )}
+              )}
+            </div>
+          </div>
+          <div className="map">Map here</div>
         </>
       )}
     </div>
+    // </PetWrapper>
   );
 };
 

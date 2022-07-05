@@ -13,7 +13,7 @@ const PetCreationPage = () => {
     description: '',
     listed: true,
     adopted: false,
-    pictures: []
+    pictures: ''
   });
 
   const navigate = useNavigate();
@@ -32,9 +32,9 @@ const PetCreationPage = () => {
         pet={pet}
         onPetChange={setPet}
         onPetSubmit={handlePetCreation}
-        buttonLabel='Add Pet Listing'
-        method='POST'
-        action='/pet/:id'
+        buttonLabel="Add Pet Listing"
+        method="POST"
+        action="/pet/:id"
       />
     </div>
   );

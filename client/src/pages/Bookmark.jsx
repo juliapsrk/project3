@@ -1,4 +1,3 @@
-import React, { useLayoutEffect } from 'react';
 import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { bookmarkList } from '../services/pet';
@@ -24,12 +23,19 @@ const Bookmark = () => {
             <ul>
               {bookmarks.map((pet) => {
                 if (pet) {
-                  let item = pet.split(' ');
+                  // let item = pet.split(' ');
 
                   return (
-                    <li style={{ listStyle: 'none' }} key={bookmarks[0]}>
-                      <Link to={`/pet/${item[0]}`}>{item[1]}</Link>
+                    <li style={{ listStyle: 'none' }} key={pet._id}>
+                      <Link to={`/pet/${pet._id}`}>
+                        <img src={pet.picture} alt={pet.name} /> {pet.name}
+                      </Link>
                     </li>
+                    // <li style={{ listStyle: 'none' }} key={item[0]}>
+                    //   <Link to={`/pet/${item[0]}`}>
+                    //     {item[1]} <img src={item[2]} alt={item[1]} />
+                    //   </Link>
+                    // </li>
                   );
                 }
               })}
