@@ -31,6 +31,7 @@ const PetForm = ({
         onChange={(event) => onPetChange({ ...pet, name: event.target.value })}
       />
 
+      <label htmlFor='input-type'>Type of Animal</label>
       <select
         id='input-type'
         type='string'
@@ -56,7 +57,7 @@ const PetForm = ({
         onChange={(event) => onPetChange({ ...pet, breed: event.target.value })}
       />
 
-      <label htmlFor='input-age'>Age</label>
+      <label htmlFor='input-age'>Age (in years)</label>
       <input
         id='input-age'
         type='number'
@@ -69,7 +70,7 @@ const PetForm = ({
 
       <label htmlFor='input-gender'>Gender</label>
 
-      <input
+      <select
         id='input-gender'
         type='string'
         placeholder='Gender of pet'
@@ -78,7 +79,11 @@ const PetForm = ({
         onChange={(event) =>
           onPetChange({ ...pet, gender: event.target.value })
         }
-      />
+      >
+        <option value=''>--Gender--</option>
+        <option value='female'>female</option>
+        <option value='male'>male</option>
+      </select>
 
       <label htmlFor='input-listed'>Pet should be listed</label>
       <div>
