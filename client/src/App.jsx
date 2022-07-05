@@ -20,7 +20,6 @@ import PetListPage from './pages/PetListPage';
 import Bookmark from './pages/Bookmark';
 
 import Header from './components/Header';
-import ToggleSwitch from './components/ToggleSwitch';
 import PageWrapper from './assets/wrappers/PageWrapper';
 import AuthenticationContext from './context/authentication';
 

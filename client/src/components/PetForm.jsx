@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import MapInput from './MapInput';
-
 // import PetInputMap from './PetInputMap';
 import MultipleImageInput from './MultipleImageInput';
+import SwitchListed from './SwitchListed';
+import SwitchAdopted from './SwitchAdopted';
 
 const PetForm = ({
   pet,
@@ -18,6 +19,8 @@ const PetForm = ({
     event.preventDefault();
     onPetSubmit();
   };
+
+  const [isToggled, setIsToggled] = useState(false);
 
   return (
     <form onSubmit={handlePetFormSubmission} method={method} action={action}>
@@ -69,7 +72,6 @@ const PetForm = ({
         />
 
         <label htmlFor='input-gender'>Gender</label>
-
         <select
           id='input-gender'
           type='string'
@@ -97,10 +99,19 @@ const PetForm = ({
         />
       </div>
 
+      {/* Listed? */}
       <div>
-        {/* Listed? */}
-        <label htmlFor='input-listed'>Pet should be</label>
-        <div>
+        <label htmlFor='input-listed'>
+          Pet is <span id='listed'>listed</span>
+        </label>
+
+        <SwitchListed
+          onColor='#fff'
+          isOn={isToggled}
+          handleToggle={() => setIsToggled(!isToggled)}
+        />
+
+        {/* <div>
           <input
             id='input-listed'
             type='checkbox'
@@ -111,12 +122,16 @@ const PetForm = ({
             }
           />
           <label htmlFor='input-listed'>
-            {pet.listed ? 'Listed' : 'Unlisted'}
+            {pet.listed ? 'listed' : 'unlisted'}
           </label>
-        </div>
+        </div> */}
+      </div>
 
-        {/* Adopted? */}
-        <label htmlFor='input-adopted'>Pet is looking for adoption</label>
+      {/* Adopted? */}
+      <div>
+        <label htmlFor='input-listed'>
+          Pet is <span id='adopted'>looking for a new home</span>
+        </label>
         <div>
           <input
             id='input-adopted'
