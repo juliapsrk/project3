@@ -81,17 +81,17 @@
 
 #### Pet (Julia)
 
-- name: String, required​ ✅
-- animal: String, [ 'dog', 'cat', 'rabbit', 'bird', 'reptile', 'fish' ], required ✅ <!-- expand options list -->
-- breed: String, trim, default ✅
-- age: Number, min: 0 ✅
-- location: { type: String, default: 'Point', coordinates: [ Number ] } ✅ <!-- or with latlng -->
-- listed: Boolean, required ✅
-- adopted: Boolean, required (adopted, upForAdoption) ✅
-- owner: ObjectId, ref: 'User', required ✅
-- description: String, maxLength: 5000, trim ✅
-- picture: String ✅
-- timestamp ✅
+- name: String, required​
+- animal: String, [ 'dog', 'cat', 'rabbit', 'bird'], required
+- breed: String, trim, default
+- age: Number, min: 0
+- location: { type: String, default: 'Point', coordinates: [ Number ] } <!-- or with latlng -->
+- listed: Boolean, required
+- adopted: Boolean, required (adopted, upForAdoption)
+- owner: ObjectId, ref: 'User', required
+- description: String, maxLength: 5000, trim
+- picture: String
+- timestamp
   ​
 
 #### Post (Nina)​
@@ -110,12 +110,12 @@
 
 ### Request Handlers
 
-- GET - '/pet/list' - list pets. ✅
-- GET - '/pet/:id' - Load details on a single pet. ✅
-- PATCH - '/pet/:id' - Edit single pet. ✅
-- DELETE - '/pet:/id' Delete single pet. ✅
-- POST - '/pet/create' Creates single pet. ✅
-- GET - '/pet/search' - Allows user to search for pets. ✅ <!-- type, area(google api), sub-filters maybe related to the pet/type -->
+- GET - '/pet/list' - list pets.
+- GET - '/pet/:id' - Load details on a single pet.
+- PATCH - '/pet/:id' - Edit single pet.
+- DELETE - '/pet:/id' Delete single pet.
+- POST - '/pet/create' Creates single pet.
+- GET - '/pet/search' - Allows user to search for pets. <!-- type, area(google api), sub-filters maybe related to the pet/type -->
   ​
 - GET - '/post/:id' - Load details on a single post.
 - PATCH - '/post/:id' - Edit single post.
