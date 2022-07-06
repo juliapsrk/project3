@@ -167,18 +167,7 @@ const PetForm = ({
         />
       </div>
 
-      <label htmlFor="input-description">A short description of your pet</label>
-      <input
-        id="input-description"
-        type="string"
-        max={1000}
-        placeholder="Short description of your pet"
-        name="description"
-        value={pet.description}
-        onChange={(event) =>
-          onPetChange({ ...pet, description: event.target.value })
-        }
-      />
+
 
       <MapInput onMarkerChange={(value) => {
         onPetChange({ ...pet, position: value })

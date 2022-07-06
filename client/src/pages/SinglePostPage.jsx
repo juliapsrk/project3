@@ -26,18 +26,10 @@ const SinglePostPage = () => {
     <div>
       {singlePost && (
         <>
-          <div>
-            <img src={singlePost.owner.picture} alt="post-pic" />
-          </div>
           <h2>{singlePost.title}</h2>
           <p>{singlePost.description}</p>
           <strong>{singlePost.type}</strong>
-          <small>
-            By{' '}
-            <Link to={`/profile/${singlePost.owner._id}`}>
-              {singlePost.owner.name}
-            </Link>
-          </small>
+          <small>By {singlePost.owner.name}</small>
           {(user && singlePost.owner._id === user._id && (
             <>
               <Link to={`/post/${id}/edit`}>Edit post</Link>

@@ -20,6 +20,7 @@ const HomePage = () => {
   useEffect(() => {
     petLatest().then((data) => {
       const latestPets = data.pets;
+      console.log(pets)
       setPets(latestPets);
     });
   }, []);
