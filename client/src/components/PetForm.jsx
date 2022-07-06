@@ -1,17 +1,8 @@
-<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 // import MapInput from './MapInput';
 // import PetInputMap from './PetInputMap';
 import MultipleImageInput from './MultipleImageInput';
 import { MapInput, SingleMarkerMap } from '../components/MapInput'
-=======
-import { useState } from 'react';
-import MapInput from './MapInput';
-// import PetInputMap from './PetInputMap';
-import MultipleImageInput from './MultipleImageInput';
-import SwitchListed from './SwitchListed';
-import SwitchAdopted from './SwitchAdopted';
->>>>>>> d3084e399b5cc8a8e5f82f6f1f2997871c9aedeb
 
 const PetForm = ({
   pet,
@@ -29,14 +20,9 @@ const PetForm = ({
     onPetSubmit();
   };
 
-<<<<<<< HEAD
   useEffect(() => {
     console.log({ pet })
   }, [pet])
-=======
-  const [isToggled, setIsToggled] = useState(false);
-
->>>>>>> d3084e399b5cc8a8e5f82f6f1f2997871c9aedeb
   return (
     <form onSubmit={handlePetFormSubmission} method={method} action={action}>
       {/* Name */}
@@ -120,11 +106,11 @@ const PetForm = ({
           Pet is <span id="listed">listed</span>
         </label>
 
-        <SwitchListed
+        {/* <SwitchListed
           onColor="#fff"
           isOn={isToggled}
           handleToggle={() => setIsToggled(!isToggled)}
-        />
+        /> */}
 
         {/* <div>
           <input
@@ -181,7 +167,6 @@ const PetForm = ({
         />
       </div>
 
-<<<<<<< HEAD
       <label htmlFor="input-description">A short description of your pet</label>
       <input
         id="input-description"
@@ -210,34 +195,9 @@ const PetForm = ({
         images={pet.pictures}
         onImagesChange={(pictures) => onPetChange({ ...pet, pictures })}
       />
-=======
-      {/* Pictures */}
-      {/* <div>
-        <label>Pet Pictures</label>
-        <MultipleImageInput
-          images={pet.pictures}
-          onChange={(pictures) => onPetChange({ ...pet, pictures })}
-        />
-      </div> */}
-
-      {/* Map stuff */}
-      <div>
-        {/* <MapInput
-        marker={pet.position}
-        onMarkerChange={(value) => {
-          onPetChange({ ...pet, position: value })
-        }}>
-      </MapInput> */}
-
-        {/* <PetInputMap
-        location={pet.location}
-        onlocationChange={(location) => onPetChange({ ...pet, location })}
-      /> */}
-      </div>
->>>>>>> d3084e399b5cc8a8e5f82f6f1f2997871c9aedeb
 
       <button type="submit">{buttonLabel}</button>
-    </form>
+    </form >
   );
 };
 
