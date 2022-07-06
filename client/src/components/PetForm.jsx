@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import MapInput from './MapInput';
-
+import { useEffect, useState } from 'react';
+// import MapInput from './MapInput';
 // import PetInputMap from './PetInputMap';
-// import MultipleImageInput from './MultipleImageInput';
+import MultipleImageInput from './MultipleImageInput';
+import { MapInput, SingleMarkerMap } from '../components/MapInput'
 
 const PetForm = ({
   pet,
@@ -12,13 +12,17 @@ const PetForm = ({
   method,
   action,
   position,
-  marker
+  marker,
+  pictures,
 }) => {
   const handlePetFormSubmission = (event) => {
     event.preventDefault();
     onPetSubmit();
   };
 
+  useEffect(() => {
+    console.log({ pet })
+  }, [pet])
   return (
     <form onSubmit={handlePetFormSubmission} method={method} action={action}>
       <label htmlFor="input-name">Name of Pet</label>
@@ -109,23 +113,21 @@ const PetForm = ({
         }
       />
 
-      {/* <MapInput
-        marker={pet.position}
-        onMarkerChange={(value) => {
-          onPetChange({ ...pet, position: value })
-        }}>
-      </MapInput> */}
+      <MapInput onMarkerChange={(value) => {
+        onPetChange({ ...pet, position: value })
+      }}>
+        <SingleMarkerMap
+          marker={pet.position}
+        />
+      </MapInput>
 
-      {/* <PetInputMap
-        location={pet.location}
-        onlocationChange={(location) => onPetChange({ ...pet, location })}
-      /> */}
-      {/* 
+
       <label>Pet Pictures</label>
+
       <MultipleImageInput
         images={pet.pictures}
         onImagesChange={(pictures) => onPetChange({ ...pet, pictures })}
-      /> */}
+      />
 
       <button type="submit">{buttonLabel}</button>
     </form>

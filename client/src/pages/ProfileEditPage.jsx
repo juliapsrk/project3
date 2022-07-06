@@ -74,6 +74,7 @@ const ProfileEditPage = () => {
           handleChange={handleChange}
         />
 
+        {/* picture file */}
         <ImageInput
           image={profile.picture}
           name="picture"
@@ -91,6 +92,18 @@ const ProfileEditPage = () => {
           optionValue2='center'
           handleChange={handleChange}
         ></FormTextArea>
+
+        {/* user type select */}
+
+        <FormSelect
+          labelText='userType'
+          id="userType"
+          name='userType'
+          value={profile.userType}
+          optionValue1='private'
+          optionValue2='center'
+          handleChange={handleChange}
+        ></FormSelect>
 
         <button>Edit Profile</button>
       </form>

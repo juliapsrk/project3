@@ -19,7 +19,6 @@ import MessageThreadListPage from './pages/MessageThreadListPage';
 import PetListPage from './pages/PetListPage';
 
 import Header from './components/Header';
-import PageWrapper from './assets/wrappers/PageWrapper';
 import AuthenticationContext from './context/authentication';
 import { loadUserInformation } from './services/authentication';
 import Bookmark from './pages/Bookmark';
@@ -37,28 +36,26 @@ const App = () => {
     <AuthenticationContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
         <Header />
-        <PageWrapper>
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-            {/* <Route path="/centers" element={<ListAllCenters />} /> */}
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/log-in" element={<LogInPage />} />
-            <Route path="/profile/" element={<ListAllProfiles />} />
-            <Route path="/profile/:id" element={<ProfilePage />} />
-            <Route path="/profile/edit" element={<ProfileEditPage />} />
-            <Route path="/pet/:id" element={<PetDetailPage />} />
-            <Route path="/pet/:id/edit" element={<PetEditPage />} />
-            <Route path='/pet/list' element={<PetListPage />} />
-            <Route path="/pet" element={<PetCreationPage />} />
-            {/* <Route path="/pet/bookmarked" element={<Bookmark />} /> */}
-            <Route path='/post/:id' element={<SinglePostPage />} />
-            <Route path='/post' element={<CreatePostPage />} />
-            <Route path='/post/:id/edit' element={<PostEditPage />} />
-            <Route path='/message/list' element={<MessageThreadListPage />} />
-            <Route path='/message/:id' element={<MessageThreadDetailPage />} />
-            <Route path='*' element={'404 page'} />
-          </Routes>
-        </PageWrapper>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          {/* <Route path="/centers" element={<ListAllCenters />} /> */}
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/log-in" element={<LogInPage />} />
+          <Route path="/profile/" element={<ListAllProfiles />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
+          <Route path="/profile/edit" element={<ProfileEditPage />} />
+          <Route path="/pet/:id" element={<PetDetailPage />} />
+          <Route path="/pet/:id/edit" element={<PetEditPage />} />
+          <Route path='/pet/list' element={<PetListPage />} />
+          <Route path="/pet" element={<PetCreationPage />} />
+          {/* <Route path="/pet/bookmarked" element={<Bookmark />} /> */}
+          <Route path='/post/:id' element={<SinglePostPage />} />
+          <Route path='/post' element={<CreatePostPage />} />
+          <Route path='/post/:id/edit' element={<PostEditPage />} />
+          <Route path='/message/list' element={<MessageThreadListPage />} />
+          <Route path='/message/:id' element={<MessageThreadDetailPage />} />
+          <Route path='*' element={'404 page'} />
+        </Routes>
       </BrowserRouter>
     </AuthenticationContext.Provider>
   );

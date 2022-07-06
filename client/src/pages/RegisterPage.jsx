@@ -49,7 +49,6 @@ const RegisterPage = () => {
     }
   };
 
-
   return (
     <Wrapper>
       <h1>Register</h1>
@@ -79,13 +78,6 @@ const RegisterPage = () => {
         />
 
         {/* picture file */}
-        {/* <FormInput
-          type="text"
-          name="picture"
-          value={user.picture}
-          handleChange={handleChange}
-        /> */}
-
         <ImageInput
           image={user.picture}
           name="picture"

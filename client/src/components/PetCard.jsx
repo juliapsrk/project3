@@ -3,7 +3,7 @@ import './PetCard.scss';
 
 const PetCard = ({ pet }) => (
   <Link className='pet-card' to={`/pet/${pet._id}`}>
-    <img src='' alt={pet.name} />
+    <img src={pet.pictures[0]} alt={pet.name} />
     <span>
       {/* if breed is known */}
       {pet.breed} {pet.type} {pet.name}

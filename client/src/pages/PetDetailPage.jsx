@@ -1,7 +1,11 @@
 import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import MapInput from '../components/MapInput';
+// import MapInput from '../components/MapInput';
 import AuthenticationContext from '../context/authentication';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { MapInput, SingleMarkerMap } from '../components/MapInput'
+import '@splidejs/react-splide/css';
+
 import {
   bookmarkAdd,
   bookmarkList,
@@ -59,6 +63,7 @@ const PetDetailPage = () => {
       })
       .then((data) => {
         setBookmarks(data.pets);
+
       });
   };
 
@@ -66,20 +71,41 @@ const PetDetailPage = () => {
     <div>
       {pet && (
         <>
-          {/* <MapInput marker={pet.position}></MapInput> */}
+          <MapInput>
+            <SingleMarkerMap marker={pet.position} />
+          </MapInput>
+
           <header>
             <h1>
-              {pet.name}, {pet.age}
+              {pet.name}
             </h1>
             <p>
-              {pet.type} | {pet.breed} | {pet.gender}{' '}
+              {pet.age}  {pet.type} | {pet.breed} | {pet.gender}{' '}
             </p>
             <p>
               {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
             </p>
             <p>description: {pet.description}</p>
-            {/* <p>Position: {pet.position.lat}, {pet.position.lng}</p> */}
+
+            {pet.position && (<p>Position: {pet.position.lat}, {pet.position.lng}</p>)}
+            {
+              pet.position && (
+                <pre><code>={JSON.stringify(pet.position, null, 2)}</code></pre>
+              )
+            }
+
+
             <p>Current owner: {pet.owner.name}</p>
+
+            {(pet.pictures && (
+              <Splide options={{ perPage: 3, arrows: false, pagination: false, drag: "free", easing: "cubic-bezier(0.25, 1, 0.5, 1)" }}>
+
+                {pet.pictures.map((picture) => (
+                  <SplideSlide key={picture}><img key={picture} src={picture} alt='' /></SplideSlide>
+                ))}
+              </Splide>
+            ))}
+
           </header>
           {user && (
             <>

@@ -1,15 +1,43 @@
-import { useState } from "react";
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from "@react-google-maps/api";
-import mapPointer from '../assets/images/paw.svg';
+import React, { Children, useState, cloneElement, forwardRef, createElement, useRef, useImperativeHandle, useEffect, memo, useCallback, createRef } from "react";
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow, useGoogleMap, LoadScript } from "@react-google-maps/api";
+import { useNavigate } from "react-router-dom";
 import mapStyles from '../components/MapStyles'
 
-const MapInput = (props) => {
 
-  const libraries = ["places"];
+const libraries = ["places"];
+
+
+export const SingleMarkerMap = ({ marker, ...props }) => {
+
+  let navigate = useNavigate();
+
+  //const handleOnClick = () => navigate(`/pet/${id);
+
+  const icon = {
+    url: '/paw.svg',
+    scaledSize: new window.google.maps.Size(30, 30),
+    origin: new window.google.maps.Point(0, 0),
+    anchor: new window.google.maps.Point(15, 15)
+  }
+  return (<>
+    <Marker icon={icon} position={marker} />
+    {/* onClick={handleOnClick} */}
+  </>)
+}
+
+export const MultipleMarkerMap = ({ markers, petId, ...props }) => {
+  return (
+    <>
+      {markers.map(marker => <SingleMarkerMap key={marker.lat} marker={marker} handleOnClick={petId} {...props} />)}
+    </>
+  )
+}
+
+export const MapInput = memo((props) => {
 
   const mapContainerStyle = {
     height: "400px",
-    width: "800px",
+    width: "100%",
   };
 
   const options = {
@@ -23,63 +51,50 @@ const MapInput = (props) => {
   };
 
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: '',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
-  const handleMapClick = (e) => {
+
+  const [map, setMap] = useState(null)
+  const onLoad = useCallback((map) => {
+    setMap(map)
+  }, [])
+  const onUnmount = useCallback((map) => {
+    console.log("onUnmount ")
+    setMap(null)
+  }, [])
+
+  const handleMapClick = useCallback((e) => {
+    console.log("handleMapClick", e)
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
     props.onMarkerChange({ lat, lng });
-    // setMarker({ lat, lng });
-    //console.log(lat, lng);
-    //const position = { lat, lng };
-    // setMarkers((current) => [
-    //   ...current,
-    //   {
-    //     lat: e.latLng.lat(),
-    //     lng: e.latLng.lng(),
-    //     time: new Date(),
-    //   },
-    // ]);
-  }
+  })
 
 
   return (
-    isLoaded &&
-    <GoogleMap
-      id="map"
-      mapContainerStyle={mapContainerStyle}
-      zoom={14}
-      center={center}
-      options={options}
-      onClick={handleMapClick}
-    // onLoad={onMapLoad}
-    >
+    <>
+      {isLoaded && <GoogleMap
+        id="map"
+        mapContainerStyle={mapContainerStyle}
+        zoom={14}
+        center={center}
+        options={options}
+        onClick={handleMapClick}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        {/* {children} */}
+        {cloneElement(props.children, { map })}
+      </GoogleMap>
+      }
 
-      {props.marker && (
-        <Marker
-          position={props.marker}
-          icon={{
-            url: '/paw.svg',
-            origin: new window.google.maps.Point(0, 0),
-            anchor: new window.google.maps.Point(15, 15),
-            scaledSize: new window.google.maps.Size(30, 30),
-          }}
-        >
-        </Marker>
+
+    </>);
+})
 
 
 
-      )}
 
 
-
-    </GoogleMap>
-
-
-    || <></>
-  );
-}
-
-export default MapInput;

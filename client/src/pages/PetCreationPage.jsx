@@ -9,11 +9,10 @@ const PetCreationPage = () => {
     type: '',
     breed: '',
     age: '',
-    gender: '',
+    gender: 'male',
     description: '',
     listed: true,
     adopted: false,
-    // wrote 'picture' everywhere in singular form (Pet Model and Router)
     pictures: []
   });
 
