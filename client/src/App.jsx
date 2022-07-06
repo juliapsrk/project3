@@ -17,11 +17,12 @@ import PostEditPage from './pages/PostEditPage';
 import MessageThreadDetailPage from './pages/MessageThreadDetailPage';
 import MessageThreadListPage from './pages/MessageThreadListPage';
 import PetListPage from './pages/PetListPage';
+import Bookmark from './pages/Bookmark';
 
 import Header from './components/Header';
 import AuthenticationContext from './context/authentication';
+
 import { loadUserInformation } from './services/authentication';
-import Bookmark from './pages/Bookmark';
 
 const App = () => {
   const [user, setUser] = useState(null);

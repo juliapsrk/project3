@@ -1,4 +1,5 @@
 import ImageInput from './ImageInput';
+// import './MultipleImageInput.scss';
 
 const MultipleImageInput = (props) => {
   //console.log(props);

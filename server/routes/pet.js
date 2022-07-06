@@ -54,8 +54,15 @@ router.get('/bookmarked', routeGuard, (req, res, next) => {
     .populate('pet')
     .then((bookmarks) => {
       const pets = bookmarks.map((bookmark) => {
-        if (bookmark.pet)
-          return String(bookmark.pet._id + ' ' + bookmark.pet.name);
+        if (bookmark.pet) console.log(bookmark.pet);
+        return bookmark.pet;
+        // return String(
+        //   bookmark.pet._id +
+        //     ' ' +
+        //     bookmark.pet.name +
+        //     ' ' +
+        //     bookmark.pet.picture
+        // );
       });
       // const pets = bookmarks.map((bookmark) => bookmark.pet);
       res.json({ pets });
@@ -115,8 +122,8 @@ router.patch('/:id', routeGuard, (req, res, next) => {
       age,
       gender,
       description,
-      picture,
       location,
+      picture,
       position
     },
     { new: true }
@@ -141,7 +148,8 @@ router.post('/', routeGuard, (req, res, next) => {
     listed,
     adopted,
     description,
-    position /*, location, picture*/
+    position,
+    picture
   } = req.body;
   const owner = req.user._id;
   Pet.create({
@@ -154,8 +162,8 @@ router.post('/', routeGuard, (req, res, next) => {
     adopted,
     position,
     description,
-    owner /*, location, picture*/,
-    pictures
+    picture,
+    owner
   })
     .then((pet) => {
       res.json({ pet });

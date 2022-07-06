@@ -11,9 +11,13 @@ const PetCreationPage = () => {
     age: '',
     gender: 'male',
     description: '',
-    listed: true,
+    listed: false,
     adopted: false,
+<<<<<<< HEAD
     pictures: []
+=======
+    pictures: ''
+>>>>>>> d3084e399b5cc8a8e5f82f6f1f2997871c9aedeb
   });
 
   const navigate = useNavigate();
