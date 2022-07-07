@@ -3,12 +3,15 @@
 import { Marker } from '@react-google-maps/api';
 import { useEffect, useState } from 'react';
 // import MapInput from '../components/MapInput';
+import { useNavigate } from 'react-router-dom';
 import PetCard from '../components/PetCard';
 import PetSearch from '../components/PetSearch';
 import { MapInput, MultipleMarkerMap } from '../components/MapInput'
 import { petAll } from '../services/pet';
 
 const PetListPage = () => {
+
+  const navigate = useNavigate();
 
   const [filters, setFilters] = useState({
     type: '',

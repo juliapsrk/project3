@@ -4,6 +4,8 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { MapInput, SingleMarkerMap } from '../components/MapInput'
+import PetDetailWrapper from '../assets/wrappers/PetDetailWrapper';
+import { format } from 'date-fns';
 import '@splidejs/react-splide/css';
 
 import {
@@ -37,8 +39,9 @@ const PetDetailPage = () => {
 
   const { user } = useContext(AuthenticationContext);
 
-  const bookmark =
-    bookmarks && bookmarks.some((item) => item && item.startsWith(id));
+  // const bookmark =
+  //   bookmarks && bookmarks.some((item) => item && item.startsWith(id));
+  const bookmark = bookmarks && bookmarks.some((item) => item._id === id);
 
   const handlePetDeletion = () => {
     petDelete(id).then(() => {
@@ -68,62 +71,58 @@ const PetDetailPage = () => {
   };
 
   return (
-    <div>
+    <div style={{ margin: "3rem" }}>
       {pet && (
-        <>
+        <PetDetailWrapper>
+          {(pet.pictures && (
+            <Splide options={{ type: 'loop', perPage: 4, gap: '1rem', arrows: true, pagination: false, drag: "free", easing: "cubic-bezier(0.25, 1, 0.5, 1)" }}>
+
+              {pet.pictures.map((picture) => (
+                <SplideSlide key={picture}><img key={picture} src={picture} alt={pet.name} /></SplideSlide>
+              ))}
+            </Splide>
+          ))}
+
+          <div className='pet-detail'>
+
+            <div className='pet-info'>
+              <h2>{pet.name}</h2>
+              <h5>{pet.type} / {pet.gender} / {pet.age} Years</h5>
+              <p>{pet.description}</p>
+            </div>
+
+            <div className='pet-buttons'>
+              <p className='post-date'>{format(new Date(pet.updatedAt), 'dd MMMM yyyy')}</p>
+              <p>
+                {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
+              </p>
+              <Link className='page-btn' to={`/profile/${pet.owner._id}`}>Owner Profile</Link>
+              <Link className='page-btn' to={`/message/${pet.owner._id}`}>Message Owner</Link>
+
+              {user && (
+                <>
+                  {bookmarks &&
+                    ((bookmark && (
+                      <button className='page-btn' onClick={handleRemoveBookmark}>
+                        Remove bookmark
+                      </button>
+                    )) || <button className='page-btn' onClick={handleSetBookmark}>Bookmark</button>)}
+                  {(pet.owner._id === user._id && (
+                    <>
+                      <Link className='page-btn' to={`/pet/${id}/edit`}>Edit</Link>
+                      <button className='page-btn' onClick={handlePetDeletion}>Delete</button>
+                    </>
+                  ))}
+                </>
+              ) || <Link to="/register">Register</Link>}
+            </div>
+          </div>
+
           <MapInput>
             <SingleMarkerMap marker={pet.position} />
           </MapInput>
 
-          <header>
-            <h1>
-              {pet.name}
-            </h1>
-            <p>
-              {pet.age}  {pet.type} | {pet.breed} | {pet.gender}{' '}
-            </p>
-            <p>
-              {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
-            </p>
-            <p>description: {pet.description}</p>
-
-            {pet.position && (<p>Position: {pet.position.lat}, {pet.position.lng}</p>)}
-            {
-              pet.position && (
-                <pre><code>={JSON.stringify(pet.position, null, 2)}</code></pre>
-              )
-            }
-
-
-            <p>Current owner: {pet.owner.name}</p>
-
-            {(pet.pictures && (
-              <Splide options={{ perPage: 3, arrows: false, pagination: false, drag: "free", easing: "cubic-bezier(0.25, 1, 0.5, 1)" }}>
-
-                {pet.pictures.map((picture) => (
-                  <SplideSlide key={picture}><img key={picture} src={picture} alt='' /></SplideSlide>
-                ))}
-              </Splide>
-            ))}
-
-          </header>
-          {user && (
-            <>
-              {bookmarks &&
-                ((bookmark && (
-                  <button onClick={handleRemoveBookmark}>
-                    Remove bookmark
-                  </button>
-                )) || <button onClick={handleSetBookmark}>Bookmark</button>)}
-              {(pet.owner._id === user._id && (
-                <>
-                  <Link to={`/pet/${id}/edit`}>Edit</Link>
-                  <button onClick={handlePetDeletion}>Delete</button>
-                </>
-              )) || <Link to="/register">Register</Link>}
-            </>
-          )}
-        </>
+        </PetDetailWrapper>
       )}
     </div>
   );

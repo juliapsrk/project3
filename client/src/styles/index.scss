@@ -82,7 +82,10 @@ body {
   }
 }
 .splide {
-  display: flex;
+}
+.splide__slide {
+  // display: flex;
+  // gap: 2rem;
 }
 .splide__slide {
   max-width: 350px;
@@ -91,7 +94,5 @@ body {
     aspect-ratio: 1/1;
     object-fit: cover;
     object-position: center;
-    max-width: 350px;
-    max-height: 260px;
   }
 }

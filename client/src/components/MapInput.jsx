@@ -6,12 +6,7 @@ import mapStyles from '../components/MapStyles'
 
 const libraries = ["places"];
 
-
 export const SingleMarkerMap = ({ marker, ...props }) => {
-
-  let navigate = useNavigate();
-
-  //const handleOnClick = () => navigate(`/pet/${id);
 
   const icon = {
     url: '/paw.svg',
@@ -21,14 +16,16 @@ export const SingleMarkerMap = ({ marker, ...props }) => {
   }
   return (<>
     <Marker icon={icon} position={marker} />
-    {/* onClick={handleOnClick} */}
   </>)
 }
 
-export const MultipleMarkerMap = ({ markers, petId, ...props }) => {
+export const MultipleMarkerMap = ({ markers, ...props }) => {
   return (
     <>
-      {markers.map(marker => <SingleMarkerMap key={marker.lat} marker={marker} handleOnClick={petId} {...props} />)}
+      {markers.map(marker => <SingleMarkerMap
+        key={marker.lat}
+        marker={marker}
+        {...props} />)}
     </>
   )
 }
