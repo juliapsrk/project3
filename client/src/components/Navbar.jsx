@@ -19,7 +19,7 @@ const Navbar = () => {
       <Link to="/pet/list">Adopt</Link>
       <Link to="/pet/">Rehome a Pet</Link>
       <Link to="/profile">Members</Link>
-      <Link to="/centers">Centers</Link>
+      <Link to="/centers">Centers/s</Link>
 
       {(user && (
         <div className="user-menu">
