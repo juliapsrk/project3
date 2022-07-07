@@ -20,7 +20,8 @@ const PetForm = ({
     onPetSubmit();
   };
 
-  const [isToggled, setIsToggled] = useState(false);
+  // for toggle switch
+  const [value, setValue] = useState(false);
 
   return (
     <form onSubmit={handlePetFormSubmission} method={method} action={action}>
@@ -52,7 +53,7 @@ const PetForm = ({
             onPetChange({ ...pet, type: event.target.value })
           }
         >
-          <option value=''></option>
+          <option value='--select--'></option>
           <option value='dog'>Dog</option>
           <option value='cat'>Cat</option>
           <option value='rabbit'>Rabbit</option>
@@ -82,7 +83,7 @@ const PetForm = ({
             onPetChange({ ...pet, gender: event.target.value })
           }
         >
-          <option value=''></option>
+          <option value='--select--'></option>
           <option value='female'>female</option>
           <option value='male'>male</option>
         </select>
@@ -101,30 +102,24 @@ const PetForm = ({
 
       {/* Listed? */}
       <div>
-        <label htmlFor='input-listed'>
-          Pet is <span id='listed'>listed</span>
-        </label>
+        <label htmlFor='input-listed'>Pet is</label>
 
-        <SwitchListed
-          onColor='#fff'
-          isOn={isToggled}
-          handleToggle={() => setIsToggled(!isToggled)}
-        />
-
-        {/* <div>
-          <input
-            id='input-listed'
-            type='checkbox'
-            name='listed'
-            value={pet.listed}
-            onChange={(event) =>
-              onPetChange({ ...pet, listed: event.target.checked })
-            }
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            width: '200px',
+            height: '15px',
+            margin: '15px',
+            alignItems: 'center'
+          }}
+        >
+          <SwitchListed
+            onColor='#fff'
+            isOn={value}
+            handleToggle={() => setValue(!value)}
           />
-          <label htmlFor='input-listed'>
-            {pet.listed ? 'listed' : 'unlisted'}
-          </label>
-        </div> */}
+        </div>
       </div>
 
       {/* Adopted? */}
@@ -167,13 +162,13 @@ const PetForm = ({
       </div>
 
       {/* Pictures */}
-      <div>
+      {/* <div>
         <label>Pet Pictures</label>
         <MultipleImageInput
           images={pet.pictures}
           onChange={(pictures) => onPetChange({ ...pet, pictures })}
         />
-      </div>
+      </div> */}
 
       {/* Map stuff */}
       <div>
