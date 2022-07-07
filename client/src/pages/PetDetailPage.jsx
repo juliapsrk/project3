@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 // import MapInput from '../components/MapInput';
 import AuthenticationContext from '../context/authentication';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import { MapInput, SingleMarkerMap } from '../components/MapInput'
+import { MapInput, SingleMarkerMap } from '../components/MapInput';
 import PetDetailWrapper from '../assets/wrappers/PetDetailWrapper';
 import { format } from 'date-fns';
 import '@splidejs/react-splide/css';
@@ -66,84 +66,89 @@ const PetDetailPage = () => {
       })
       .then((data) => {
         setBookmarks(data.pets);
-
       });
   };
 
   return (
-    <div style={{ margin: "3rem" }}>
+    <div style={{ margin: '3rem' }}>
       {pet && (
         <PetDetailWrapper>
-          {(pet.pictures && (
-            <Splide options={{ type: 'loop', perPage: 4, gap: '1rem', arrows: true, pagination: false, drag: "free", easing: "cubic-bezier(0.25, 1, 0.5, 1)" }}>
-
+          {pet.pictures && (
+            <Splide
+              options={{
+                type: 'loop',
+                perPage: 4,
+                gap: '1rem',
+                arrows: true,
+                pagination: false,
+                drag: 'free',
+                easing: 'cubic-bezier(0.25, 1, 0.5, 1)'
+              }}
+            >
               {pet.pictures.map((picture) => (
-                <SplideSlide key={picture}><img key={picture} src={picture} alt={pet.name} /></SplideSlide>
+                <SplideSlide key={picture}>
+                  <img key={picture} src={picture} alt={pet.name} />
+                </SplideSlide>
               ))}
             </Splide>
-          ))}
+          )}
 
-          <div className='pet-detail'>
-
-            <div className='pet-info'>
+          <div className="pet-detail">
+            <div className="pet-info">
               <h2>{pet.name}</h2>
-              <h5>{pet.type} / {pet.gender} / {pet.age} Years</h5>
+              <h5>
+                {pet.type} / {pet.gender} / {pet.age} Years
+              </h5>
               <p>{pet.description}</p>
             </div>
 
-            <div className='pet-buttons'>
-              <p className='post-date'>{format(new Date(pet.updatedAt), 'dd MMMM yyyy')}</p>
+            <div className="pet-buttons">
+              <p className="post-date">
+                {format(new Date(pet.updatedAt), 'dd MMMM yyyy')}
+              </p>
               <p>
                 {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
               </p>
-              <Link className='page-btn' to={`/profile/${pet.owner._id}`}>Owner Profile</Link>
-              <Link className='page-btn' to={`/message/${pet.owner._id}`}>Message Owner</Link>
+              <Link className="page-btn" to={`/profile/${pet.owner._id}`}>
+                Owner Profile
+              </Link>
+              <Link className="page-btn" to={`/message/${pet.owner._id}`}>
+                Message Owner
+              </Link>
 
-              {user && (
+              {(user && (
                 <>
-<<<<<<< HEAD
-                  {
-                    pet.owner._id === user._id && (
-                      <div className="buttons1">
-                        <button className="btn1">
-                          <Link to={`/pet/${id}/edit`}>Edit</Link>
-                        </button>
-                        <button className="btn1" onClick={handlePetDeletion}>
-                          Delete
-                        </button>
-                      </div>
-                    )
-                    // || (
-                    //   <div className="buttons1">
-                    //     <button className="btn1">
-                    //       <Link to="/register">Register</Link>
-                    //     </button>
-                    //   </div>
-                    // )
-                  }
-=======
                   {bookmarks &&
                     ((bookmark && (
-                      <button className='page-btn' onClick={handleRemoveBookmark}>
+                      <button
+                        className="page-btn"
+                        onClick={handleRemoveBookmark}
+                      >
                         Remove bookmark
                       </button>
-                    )) || <button className='page-btn' onClick={handleSetBookmark}>Bookmark</button>)}
-                  {(pet.owner._id === user._id && (
+                    )) || (
+                      <button className="page-btn" onClick={handleSetBookmark}>
+                        Bookmark
+                      </button>
+                    ))}
+                  {pet.owner._id === user._id && (
                     <>
-                      <Link className='page-btn' to={`/pet/${id}/edit`}>Edit</Link>
-                      <button className='page-btn' onClick={handlePetDeletion}>Delete</button>
+                      <Link className="page-btn" to={`/pet/${id}/edit`}>
+                        Edit
+                      </Link>
+                      <button className="page-btn" onClick={handlePetDeletion}>
+                        Delete
+                      </button>
                     </>
-                  ))}
->>>>>>> 9515a0b17be24c4a8422624fb9651c62241d4bf5
+                  )}
                 </>
-              ) || <Link to="/register">Register</Link>}
+              )) || <Link to="/register">Register</Link>}
             </div>
           </div>
 
           <MapInput>
             <SingleMarkerMap marker={pet.position} />
           </MapInput>
-
         </PetDetailWrapper>
       )}
     </div>

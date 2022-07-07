@@ -27,7 +27,6 @@ const SinglePostPage = () => {
     <div className="container1" style={{ margin: '3.5rem' }}>
       {singlePost && (
         <>
-<<<<<<< HEAD
           <div className="post-info-part">
             {' '}
             <h2>{singlePost.title}</h2>
@@ -78,18 +77,6 @@ const SinglePostPage = () => {
               </>
             )) || <Link to="/register">Register</Link>}
           </div>
-=======
-          <h2>{singlePost.title}</h2>
-          <p>{singlePost.description}</p>
-          <strong>{singlePost.type}</strong>
-          <small>By {singlePost.owner.name}</small>
-          {(user && singlePost.owner._id === user._id && (
-            <>
-              <Link to={`/post/${id}/edit`}>Edit post</Link>
-              <button onClick={handlePostDeletion}>Delete post</button>
-            </>
-          )) || <Link to="/register">Register</Link>}
->>>>>>> 9515a0b17be24c4a8422624fb9651c62241d4bf5
         </>
       )}
     </div>
