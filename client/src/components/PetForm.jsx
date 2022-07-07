@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import MapInput from './MapInput';
+import { useEffect, useState } from 'react';
+// import MapInput from './MapInput';
 // import PetInputMap from './PetInputMap';
 import MultipleImageInput from './MultipleImageInput';
-import SwitchListed from './SwitchListed';
-import SwitchAdopted from './SwitchAdopted';
+import { MapInput, SingleMarkerMap } from '../components/MapInput';
 
 const PetForm = ({
   pet,
@@ -13,7 +12,8 @@ const PetForm = ({
   method,
   action,
   position,
-  marker
+  marker,
+  pictures
 }) => {
   const handlePetFormSubmission = (event) => {
     event.preventDefault();
@@ -21,8 +21,11 @@ const PetForm = ({
   };
 
   // for toggle switch
-  const [value, setValue] = useState(false);
+  // const [value, setValue] = useState(false);
 
+  useEffect(() => {
+    console.log({ pet });
+  }, [pet]);
   return (
     <form onSubmit={handlePetFormSubmission} method={method} action={action}>
       {/* Name */}
@@ -114,11 +117,11 @@ const PetForm = ({
             alignItems: 'center'
           }}
         >
-          <SwitchListed
+          {/* <SwitchListed
             onColor='#fff'
             isOn={value}
             handleToggle={() => setValue(!value)}
-          />
+          /> */}
         </div>
       </div>
 
@@ -162,28 +165,21 @@ const PetForm = ({
       </div>
 
       {/* Pictures */}
-      {/* <div>
+      <div>
         <label>Pet Pictures</label>
         <MultipleImageInput
           images={pet.pictures}
-          onChange={(pictures) => onPetChange({ ...pet, pictures })}
+          onImagesChange={(pictures) => onPetChange({ ...pet, pictures })}
         />
-      </div> */}
-
-      {/* Map stuff */}
-      <div>
-        {/* <MapInput
-        marker={pet.position}
-        onMarkerChange={(value) => {
-          onPetChange({ ...pet, position: value })
-        }}>
-      </MapInput> */}
-
-        {/* <PetInputMap
-        location={pet.location}
-        onlocationChange={(location) => onPetChange({ ...pet, location })}
-      /> */}
       </div>
+
+      <MapInput
+        onMarkerChange={(value) => {
+          onPetChange({ ...pet, position: value });
+        }}
+      >
+        <SingleMarkerMap marker={pet.position} />
+      </MapInput>
 
       <button type='submit'>{buttonLabel}</button>
     </form>

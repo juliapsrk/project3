@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { profileLoad } from '../services/profile';
-
+import placeholder from '../assets/images/placeholder.png';
+import ProfileWrapper from '../assets/wrappers/ProfileWrapper';
 import AuthenticationContext from '../context/authentication';
-import { petCreate } from '../services/pet';
 import Bookmark from './Bookmark';
 
 const ProfilePage = () => {
@@ -22,84 +22,88 @@ const ProfilePage = () => {
   const { user } = useContext(AuthenticationContext);
 
   return (
-    <div className="profile-page">
+    <ProfileWrapper>
       {profile && (
-        <div>
-          <div style={{ borderBottom: '1px solid gray' }}>
-            <img
-              src={profile.picture}
-              alt={profile.name}
-              style={{
-                maxWidth: '150px',
-                borderRadius: '50%',
-                aspectRatio: '1/1',
-                objectFit: 'cover'
-              }}
-            />
-            <h2>
-              {profile.name.charAt(0).toUpperCase() +
-                profile.name.slice(1).toLowerCase()}
-            </h2>
-            <p>{profile.description}</p>
-          </div>
+        <div className="page-wrapper content">
+          <div className="profile-page">
+            <div className="profile-photo">
+              {(profile.picture && (
+                <img src={profile.picture} alt={profile.name} />
+              )) || <img src={placeholder} alt={profile.name} />}
+            </div>
 
-          <div style={{ borderBottom: '1px solid gray' }}>
-            {(profile.userType === 'center' &&
-              'Content related to user-type Center ... this text will change depending on the user type') ||
-              'Content related to user-type Private ...  this text will change depending on the user type'}
-          </div>
+            {/* profile-content */}
+            <div>
+              <div>
+                <h2>
+                  {profile.name.charAt(0).toUpperCase() +
+                    profile.name.slice(1).toLowerCase()}
+                </h2>
+                <p>{profile.description}</p>
 
-          <div style={{ borderBottom: '1px solid gray' }}>
-            <h2>Posts</h2>
-            <p>listing all user's posts</p>
-            {Boolean(posts.length) && (
-              <>
-                {posts.map((post) => (
-                  <Link to={`/post/${post._id}`} key={post._id}>
-                    {post.title}
+                <div className="flex-spa">
+                  {user && user._id === id && (
+                    <Link className="page-btn" to="/profile/edit">
+                      Edit Profile
+                    </Link>
+                  )}
+                  <p className="small">
+                    User Type:{' '}
+                    {profile.userType.charAt(0).toUpperCase() +
+                      profile.userType.slice(1).toLowerCase()}
+                  </p>
+                </div>
+              </div>
+
+              <div className="division">
+                <h3>Posts</h3>
+                {posts.length && (
+                  <ul>
+                    {posts.map((post) => (
+                      <li>
+                        <Link to={`/post/${post._id}`} key={post._id}>
+                          {post.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              <div className="division">
+                <h3>Messages</h3>
+                {posts.length && (
+                  <Link
+                    to={`/message/list/`}
+                    style={{
+                      display: 'block',
+                      marginBlock: '2rem',
+                      color: 'crimson'
+                    }}
+                  >
+                    View your message inbox
                   </Link>
-                ))}
-              </>
-            )}
-          </div>
+                )}
+              </div>
 
-          <div style={{ borderBottom: '1px solid gray' }}>
-            <h3>Messages</h3>
-            <Link
-              to={`/message/list/`}
-              style={{
-                display: 'block',
-                marginBlock: '2rem',
-                color: 'crimson'
-              }}
-            >
-              View your message inbox
-            </Link>
-          </div>
+              <div className="division">
+                <h3>Pet Bookmarks</h3>
+                <Bookmark />
+              </div>
 
-          <div style={{ borderBottom: '1px solid gray' }}>
-            <h2>Pet Bookmarks</h2>
-            <p>listing user's Bookmarks</p>
-            <Bookmark />
-          </div>
-
-          <div style={{ borderBottom: '1px solid gray' }}>
-            <Link className="btn" to={`/message/${id}`}>
-              Message This User
-            </Link>
+              {user && user._id !== id && (
+                <div className="division">
+                  <Link className="btn" to={`/message/${id}`}>
+                    Message This User
+                  </Link>
+                </div>
+              )}
+            </div>
+            {/* end profile-content */}
           </div>
         </div>
       )}
-      {user && user._id === id && (
-        <Link
-          className="btn"
-          to="/profile/edit"
-          style={{ display: 'block', marginBlock: '2rem', color: 'crimson' }}
-        >
-          Edit Profile
-        </Link>
-      )}
-    </div>
+    </ProfileWrapper>
   );
 };
 

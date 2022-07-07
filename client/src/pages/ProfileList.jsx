@@ -21,9 +21,7 @@ const ListAllProfiles = () => {
 
   return (
     <div>
-      {<input type='text' placeholder='Search ...' onChange={(e) => setQuery(e.target.value)} style={{
-        width: '100%', paddingBlock: '0.5rem'
-      }} />}
+      {<input className='input-search' type='text' placeholder='Search ...' onChange={(e) => setQuery(e.target.value)} />}
       {profiles.filter((profile) =>
         profile.name.toLowerCase().includes(query)
       ).map((profile) => (

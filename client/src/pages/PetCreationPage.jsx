@@ -9,9 +9,9 @@ const PetCreationPage = () => {
     type: '',
     breed: '',
     age: '',
-    gender: '',
+    gender: 'male',
     description: '',
-    listed: false,
+    listed: true,
     adopted: false,
     pictures: []
   });
@@ -32,9 +32,9 @@ const PetCreationPage = () => {
         pet={pet}
         onPetChange={setPet}
         onPetSubmit={handlePetCreation}
-        buttonLabel='Add Pet Listing'
-        method='POST'
-        action='/pet/:id'
+        buttonLabel="Add Pet Listing"
+        method="POST"
+        action="/pet/:id"
       />
     </div>
   );

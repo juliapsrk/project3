@@ -7,13 +7,11 @@ import PetMap from '../components/PetMap';
 const PetSearch = () => {
   const [filters, setFilters] = useState({
     type: 'dog',
-    breed: 'husky',
-    listed: true,
-    adopted: false,
-    gender: '',
-    lat: '',
-    lng: '',
-    distance: ''
+    gender: 'male',
+    maximumAge: null,
+    lat: 52.506630,
+    lng: 13.291150,
+    distance: 1
   });
 
   const [pets, setPets] = useState([]);
