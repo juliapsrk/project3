@@ -63,19 +63,21 @@ const ProfilePage = () => {
             )}
           </div>
 
-          <div style={{ borderBottom: '1px solid gray' }}>
-            <h3>Messages</h3>
-            <Link
-              to={`/message/list/`}
-              style={{
-                display: 'block',
-                marginBlock: '2rem',
-                color: 'crimson'
-              }}
-            >
-              View your message inbox
-            </Link>
-          </div>
+          {user._id === id && (
+            <div style={{ borderBottom: '1px solid gray' }}>
+              <h3>Messages</h3>
+              <Link
+                to={`/message/list/`}
+                style={{
+                  display: 'block',
+                  marginBlock: '2rem',
+                  color: 'crimson'
+                }}
+              >
+                View your message inbox
+              </Link>
+            </div>
+          )}
 
           <div style={{ borderBottom: '1px solid gray' }}>
             <h2>Pet Bookmarks</h2>
@@ -83,11 +85,13 @@ const ProfilePage = () => {
             <Bookmark />
           </div>
 
-          <div style={{ borderBottom: '1px solid gray' }}>
-            <Link className="btn" to={`/message/${id}`}>
-              Message This User
-            </Link>
-          </div>
+          {user._id !== id && (
+            <div style={{ borderBottom: '1px solid gray' }}>
+              <Link className="btn" to={`/message/${id}`}>
+                Message This User
+              </Link>
+            </div>
+          )}
         </div>
       )}
       {user && user._id === id && (

@@ -126,22 +126,25 @@ const PetDetailPage = () => {
             <div className="options">
               {user && (
                 <>
-                  {(pet.owner._id === user._id && (
-                    <div className="buttons1">
-                      <button className="btn1">
-                        <Link to={`/pet/${id}/edit`}>Edit</Link>
-                      </button>
-                      <button className="btn1" onClick={handlePetDeletion}>
-                        Delete
-                      </button>
-                    </div>
-                  )) || (
-                    <div className="buttons1">
-                      <button className="btn1">
-                        <Link to="/register">Register</Link>
-                      </button>
-                    </div>
-                  )}
+                  {
+                    pet.owner._id === user._id && (
+                      <div className="buttons1">
+                        <button className="btn1">
+                          <Link to={`/pet/${id}/edit`}>Edit</Link>
+                        </button>
+                        <button className="btn1" onClick={handlePetDeletion}>
+                          Delete
+                        </button>
+                      </div>
+                    )
+                    // || (
+                    //   <div className="buttons1">
+                    //     <button className="btn1">
+                    //       <Link to="/register">Register</Link>
+                    //     </button>
+                    //   </div>
+                    // )
+                  }
                 </>
               )}
             </div>
