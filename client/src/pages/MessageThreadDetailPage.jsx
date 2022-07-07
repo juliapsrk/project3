@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { messageSend, messageThreadLoad } from '../services/message';
 import AuthenticationContext from './../context/authentication';
 
+import './MessageThreadDetailPageStyle.scss';
+
 const MessageThreadDetailPage = () => {
   const { id } = useParams();
 
@@ -26,8 +28,11 @@ const MessageThreadDetailPage = () => {
   const { user } = useContext(AuthenticationContext);
 
   return (
-    <div>
-      <div className="message-list">
+    <div style={{ margin: '2rem 10rem' }}>
+      <div
+        className="message-list"
+        style={{ marginLeft: '20rem', marginRight: '0', width: '500px' }}
+      >
         {messages.map((message) => (
           <div
             className={
@@ -40,13 +45,15 @@ const MessageThreadDetailPage = () => {
           </div>
         ))}
       </div>
-      <form onSubmit={handleMessageFormSubmission}>
-        <textarea
-          value={content}
-          onChange={(event) => setContent(event.target.value)}
-        />
-        <button>Send Message</button>
-      </form>
+      <div style={{ marginTop: '1rem' }}>
+        <form onSubmit={handleMessageFormSubmission}>
+          <textarea
+            value={content}
+            onChange={(event) => setContent(event.target.value)}
+          />
+          <button className="btn-message">Send</button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,33 @@
+.container1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.post-info-part {
+  width: 85%;
+  margin: 1rem 2rem 0 0;
+}
+
+.buttons2 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: auto;
+  width: 15%;
+  justify-content: center;
+  align-items: center;
+
+  .btn2 {
+    display: block;
+    border: none;
+    color: #fff;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: var(--color-crimson);
+    cursor: pointer;
+    width: 100%;
+  }
+}

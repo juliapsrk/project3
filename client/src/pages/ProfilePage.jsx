@@ -26,32 +26,38 @@ const ProfilePage = () => {
       {profile && (
         <div className="page-wrapper content">
           <div className="profile-page">
-            <div className='profile-photo'>
-              {(
-                profile.picture && <img src={profile.picture} alt={profile.name} />
-              ) ||
-                <img src={placeholder} alt={profile.name} />}</div>
+            <div className="profile-photo">
+              {(profile.picture && (
+                <img src={profile.picture} alt={profile.name} />
+              )) || <img src={placeholder} alt={profile.name} />}
+            </div>
 
             {/* profile-content */}
             <div>
               <div>
-                <h2>{profile.name.charAt(0).toUpperCase() + profile.name.slice(1).toLowerCase()}</h2>
+                <h2>
+                  {profile.name.charAt(0).toUpperCase() +
+                    profile.name.slice(1).toLowerCase()}
+                </h2>
                 <p>{profile.description}</p>
 
-                <div className='flex-spa'>
-
+                <div className="flex-spa">
                   {user && user._id === id && (
                     <Link className="page-btn" to="/profile/edit">
                       Edit Profile
                     </Link>
                   )}
-                  <p className='small'>User Type: {profile.userType.charAt(0).toUpperCase() + profile.userType.slice(1).toLowerCase()}</p>
+                  <p className="small">
+                    User Type:{' '}
+                    {profile.userType.charAt(0).toUpperCase() +
+                      profile.userType.slice(1).toLowerCase()}
+                  </p>
                 </div>
               </div>
 
-              <div className='division'>
+              <div className="division">
                 <h3>Posts</h3>
-                {(posts.length) && (
+                {posts.length && (
                   <ul>
                     {posts.map((post) => (
                       <li>
@@ -64,7 +70,7 @@ const ProfilePage = () => {
                 )}
               </div>
 
-              <div className='division'>
+              <div className="division">
                 <h3>Messages</h3>
                 {posts.length && (
                   <Link
@@ -80,19 +86,18 @@ const ProfilePage = () => {
                 )}
               </div>
 
-              <div className='division'>
+              <div className="division">
                 <h3>Pet Bookmarks</h3>
                 <Bookmark />
               </div>
 
               {user && user._id !== id && (
-                <div className='division'>
+                <div className="division">
                   <Link className="btn" to={`/message/${id}`}>
                     Message This User
                   </Link>
                 </div>
               )}
-
             </div>
             {/* end profile-content */}
           </div>
