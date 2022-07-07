@@ -3,10 +3,13 @@
 import { Marker } from '@react-google-maps/api';
 import { useEffect, useState } from 'react';
 // import MapInput from '../components/MapInput';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import PetCard from '../components/PetCard';
+import { format } from 'date-fns';
+import truncate from '../utilities/truncate';
 import PetSearch from '../components/PetSearch';
 import { MapInput, MultipleMarkerMap } from '../components/MapInput'
+import PageListWrapper from '../assets/wrappers/PetListPage'
 import { petAll } from '../services/pet';
 
 const PetListPage = () => {
@@ -86,11 +89,25 @@ const PetListPage = () => {
         <MultipleMarkerMap markers={filteredPets.map(p => p.position)} onMove={handleMapMove} />
       </MapInput>
 
-      <div>
-        {filteredPets.map((pet) => (
-          <PetCard key={pet._id} pet={pet} />
-        ))}
-      </div>
+      <PageListWrapper>
+        <div className='grid-list'>
+          {filteredPets.map((pet) => {
+            return (
+              <div className='grid-item' key={pet._id}>
+                <Link to={`/pet/${pet._id}`}>
+                  <div className='item-photo'><img src={pet.pictures[0]} alt={pet.name} /></div>
+                  <div className='item-info'>
+                    <h5>{pet.name}</h5>
+                    <p>{pet.breed} / {pet.gender} / {pet.age} Year</p>
+                    <p>{truncate(pet.description, 100)}</p>
+                    <p className='post-date'>{format(new Date(pet.updatedAt), 'dd MMMM yyyy')}</p>
+                  </div>
+                </Link>
+              </div>
+            )
+          })}
+        </div>
+      </PageListWrapper>
     </div>
   );
 };

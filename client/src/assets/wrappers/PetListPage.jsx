@@ -1,26 +1,15 @@
 import styled from 'styled-components';
-import petHeroImage from '../images/pets-hero.png';
 
-const HomeWrapper = styled.div`
-  .hero {
-    overflow: hidden;
-    width: 100%;
-    margin-block-start: 1rem;
-    background-image: url(${petHeroImage});
-    background-size: cover;
-    aspect-ratio: 1/1;
-    background-position: top center;
-    max-height: 400px;
-  }  
-  /* PET CARD Hompage */
+const PetListWrapper = styled.div`
 
-  .grid-list {
+.grid-list {
+  max-width: 1100px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 280px));
     grid-auto-rows: auto;
     gap: 4rem;
     margin: 3rem auto;
-    //justify-content: center;
+    justify-content: center;
     
 
     .grid-list:nth-of-type(1) {
@@ -80,4 +69,4 @@ const HomeWrapper = styled.div`
     }
   }
 `;
-export default HomeWrapper;
+export default PetListWrapper;
