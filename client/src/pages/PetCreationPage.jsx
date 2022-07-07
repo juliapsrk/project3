@@ -9,11 +9,11 @@ const PetCreationPage = () => {
     type: '',
     breed: '',
     age: '',
-    gender: '',
+    gender: 'male',
     description: '',
-    listed: false,
+    listed: true,
     adopted: false,
-    pictures: ''
+    pictures: []
   });
 
   const navigate = useNavigate();

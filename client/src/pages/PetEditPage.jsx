@@ -18,7 +18,6 @@ const PetEditPage = () => {
       navigate(`/pet/${id}`);
     });
   };
-  console.log(pet)
 
   return (
     <div>
@@ -30,7 +29,6 @@ const PetEditPage = () => {
           onPetSubmit={handlePetEdit}
           buttonLabel='Edit Pet Listing'
           method='PATCH'
-          //marker={{ lat: 52.50009266700705, lng: 13.309002783203127 }}
           marker={pet.position}
           action={`/pet/${id}`}
         />

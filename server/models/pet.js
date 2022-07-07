@@ -60,7 +60,11 @@ const schema = new mongoose.Schema(
         type: Number
       }
     },
-    pictures: { type: String }
+    pictures: [
+      {
+        type: String
+      }
+    ]
   },
   { timestamps: true }
 );

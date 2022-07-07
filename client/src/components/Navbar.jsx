@@ -17,16 +17,21 @@ const Navbar = () => {
   return (
     <nav>
       <Link to="/pet/list">Adopt</Link>
-      <Link to="/pet/">Rehome a pet</Link>
+      <Link to="/pet/">Rehome a Pet</Link>
       <Link to="/profile">Members</Link>
-      <Link to="/">How to Adopt</Link>
       <Link to="/centers">Centers</Link>
-      {/* <Link to="/">About</Link> */}
+
+      {(user && (
+        <div className="user-menu">
+          <Link to={`/profile/${user._id}`}>Profile</Link>
+          <Link to={"message/list/"}>Message</Link>
+          <Link to={"/"}>Posts</Link>
+        </div>
+      ))}
       <div className="auth-links">
         {(user && (
           <>
-            <Link to={`/profile/${user._id}`}>{user.name} Profile </Link>
-            <button onClick={handleSignOut}>Sign Out</button>
+            <button onClick={handleSignOut}>Log Out</button>
           </>
 
         )) || (

@@ -8,8 +8,7 @@ const CreatePostPage = () => {
   const [post, setPost] = useState({
     title: '',
     description: '',
-    type: 'petForAdoption',
-    picture: ''
+    type: 'petForAdoption'
   });
 
   const navigate = useNavigate();

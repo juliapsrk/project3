@@ -1,3 +1,4 @@
+import React, { useLayoutEffect } from 'react';
 import { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { bookmarkList } from '../services/pet';
@@ -28,7 +29,7 @@ const Bookmark = () => {
                   return (
                     <li style={{ listStyle: 'none' }} key={pet._id}>
                       <Link to={`/pet/${pet._id}`}>
-                        <img src={pet.picture} alt={pet.name} /> {pet.name}
+                        <img src={pet.pictures[0]} alt={pet.name} /> {pet.name}
                       </Link>
                     </li>
                     // <li style={{ listStyle: 'none' }} key={item[0]}>

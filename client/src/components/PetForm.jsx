@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import MapInput from './MapInput';
+import { useEffect, useState } from 'react';
+// import MapInput from './MapInput';
 // import PetInputMap from './PetInputMap';
 import MultipleImageInput from './MultipleImageInput';
-import SwitchListed from './SwitchListed';
-import SwitchAdopted from './SwitchAdopted';
+import { MapInput, SingleMarkerMap } from '../components/MapInput'
 
 const PetForm = ({
   pet,
@@ -13,15 +12,17 @@ const PetForm = ({
   method,
   action,
   position,
-  marker
+  marker,
+  pictures,
 }) => {
   const handlePetFormSubmission = (event) => {
     event.preventDefault();
     onPetSubmit();
   };
 
-  const [isToggled, setIsToggled] = useState(false);
-
+  useEffect(() => {
+    console.log({ pet })
+  }, [pet])
   return (
     <form onSubmit={handlePetFormSubmission} method={method} action={action}>
       {/* Name */}
@@ -105,11 +106,11 @@ const PetForm = ({
           Pet is <span id="listed">listed</span>
         </label>
 
-        <SwitchListed
+        {/* <SwitchListed
           onColor="#fff"
           isOn={isToggled}
           handleToggle={() => setIsToggled(!isToggled)}
-        />
+        /> */}
 
         {/* <div>
           <input
@@ -166,32 +167,26 @@ const PetForm = ({
         />
       </div>
 
-      {/* Pictures */}
-      {/* <div>
-        <label>Pet Pictures</label>
-        <MultipleImageInput
-          images={pet.pictures}
-          onChange={(pictures) => onPetChange({ ...pet, pictures })}
+
+
+      <MapInput onMarkerChange={(value) => {
+        onPetChange({ ...pet, position: value })
+      }}>
+        <SingleMarkerMap
+          marker={pet.position}
         />
-      </div> */}
+      </MapInput>
 
-      {/* Map stuff */}
-      <div>
-        {/* <MapInput
-        marker={pet.position}
-        onMarkerChange={(value) => {
-          onPetChange({ ...pet, position: value })
-        }}>
-      </MapInput> */}
 
-        {/* <PetInputMap
-        location={pet.location}
-        onlocationChange={(location) => onPetChange({ ...pet, location })}
-      /> */}
-      </div>
+      <label>Pet Pictures</label>
+
+      <MultipleImageInput
+        images={pet.pictures}
+        onImagesChange={(pictures) => onPetChange({ ...pet, pictures })}
+      />
 
       <button type="submit">{buttonLabel}</button>
-    </form>
+    </form >
   );
 };
 

@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import truncate from '../utilities/truncate';
+import { format } from 'date-fns';
 import { listLatest } from '../services/post';
 import { petLatest } from '../services/pet';
-import Wrapper from '../assets/wrappers/HomeWrapper';
+import HomeWrapper from '../assets/wrappers/HomeWrapper';
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
   const [pets, setPets] = useState([]);
@@ -18,14 +20,17 @@ const HomePage = () => {
   useEffect(() => {
     petLatest().then((data) => {
       const latestPets = data.pets;
+      console.log(pets)
       setPets(latestPets);
     });
   }, []);
 
   return (
-    <Wrapper>
+    <HomeWrapper>
       <div className='hero'></div>
+
       <div className='page-wrapper'>
+
         <h1 className='title center'>Meet Our Recent Arrivals</h1>
         <p className='slogan center'>
           The best way to save a beloved pet is to keep them out of the shelter system.
@@ -33,36 +38,27 @@ const HomePage = () => {
         </p>
 
         <div className='grid-list'>
+          {
+            pets.filter((pet) =>
+              !pet.adopted
+            ).map((pet) => {
+              return (
+                <div className='grid-item' key={pet._id}>
+                  <Link to={`/pet/${pet._id}`}>
+                    <div className='item-photo'><img src={pet.pictures[0]} alt={pet.name} /></div>
+                    <div className='item-info'>
+                      <h5>{pet.name}</h5>
+                      <p>{pet.breed} / {pet.gender} / {pet.age} Year</p>
+                      <p>{truncate(pet.description, 100)}</p>
+                      <p className='post-date'>{format(new Date(pet.updatedAt), 'dd MMMM yyyy')}</p>
+                    </div>
 
-          <div className='grid-item'>
-            <div className='item-photo'><img src='https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80' alt="" /></div>
-            <div className='item-info'>
-              <h5>Robi</h5>
-              <p>breed / Male / 1 Year</p>
-              <p>description</p>
-            </div>
-          </div>
-
-          <div className='grid-item'>
-            <div className='item-photo'><img src='https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80' alt="" /></div>
-            <div className='item-info'>
-              <h5>Robi</h5>
-              <p>breed / Male / 1 Year</p>
-              <p>description</p>
-            </div>
-          </div>
-
-          <div className='grid-item'>
-            <div className='item-photo'><img src='https://images.unsplash.com/photo-1548767797-d8c844163c4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80' alt="" /></div>
-            <div className='item-info'>
-              <h5>Robi</h5>
-              <p>breed / Male / 1 Year</p>
-              <p>description</p>
-            </div>
-          </div>
-
+                  </Link>
+                </div>
+              );
+            })
+          }
         </div>
-
 
         <h1 className='title center'>Success! Recently Adopted!</h1>
         <p className='slogan center'>
@@ -71,41 +67,28 @@ const HomePage = () => {
         </p>
 
         <div className='grid-list'>
-
-          <div className='grid-item'>
-            <div className='item-photo'><img src='https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80' alt="" /></div>
-            <div className='item-info'>
-              <h5>Robi</h5>
-              <p>breed / Male / 1 Year</p>
-              <p>description</p>
-            </div>
-          </div>
-
-          <div className='grid-item'>
-            <div className='item-photo'><img src='https://images.unsplash.com/photo-1425082661705-1834bfd09dca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80' alt="" /></div>
-            <div className='item-info'>
-              <h5>Robi</h5>
-              <p>breed / Male / 1 Year</p>
-              <p>description</p>
-            </div>
-          </div>
-
-          <div className='grid-item'>
-            <div className='item-photo'><img src='https://images.unsplash.com/photo-1567270671170-fdc10a5bf831?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80' alt="" /></div>
-            <div className='item-info'>
-              <h5>Robi</h5>
-              <p>breed / Male / 1 Year</p>
-              <p>description</p>
-            </div>
-          </div>
-
+          {
+            pets.filter((pet) =>
+              pet.adopted
+            ).map((pet) => {
+              return (
+                <div className='grid-item' key={pet._id}>
+                  <Link to={`/pet/${pet._id}`}>
+                    <div className='item-photo'><img src={pet.pictures[0]} alt={pet.name} /></div>
+                    <div className='item-info'>
+                      <h5>{pet.name}</h5>
+                      <p>{pet.breed} / {pet.gender} / {pet.age} Year</p>
+                      <p>{truncate(pet.description, 100)}</p>
+                      <p className='post-date'>{format(new Date(pet.updatedAt), 'dd MMMM yyyy')}</p>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })
+          }
         </div>
-
-
-
-
-
-        {posts.map((post) => {
+        {/* latest posts */}
+        {/* {posts.map((post) => {
           return (
             <div key={post._id}>
               <h2>{post.title}</h2>
@@ -114,20 +97,9 @@ const HomePage = () => {
               <Link to={`/post/${post._id}`}>View Post</Link>
             </div>
           );
-        })}
-
-        {pets.map((pet) => {
-          return (
-            <div key={pet._id}>
-              <h2>{pet.name}</h2>
-              <p>{pet.type}</p>
-              <Link to={`/pet/${pet._id}`}>View Pet</Link>
-            </div>
-          );
-        })}
+        })} */}
       </div>
-    </Wrapper >
+    </HomeWrapper>
   );
 };
-
 export default HomePage;
