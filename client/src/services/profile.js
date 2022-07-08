@@ -1,7 +1,5 @@
 import api from './api';
 
-
-
 export const listProfiles = () =>
   api.get(`/profile`).then((response) => response.data);
 
