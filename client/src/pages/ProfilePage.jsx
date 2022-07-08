@@ -81,7 +81,7 @@ const ProfilePage = () => {
                     <Link to={`/post`}>Create a new post</Link>
                   </li>
                   <li>
-                    <Link to={`/post/list`}>View your posts</Link>
+                    <Link to={`/post/list`}>View {profile.name}`s posts</Link>
                   </li>
                 </ul>
               </div>
