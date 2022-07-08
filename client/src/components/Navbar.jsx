@@ -21,25 +21,24 @@ const Navbar = () => {
       <Link to="/profile">Members</Link>
       <Link to="/centers">Centers</Link>
 
-      {(user && (
+      {user && (
         <div className="user-menu">
-          <Link to={`/profile/${user._id}`}>Profile</Link>
-          <Link to={"message/list/"}>Message</Link>
-          <Link to={"/"}>Posts</Link>
+          <Link to={`/profile/${user._id}`}>Your profile</Link>
+          <Link to={'message/list/'}>Message</Link>
+          <Link to={'/'}>Posts</Link>
         </div>
-      ))}
+      )}
       <div className="auth-links">
         {(user && (
           <>
             <button onClick={handleSignOut}>Log Out</button>
           </>
-
         )) || (
-            <>
-              <Link to="/log-in">Log In</Link>
-              <Link to="/register">Register</Link>
-            </>
-          )}
+          <>
+            <Link to="/log-in">Log In</Link>
+            <Link to="/register">Register</Link>
+          </>
+        )}
       </div>
     </nav>
   );

@@ -95,11 +95,65 @@ const PetDetailPage = () => {
 
           <div className="pet-detail">
             <div className="pet-info">
-              <h2>{pet.name}</h2>
+              <div className="top">
+                {' '}
+                <h2>{pet.name}</h2>{' '}
+                {user && (
+                  <>
+                    {' '}
+                    <div className="bookmarks">
+                      {' '}
+                      {bookmarks &&
+                        ((bookmark && (
+                          <button
+                            className="bookmark"
+                            onClick={handleRemoveBookmark}
+                          >
+                            ❤️
+                          </button>
+                        )) || (
+                          <button
+                            className="bookmark"
+                            onClick={handleSetBookmark}
+                          >
+                            🤍
+                          </button>
+                        ))}
+                    </div>
+                  </>
+                )}
+              </div>
               <h5>
-                {pet.type} / {pet.gender} / {pet.age} Years
+                {pet.type} / {pet.gender} / {pet.age} Year
+                {pet.age !== 1 ? 's' : ''}
               </h5>
-              <p>{pet.description}</p>
+              <p>
+                <strong>About:</strong> {pet.description}
+              </p>
+
+              <small style={{ display: 'flex', flexDirection: 'row' }}>
+                <strong>Owned by</strong>
+                <Link
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    marginLeft: '0.3rem'
+                  }}
+                  to={`/profile/${pet.owner._id}`}
+                >
+                  <img
+                    src={pet.owner.picture}
+                    alt="post-pic"
+                    style={{
+                      width: '15px',
+                      height: '15px',
+                      borderRadius: '50%',
+                      marginRight: '0.2rem'
+                    }}
+                  />
+                  {pet.owner.name}
+                </Link>
+              </small>
             </div>
 
             <div className="pet-buttons">
@@ -109,40 +163,51 @@ const PetDetailPage = () => {
               <p>
                 {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
               </p>
-              <Link className="page-btn" to={`/profile/${pet.owner._id}`}>
+              {/* <Link className="page-btn" to={`/profile/${pet.owner._id}`}>
                 Owner Profile
-              </Link>
-              <Link className="page-btn" to={`/message/${pet.owner._id}`}>
-                Message Owner
-              </Link>
+              </Link> */}
+              {user && user._id !== pet.owner._id && (
+                <Link className="page-btn" to={`/message/${pet.owner._id}`}>
+                  Message Owner
+                </Link>
+              )}
 
-              {(user && (
-                <>
-                  {bookmarks &&
-                    ((bookmark && (
-                      <button
-                        className="page-btn"
-                        onClick={handleRemoveBookmark}
-                      >
-                        Remove bookmark
-                      </button>
-                    )) || (
-                      <button className="page-btn" onClick={handleSetBookmark}>
-                        Bookmark
-                      </button>
-                    ))}
-                  {pet.owner._id === user._id && (
-                    <>
-                      <Link className="page-btn" to={`/pet/${id}/edit`}>
-                        Edit
-                      </Link>
-                      <button className="page-btn" onClick={handlePetDeletion}>
-                        Delete
-                      </button>
-                    </>
-                  )}
-                </>
-              )) || <Link to="/register">Register</Link>}
+              {
+                user && (
+                  <>
+                    {/* {bookmarks &&
+                      ((bookmark && (
+                        <button
+                          className="page-btn"
+                          onClick={handleRemoveBookmark}
+                        >
+                          Remove bookmark
+                        </button>
+                      )) || (
+                        <button
+                          className="page-btn"
+                          onClick={handleSetBookmark}
+                        >
+                          Bookmark
+                        </button>
+                      ))} */}
+                    {pet.owner._id === user._id && (
+                      <>
+                        <Link className="page-btn" to={`/pet/${id}/edit`}>
+                          Edit
+                        </Link>
+                        <button
+                          className="page-btn"
+                          onClick={handlePetDeletion}
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
+                  </>
+                )
+                // || <Link to="/register">Register</Link>
+              }
             </div>
           </div>
 

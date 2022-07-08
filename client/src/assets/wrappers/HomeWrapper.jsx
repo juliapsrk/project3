@@ -10,6 +10,7 @@ const HomeWrapper = styled.div`
     background-size: cover;
     aspect-ratio: 1/1;
     background-position: top center;
+    height: 400px;
     max-height: 400px;
   }  
   /* PET CARD Hompage */

@@ -28,7 +28,7 @@ const MessageThreadDetailPage = () => {
   const { user } = useContext(AuthenticationContext);
 
   return (
-    <div style={{ margin: '2rem 10rem' }}>
+    <div style={{ margin: '2rem 14rem' }}>
       <div
         className="message-list"
         style={{ marginLeft: '20rem', marginRight: '0', width: '500px' }}
@@ -45,6 +45,7 @@ const MessageThreadDetailPage = () => {
           </div>
         ))}
       </div>
+
       <div style={{ marginTop: '1rem' }}>
         <form onSubmit={handleMessageFormSubmission}>
           <textarea

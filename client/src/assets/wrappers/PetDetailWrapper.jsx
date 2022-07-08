@@ -30,25 +30,43 @@ const PetDetailPage = styled.div`
       margin-left: auto;
       display: flex;
       flex-direction: column;
-      gap: 1rem;      
+      gap: 1rem;
     }
     .page-btn {
-        background: #d90000;
-        border:none;
-        display: block;
-        color: #fff;
-        border-radius: 4px;
-        padding: 0.25rem 1rem;
-        text-align: center;
-        line-height: inherit;
-        cursor: pointer;
-      }
-      .post-date {
-        text-align: right;
-      }
-      .post-date + p {
-        margin: 0;
-      }
+      background: #d90000;
+      border: none;
+      display: block;
+      color: #fff;
+      border-radius: 4px;
+      padding: 0.25rem 1rem;
+      text-align: center;
+      line-height: inherit;
+      cursor: pointer;
+    }
+    .post-date {
+      text-align: right;
+    }
+    .post-date + p {
+      margin: 0;
+    }
+  }
+
+  .bookmark {
+    background-color: transparent;
+    border: none;
+    font-size: 1.7rem;
+    align-self: center;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .bookmarks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   /* PROFILE Detail */

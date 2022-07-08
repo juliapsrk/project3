@@ -11,11 +11,14 @@ const ProfilePage = () => {
 
   const [profile, setProfile] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [pets, setPets] = useState([]);
 
   useEffect(() => {
     profileLoad(id).then((data) => {
       setProfile(data.user);
       setPosts(data.posts);
+      setPets(data.pets);
+      console.log(data.pets);
     });
   }, [id]);
 
@@ -56,8 +59,27 @@ const ProfilePage = () => {
               </div>
 
               <div className="division">
+                <h3>Pets</h3>
+                {/* {Boolean(pets.length) && (
+                  <ul>
+                    {pets.map((pet) => ({
+                      if(pet) {
+                        return (
+                          <li>
+                            <Link to={`/post/${pet._id}`} key={pet._id}>
+                              {pet.name}
+                            </Link>
+                          </li>
+                        );
+                      }
+                    }))}
+                  </ul>
+                )} */}
+              </div>
+
+              <div className="division">
                 <h3>Posts</h3>
-                {posts.length && (
+                {Boolean(posts.length) && (
                   <ul>
                     {posts.map((post) => (
                       <li>
@@ -72,7 +94,7 @@ const ProfilePage = () => {
 
               <div className="division">
                 <h3>Messages</h3>
-                {posts.length && (
+                {user && user._id === id && (
                   <Link
                     to={`/message/list/`}
                     style={{
