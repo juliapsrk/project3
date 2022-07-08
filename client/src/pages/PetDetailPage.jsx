@@ -166,9 +166,11 @@ const PetDetailPage = () => {
               {/* <Link className="page-btn" to={`/profile/${pet.owner._id}`}>
                 Owner Profile
               </Link> */}
-              <Link className="page-btn" to={`/message/${pet.owner._id}`}>
-                Message Owner
-              </Link>
+              {user && user._id !== pet.owner._id && (
+                <Link className="page-btn" to={`/message/${pet.owner._id}`}>
+                  Message Owner
+                </Link>
+              )}
 
               {
                 user && (
