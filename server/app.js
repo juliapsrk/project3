@@ -14,6 +14,7 @@ const profileRouter = require('./routes/profile');
 const petRouter = require('./routes/pet');
 const postRouter = require('./routes/post');
 const messageRouter = require('./routes/message');
+const communityRouter = require('./routes/community');
 
 const app = express();
 
@@ -56,6 +57,7 @@ app.use('/profile', profileRouter);
 app.use('/pet', petRouter);
 app.use('/post', postRouter);
 app.use('/message', messageRouter);
+app.use('/community', communityRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

@@ -6,18 +6,6 @@ const Post = require('./../models/post');
 
 const routeGuard = require('./../middleware/route-guard');
 
-// load all posts sorted by date
-router.get('/allposts', (req, res, next) => {
-  Post.find()
-    .sort({ createdAt: -1 })
-    .then((posts) => {
-      res.json({ posts });
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
-
 // load all posts by user
 router.get('/list', (req, res, next) => {
   const owner = req.user._id;

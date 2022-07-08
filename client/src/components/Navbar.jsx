@@ -20,7 +20,7 @@ const Navbar = () => {
       <Link to='/pet/'>Rehome a Pet</Link>
       <Link to='/profile'>Members</Link>
       <Link to='/centers'>Centers</Link>
-      <Link to='/post/list'>Community</Link>
+      <Link to='/community'>Community</Link>
 
       {user && (
         <div className='user-menu'>
