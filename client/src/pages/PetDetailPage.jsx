@@ -97,7 +97,8 @@ const PetDetailPage = () => {
             <div className="pet-info">
               <h2>{pet.name}</h2>
               <h5>
-                {pet.type} / {pet.gender} / {pet.age} Years
+                {pet.type} / {pet.gender} / {pet.age} Year
+                {pet.age !== 1 ? 's' : ''}
               </h5>
               <p>{pet.description}</p>
             </div>
