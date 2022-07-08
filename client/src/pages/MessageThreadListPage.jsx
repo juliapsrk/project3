@@ -14,9 +14,10 @@ const MessageThreadListPage = () => {
   }, []);
 
   return (
-    <div>
-      {threads.map((thread) => (
-        <Wrapper>
+
+    <Wrapper>
+      {threads.length && threads.map((thread) => (
+        <>
           <Link to={`/message/${thread._id}`} className="picture">
             {thread.picture && (
               <img src={thread.picture} alt={thread.name} />
@@ -28,12 +29,14 @@ const MessageThreadListPage = () => {
             <h3>{thread.name}</h3>
             <p>{thread.description}</p>
           </div>
-
-        </Wrapper>
-
-      ))}
-    </div>
+        </>
+      )) || "There are no messages to show!"
+      }
+    </Wrapper>
   );
+
+
+
 };
 
 export default MessageThreadListPage;

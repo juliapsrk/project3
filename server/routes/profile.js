@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user');
 const Post = require('../models/post');
+const pet = require('../models/pet');
 const routeGuard = require('./../middleware/route-guard');
 
 const router = new express.Router();

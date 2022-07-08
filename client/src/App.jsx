@@ -5,7 +5,6 @@ import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LogInPage from './pages/LogInPage';
 import ListAllProfiles from './pages/ProfileList';
-// import ListAllCenters from './pages/ProfileListCenters';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEditPage from './pages/ProfileEditPage';
 import PetDetailPage from './pages/PetDetailPage';
@@ -18,11 +17,13 @@ import MessageThreadDetailPage from './pages/MessageThreadDetailPage';
 import MessageThreadListPage from './pages/MessageThreadListPage';
 import PetListPage from './pages/PetListPage';
 import Bookmark from './pages/Bookmark';
+import PetsByUserPage from './pages/PetsByUserPage';
 
 import Header from './components/Header';
 import AuthenticationContext from './context/authentication';
 
 import { loadUserInformation } from './services/authentication';
+
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -55,6 +56,8 @@ const App = () => {
           <Route path='/post/:id/edit' element={<PostEditPage />} />
           <Route path='/message/list' element={<MessageThreadListPage />} />
           <Route path='/message/:id' element={<MessageThreadDetailPage />} />
+          <Route path='/pet/list/user/:id' element={<PetsByUserPage></PetsByUserPage>} />
+
           <Route path='*' element={'404 page'} />
         </Routes>
       </BrowserRouter>

@@ -11,6 +11,9 @@ export const petLatest = () =>
 export const petAll = () =>
   api.get('/pet/list/').then((response) => response.data);
 
+export const petAllByUser = (id) =>
+  api.get(`/pet/list/user/${id}`).then((response) => response.data);
+
 export const petLoad = (id) =>
   api.get(`/pet/${id}`).then((response) => response.data);
 

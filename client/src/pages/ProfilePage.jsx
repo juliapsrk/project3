@@ -18,11 +18,12 @@ const ProfilePage = () => {
       setProfile(data.user);
       setPosts(data.posts);
       setPets(data.pets);
-      console.log(data.pets);
     });
   }, [id]);
 
   const { user } = useContext(AuthenticationContext);
+
+
 
   return (
     <ProfileWrapper>

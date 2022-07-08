@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="user-menu">
           <Link to={`/profile/${user._id}`}>Your profile</Link>
           <Link to={'message/list/'}>Message</Link>
-          <Link to={'/'}>Posts</Link>
+          <Link to={`/pet/list/user/${user._id}`}>Pets</Link>
         </div>
       )}
       <div className="auth-links">
@@ -34,11 +34,11 @@ const Navbar = () => {
             <button onClick={handleSignOut}>Log Out</button>
           </>
         )) || (
-          <>
-            <Link to="/log-in">Log In</Link>
-            <Link to="/register">Register</Link>
-          </>
-        )}
+            <>
+              <Link to="/log-in">Log In</Link>
+              <Link to="/register">Register</Link>
+            </>
+          )}
       </div>
     </nav>
   );

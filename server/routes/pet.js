@@ -47,6 +47,20 @@ router.get('/list/latest', (req, res, next) => {
     });
 });
 
+// load pets per user
+router.get('/list/user/:id', (req, res, next) => {
+  const userId = req.user._id;
+  console.log(userId);
+  Pet.find({ owner: userId })
+    .sort({ createdAt: -1 })
+    .then((pets) => {
+      res.json({ pets });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 // list all bookmarks by the user
 router.get('/bookmarked', routeGuard, (req, res, next) => {
   const userId = req.user._id;
