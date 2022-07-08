@@ -46,6 +46,7 @@ router.get('/:id', (req, res, next) => {
       next(error);
     });
 });
+
 router.patch('/', (req, res, next) => {
   const { name, email, password, picture, description } = req.body;
   User.findByIdAndUpdate(
