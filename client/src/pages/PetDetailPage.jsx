@@ -112,13 +112,13 @@ const PetDetailPage = () => {
                             ❤️
                           </button>
                         )) || (
-                          <button
-                            className="bookmark"
-                            onClick={handleSetBookmark}
-                          >
-                            🤍
-                          </button>
-                        ))}
+                            <button
+                              className="bookmark"
+                              onClick={handleSetBookmark}
+                            >
+                              🤍
+                            </button>
+                          ))}
                     </div>
                   </>
                 )}
