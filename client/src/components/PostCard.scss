@@ -1,0 +1,13 @@
+.post-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1em 0;
+  border: 1px solid #dadada;
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  span {
+    font-size: 1.125rem;
+  }
+}
