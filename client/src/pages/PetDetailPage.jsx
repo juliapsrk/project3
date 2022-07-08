@@ -130,6 +130,30 @@ const PetDetailPage = () => {
               <p>
                 <strong>About:</strong> {pet.description}
               </p>
+
+              <small style={{ display: 'flex', flexDirection: 'row' }}>
+                <strong>Owned by</strong>
+                <Link
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    marginLeft: '0.3rem'
+                  }}
+                  to={`/profile/${pet.owner._id}`}
+                >
+                  <img
+                    src={pet.owner.picture}
+                    alt="post-pic"
+                    style={{
+                      width: '15px',
+                      height: '15px',
+                      borderRadius: '50%',
+                      marginRight: '0.2rem'
+                    }}
+                  />
+                  {pet.owner.name}
+                </Link>
+              </small>
             </div>
 
             <div className="pet-buttons">
@@ -139,9 +163,9 @@ const PetDetailPage = () => {
               <p>
                 {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
               </p>
-              <Link className="page-btn" to={`/profile/${pet.owner._id}`}>
+              {/* <Link className="page-btn" to={`/profile/${pet.owner._id}`}>
                 Owner Profile
-              </Link>
+              </Link> */}
               <Link className="page-btn" to={`/message/${pet.owner._id}`}>
                 Message Owner
               </Link>
