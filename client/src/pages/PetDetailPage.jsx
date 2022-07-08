@@ -106,7 +106,7 @@ const PetDetailPage = () => {
                       {bookmarks &&
                         ((bookmark && (
                           <button
-                            className="bookmark"
+                            className="bookmark heart"
                             onClick={handleRemoveBookmark}
                           >
                             ❤️

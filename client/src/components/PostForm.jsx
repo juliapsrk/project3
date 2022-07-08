@@ -31,20 +31,6 @@ const PostForm = (props) => {
           }}
         ></textarea>
 
-        <label htmlFor="input-type">Type of post:</label>
-        <select
-          id="input-type"
-          type="text"
-          placeholder="Type of post"
-          value={props.post.type}
-          onChange={(event) => {
-            props.onPostChange({ ...props.post, type: event.target.value });
-          }}
-        >
-          <option value="petForAdoption">Pet for adoption</option>
-          <option value="lookingForPet">Looking for pet</option>
-        </select>
-
         {/* <label>Picture</label>
         <ImageInput
           image={props.post.picture}
