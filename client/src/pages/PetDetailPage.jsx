@@ -95,12 +95,41 @@ const PetDetailPage = () => {
 
           <div className="pet-detail">
             <div className="pet-info">
-              <h2>{pet.name}</h2>
+              <div className="top">
+                {' '}
+                <h2>{pet.name}</h2>{' '}
+                {user && (
+                  <>
+                    {' '}
+                    <div className="bookmarks">
+                      {' '}
+                      {bookmarks &&
+                        ((bookmark && (
+                          <button
+                            className="bookmark"
+                            onClick={handleRemoveBookmark}
+                          >
+                            ❤️
+                          </button>
+                        )) || (
+                          <button
+                            className="bookmark"
+                            onClick={handleSetBookmark}
+                          >
+                            🤍
+                          </button>
+                        ))}
+                    </div>
+                  </>
+                )}
+              </div>
               <h5>
                 {pet.type} / {pet.gender} / {pet.age} Year
                 {pet.age !== 1 ? 's' : ''}
               </h5>
-              <p>{pet.description}</p>
+              <p>
+                <strong>About:</strong> {pet.description}
+              </p>
             </div>
 
             <div className="pet-buttons">
@@ -117,33 +146,42 @@ const PetDetailPage = () => {
                 Message Owner
               </Link>
 
-              {(user && (
-                <>
-                  {bookmarks &&
-                    ((bookmark && (
-                      <button
-                        className="page-btn"
-                        onClick={handleRemoveBookmark}
-                      >
-                        Remove bookmark
-                      </button>
-                    )) || (
-                      <button className="page-btn" onClick={handleSetBookmark}>
-                        Bookmark
-                      </button>
-                    ))}
-                  {pet.owner._id === user._id && (
-                    <>
-                      <Link className="page-btn" to={`/pet/${id}/edit`}>
-                        Edit
-                      </Link>
-                      <button className="page-btn" onClick={handlePetDeletion}>
-                        Delete
-                      </button>
-                    </>
-                  )}
-                </>
-              )) || <Link to="/register">Register</Link>}
+              {
+                user && (
+                  <>
+                    {/* {bookmarks &&
+                      ((bookmark && (
+                        <button
+                          className="page-btn"
+                          onClick={handleRemoveBookmark}
+                        >
+                          Remove bookmark
+                        </button>
+                      )) || (
+                        <button
+                          className="page-btn"
+                          onClick={handleSetBookmark}
+                        >
+                          Bookmark
+                        </button>
+                      ))} */}
+                    {pet.owner._id === user._id && (
+                      <>
+                        <Link className="page-btn" to={`/pet/${id}/edit`}>
+                          Edit
+                        </Link>
+                        <button
+                          className="page-btn"
+                          onClick={handlePetDeletion}
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
+                  </>
+                )
+                // || <Link to="/register">Register</Link>
+              }
             </div>
           </div>
 
