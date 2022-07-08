@@ -11,14 +11,11 @@ const ProfilePage = () => {
 
   const [profile, setProfile] = useState(null);
   const [posts, setPosts] = useState([]);
-  const [pets, setPets] = useState([]);
 
   useEffect(() => {
     profileLoad(id).then((data) => {
       setProfile(data.user);
       setPosts(data.posts);
-      setPets(data.pets);
-      console.log(data.pets);
     });
   }, [id]);
 
@@ -79,32 +76,33 @@ const ProfilePage = () => {
 
               <div className="division">
                 <h3>Posts</h3>
-                {Boolean(posts.length) && (
-                  <ul>
-                    {posts.map((post) => (
-                      <li>
-                        <Link to={`/post/${post._id}`} key={post._id}>
-                          {post.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <ul style={{ listStyle: 'none' }}>
+                  <li>
+                    <Link to={`/post`}>Create a new post</Link>
+                  </li>
+                  <li>
+                    <Link to={`/post/list`}>View your posts</Link>
+                  </li>
+                </ul>
               </div>
 
               <div className="division">
                 <h3>Messages</h3>
                 {user && user._id === id && (
-                  <Link
-                    to={`/message/list/`}
-                    style={{
-                      display: 'block',
-                      marginBlock: '2rem',
-                      color: 'crimson'
-                    }}
-                  >
-                    View your message inbox
-                  </Link>
+                  <ul>
+                    <li style={{ listStyle: 'none' }}>
+                      <Link
+                        to={`/message/list/`}
+                        // style={{
+                        //   display: 'block',
+                        //   marginBlock: '2rem',
+                        //   color: 'crimson'
+                        // }}
+                      >
+                        View your message inbox
+                      </Link>
+                    </li>
+                  </ul>
                 )}
               </div>
 

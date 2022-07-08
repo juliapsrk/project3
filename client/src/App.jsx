@@ -18,6 +18,7 @@ import MessageThreadDetailPage from './pages/MessageThreadDetailPage';
 import MessageThreadListPage from './pages/MessageThreadListPage';
 import PetListPage from './pages/PetListPage';
 import Bookmark from './pages/Bookmark';
+import UserPostsListPage from './pages/UserPostsListPage';
 
 import Header from './components/Header';
 import AuthenticationContext from './context/authentication';
@@ -38,7 +39,7 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path='/' element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           {/* <Route path="/centers" element={<ListAllCenters />} /> */}
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/log-in" element={<LogInPage />} />
@@ -47,15 +48,16 @@ const App = () => {
           <Route path="/profile/edit" element={<ProfileEditPage />} />
           <Route path="/pet/:id" element={<PetDetailPage />} />
           <Route path="/pet/:id/edit" element={<PetEditPage />} />
-          <Route path='/pet/list' element={<PetListPage />} />
+          <Route path="/pet/list" element={<PetListPage />} />
           <Route path="/pet" element={<PetCreationPage />} />
           {/* <Route path="/pet/bookmarked" element={<Bookmark />} /> */}
-          <Route path='/post/:id' element={<SinglePostPage />} />
-          <Route path='/post' element={<CreatePostPage />} />
-          <Route path='/post/:id/edit' element={<PostEditPage />} />
-          <Route path='/message/list' element={<MessageThreadListPage />} />
-          <Route path='/message/:id' element={<MessageThreadDetailPage />} />
-          <Route path='*' element={'404 page'} />
+          <Route path="/post/:id" element={<SinglePostPage />} />
+          <Route path="/post" element={<CreatePostPage />} />
+          <Route path="/post/:id/edit" element={<PostEditPage />} />
+          <Route path="/post/list" element={<UserPostsListPage />} />
+          <Route path="/message/list" element={<MessageThreadListPage />} />
+          <Route path="/message/:id" element={<MessageThreadDetailPage />} />
+          <Route path="*" element={'404 page'} />
         </Routes>
       </BrowserRouter>
     </AuthenticationContext.Provider>

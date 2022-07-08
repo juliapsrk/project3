@@ -1,15 +1,28 @@
 import React from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import PostForm from '../components/PostForm';
-import { postCreate } from '../services/post';
+import { listPosts, postCreate } from '../services/post';
+import AuthenticationContext from '../context/authentication';
 
 const CreatePostPage = () => {
   const [post, setPost] = useState({
     title: '',
-    description: '',
-    type: 'petForAdoption'
+    description: ''
   });
+
+  // const [profile, setProfile] = useState(null);
+  // const [posts, setPosts] = useState([]);
+
+  const { user } = useContext(AuthenticationContext);
+
+  // const { id } = useParams();
+
+  // useEffect(() => {
+  //   listPosts().then((data) => {
+  //     setPosts(data.posts);
+  //   });
+  // }, []);
 
   const navigate = useNavigate();
 
@@ -28,6 +41,18 @@ const CreatePostPage = () => {
         onFormSubmit={handlePostCreation}
         buttonLabel="Add new post"
       />
+
+      {/* {user && Boolean(posts.length) && (
+        <ul>
+          {posts.map((post) => (
+            <li>
+              <Link to={`/post/${post._id}`} key={post._id}>
+                {post.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )} */}
     </div>
   );
 };

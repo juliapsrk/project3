@@ -13,11 +13,6 @@ const schema = new mongoose.Schema(
       maxLength: 5000,
       trim: true
     },
-    type: {
-      type: String,
-      enum: ['petForAdoption', 'lookingForPet'],
-      required: true
-    },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',

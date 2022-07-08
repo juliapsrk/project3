@@ -69,6 +69,18 @@ const PetDetailPage = styled.div`
     align-items: center;
   }
 
+  .heart {
+    animation: beat 0.25s 5 alternate;
+    transform-origin: center;
+  }
+
+  /* Heart beat animation */
+  @keyframes beat {
+    to {
+      transform: scale(1.4);
+    }
+  }
+
   /* PROFILE Detail */
 `;
 
