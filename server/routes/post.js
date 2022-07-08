@@ -7,7 +7,7 @@ const Post = require('./../models/post');
 const routeGuard = require('./../middleware/route-guard');
 
 // load all posts sorted by date
-router.get('/', (req, res, next) => {
+router.get('/allposts', (req, res, next) => {
   Post.find()
     .sort({ createdAt: -1 })
     .then((posts) => {

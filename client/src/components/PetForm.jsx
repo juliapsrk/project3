@@ -20,9 +20,6 @@ const PetForm = ({
     onPetSubmit();
   };
 
-  // for toggle switch
-  // const [value, setValue] = useState(false);
-
   useEffect(() => {
     console.log({ pet });
   }, [pet]);
@@ -105,31 +102,26 @@ const PetForm = ({
 
       {/* Listed? */}
       <div>
-        <label htmlFor='input-listed'>Pet is</label>
+        <label htmlFor='input-listed'>Pet is listed?</label>
 
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            width: '200px',
-            height: '15px',
-            margin: '15px',
-            alignItems: 'center'
-          }}
-        >
-          {/* <SwitchListed
-            onColor='#fff'
-            isOn={value}
-            handleToggle={() => setValue(!value)}
-          /> */}
+        <div>
+          <input
+            id='input-listed'
+            type='checkbox'
+            name='listed'
+            value={pet.listed}
+            onChange={(event) =>
+              onPetChange({ ...pet, listed: event.target.checked })
+            }
+          />
+          <label htmlFor='input-listed'>{pet.listed ? 'Yes' : 'No'}</label>
         </div>
       </div>
 
       {/* Adopted? */}
       <div>
-        <label htmlFor='input-listed'>
-          Pet is <span id='adopted'>looking for a new home</span>
-        </label>
+        <label htmlFor='input-adopted'>Pet is looking for a new home?</label>
+
         <div>
           <input
             id='input-adopted'
@@ -140,9 +132,7 @@ const PetForm = ({
               onPetChange({ ...pet, adopted: event.target.checked })
             }
           />
-          <label htmlFor='input-adopted'>
-            {pet.adopted ? 'Looking for a home' : 'Found a home'}
-          </label>
+          <label htmlFor='input-adopted'>{pet.adopted ? 'Yes' : 'No'}</label>
         </div>
       </div>
 
