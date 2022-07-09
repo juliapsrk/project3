@@ -124,7 +124,9 @@ router.patch('/:id', routeGuard, (req, res, next) => {
     description,
     location,
     position,
-    pictures
+    pictures,
+    adopted,
+    listed
   } = req.body;
   const owner = req.user._id;
   Pet.findByIdAndUpdate(
@@ -138,7 +140,9 @@ router.patch('/:id', routeGuard, (req, res, next) => {
       description,
       location,
       position,
-      pictures
+      pictures,
+      adopted,
+      listed
     },
     { new: true }
   )
@@ -163,7 +167,7 @@ router.post('/', routeGuard, (req, res, next) => {
     adopted,
     description,
     position,
-    pictures,
+    pictures
   } = req.body;
   const owner = req.user._id;
   Pet.create({
