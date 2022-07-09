@@ -29,16 +29,16 @@ const PetForm = ({
       onSubmit={handlePetFormSubmission}
       method={method}
       action={action}
-      className="pet-form"
+      className='pet-form'
     >
       {/* Name */}
       <div>
-        <label htmlFor="input-name">Name</label>
+        <label htmlFor='input-name'>Name</label>
         <input
-          id="input-name"
-          type="string"
-          placeholder="Pet Name"
-          name="name"
+          id='input-name'
+          type='string'
+          placeholder='Pet Name'
+          name='name'
           value={pet.name}
           onChange={(event) =>
             onPetChange({ ...pet, name: event.target.value })
@@ -48,59 +48,59 @@ const PetForm = ({
 
       {/* Type, Breed, Gender, Age */}
       <div>
-        <label htmlFor="input-type">Type of Animal</label>
+        <label htmlFor='input-type'>Type of Animal</label>
         <select
-          id="input-type"
-          type="string"
-          placeholder="Type of animal"
-          name="type"
+          id='input-type'
+          type='string'
+          placeholder='Type of animal'
+          name='type'
           value={pet.type}
           onChange={(event) =>
             onPetChange({ ...pet, type: event.target.value })
           }
         >
           <option>Select</option>
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
-          <option value="rabbit">Rabbit</option>
-          <option value="bird">Bird</option>
+          <option value='dog'>Dog</option>
+          <option value='cat'>Cat</option>
+          <option value='rabbit'>Rabbit</option>
+          <option value='bird'>Bird</option>
         </select>
 
-        <label htmlFor="input-breed">Breed</label>
+        <label htmlFor='input-breed'>Breed</label>
         <input
-          id="input-breed"
-          type="string"
-          placeholder="Pet breed"
-          name="breed"
+          id='input-breed'
+          type='string'
+          placeholder='Pet breed'
+          name='breed'
           value={pet.breed}
           onChange={(event) =>
             onPetChange({ ...pet, breed: event.target.value })
           }
         />
 
-        <label htmlFor="input-gender">Gender</label>
+        <label htmlFor='input-gender'>Gender</label>
         <select
-          id="input-gender"
-          type="string"
-          placeholder="Gender of pet"
-          name="gender"
+          id='input-gender'
+          type='string'
+          placeholder='Gender of pet'
+          name='gender'
           value={pet.gender}
           onChange={(event) =>
             onPetChange({ ...pet, gender: event.target.value })
           }
         >
           <option>Select</option>
-          <option value="female">female</option>
-          <option value="male">male</option>
+          <option value='female'>female</option>
+          <option value='male'>male</option>
         </select>
 
-        <label htmlFor="input-age">Age</label>
+        <label htmlFor='input-age'>Age</label>
         <input
-          id="input-age"
-          type="number"
+          id='input-age'
+          type='number'
           min={0}
-          placeholder="Pet age in years"
-          name="age"
+          placeholder='Pet age in years'
+          name='age'
           value={pet.age}
           onChange={(event) => onPetChange({ ...pet, age: event.target.value })}
         />
@@ -108,53 +108,53 @@ const PetForm = ({
 
       {/* Adopted? */}
       <div>
-        <label htmlFor="input-adopted">
+        <label htmlFor='input-adopted'>
           Is your pet looking for a new home?
         </label>
 
         <div>
           <input
-            id="input-adopted"
-            type="checkbox"
-            name="adopted"
+            id='input-adopted'
+            type='checkbox'
+            name='adopted'
             value={pet.adopted}
             onChange={(event) =>
               onPetChange({ ...pet, adopted: event.target.checked })
             }
           />
-          <label htmlFor="input-adopted">{pet.adopted ? 'Yes' : 'No'}</label>
+          <label htmlFor='input-adopted'>{pet.adopted ? 'Yes' : 'No'}</label>
         </div>
       </div>
 
       {/* Listed? */}
       <div>
-        <label htmlFor="input-listed">Do you want to publish your pet?</label>
+        <label htmlFor='input-listed'>Do you want to publish your pet?</label>
 
         <div>
           <input
-            id="input-listed"
-            type="checkbox"
-            name="listed"
+            id='input-listed'
+            type='checkbox'
+            name='listed'
             value={pet.listed}
             onChange={(event) =>
               onPetChange({ ...pet, listed: event.target.checked })
             }
           />
-          <label htmlFor="input-listed">{pet.listed ? 'Yes' : 'No'}</label>
+          <label htmlFor='input-listed'>{pet.listed ? 'Yes' : 'No'}</label>
         </div>
       </div>
 
       {/* Description */}
       <div>
-        <label htmlFor="input-description">
+        <label htmlFor='input-description'>
           A short description of your pet
         </label>
         <textarea
-          id="input-description"
-          type="string"
+          id='input-description'
+          type='string'
           max={1000}
-          placeholder="Short description of your pet"
-          name="description"
+          placeholder='Short description of your pet'
+          name='description'
           value={pet.description}
           onChange={(event) =>
             onPetChange({ ...pet, description: event.target.value })
@@ -179,7 +179,7 @@ const PetForm = ({
         <SingleMarkerMap marker={pet.position} />
       </MapInput>
 
-      <button type="submit" className="edit-pet">
+      <button type='submit' className='edit-pet'>
         {buttonLabel}{' '}
       </button>
     </form>
