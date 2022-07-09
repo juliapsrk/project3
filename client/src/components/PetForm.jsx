@@ -146,9 +146,7 @@ const PetForm = ({
 
       {/* Description */}
       <div>
-        <label htmlFor='input-description'>
-          A short description of your pet
-        </label>
+        <label htmlFor='input-description'>Description</label>
         <textarea
           id='input-description'
           type='string'
