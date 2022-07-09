@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <Link to='/pet/list'>Adopt</Link>
+      <Link to='/pet/list'>Adoptt</Link>
       <Link to='/pet/'>Rehome a Pet</Link>
       <Link to='/profile'>Members</Link>
       {/* <Link to='/centers'>Centers</Link> */}
@@ -37,11 +37,11 @@ const Navbar = () => {
             <button onClick={handleSignOut}>Log Out</button>
           </>
         )) || (
-          <>
-            <Link to='/log-in'>Log In</Link>
-            <Link to='/register'>Register</Link>
-          </>
-        )}
+            <>
+              <Link to='/log-in'>Log In</Link>
+              <Link to='/register'>Register</Link>
+            </>
+          )}
       </div>
     </nav>
   );
