@@ -76,7 +76,7 @@ const ProfilePage = () => {
 
               <div className="division">
                 <h3>Posts</h3>
-                {user._id === profile._id && (
+                {user._id === id && (
                   <ul style={{ listStyle: 'none' }}>
                     <li>
                       <Link to={`/post`}>Create a new post</Link>
@@ -85,7 +85,7 @@ const ProfilePage = () => {
                 )}
                 <ul style={{ listStyle: 'none' }}>
                   <li>
-                    <Link to={`/post/list/${profile._id}`}>
+                    <Link to={`/post/list/${id}`}>
                       View {profile.name}'s posts
                     </Link>
                   </li>

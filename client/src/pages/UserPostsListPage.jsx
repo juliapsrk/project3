@@ -16,7 +16,7 @@ const UserPostsListPage = () => {
       setPosts(data.posts);
       console.log(data.posts);
     });
-  }, []);
+  }, [id]);
 
   const thisUserPosts = posts && posts.filter((post) => id === post.owner);
 
@@ -26,10 +26,8 @@ const UserPostsListPage = () => {
       {user && Boolean(thisUserPosts.length) && (
         <ul>
           {thisUserPosts.map((post) => (
-            <li>
-              <Link to={`/post/${post._id}`} key={post._id}>
-                {post.title}
-              </Link>
+            <li key={post._id}>
+              <Link to={`/post/${post._id}`}>{post.title}</Link>
             </li>
           ))}
         </ul>
