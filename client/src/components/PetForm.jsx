@@ -116,7 +116,7 @@ const PetForm = ({
           <input
             id='input-adopted'
             type='checkbox'
-            name='adopted'
+            // name='adopted'
             value={pet.adopted}
             onChange={(event) =>
               onPetChange({ ...pet, adopted: event.target.checked })
@@ -134,7 +134,7 @@ const PetForm = ({
           <input
             id='input-listed'
             type='checkbox'
-            name='listed'
+            // name='listed'
             value={pet.listed}
             onChange={(event) =>
               onPetChange({ ...pet, listed: event.target.checked })

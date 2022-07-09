@@ -112,13 +112,13 @@ const PetDetailPage = () => {
                             ❤️
                           </button>
                         )) || (
-                            <button
-                              className='bookmark'
-                              onClick={handleSetBookmark}
-                            >
-                              🤍
-                            </button>
-                          ))}
+                          <button
+                            className='bookmark'
+                            onClick={handleSetBookmark}
+                          >
+                            🤍
+                          </button>
+                        ))}
                     </div>
                   </>
                 )}
@@ -161,7 +161,7 @@ const PetDetailPage = () => {
                 {format(new Date(pet.updatedAt), 'dd MMMM yyyy')}
               </p>
               <p>
-                {pet.name} is {pet.adopted ? 'Adopted' : 'Up for Adoption'}
+                {pet.name} is {pet.adopted ? 'adopted' : 'up for adoption'}
               </p>
               {/* <Link className="page-btn" to={`/profile/${pet.owner._id}`}>
                 Owner Profile

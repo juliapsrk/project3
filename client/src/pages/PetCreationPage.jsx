@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PetForm from '../components/PetForm';
 import { petCreate } from '../services/pet';
+import './PetCreationPage.scss';
 
 const PetCreationPage = () => {
   const [pet, setPet] = useState({
@@ -11,7 +12,7 @@ const PetCreationPage = () => {
     age: '',
     gender: '',
     description: '',
-    listed: false,
+    listed: true,
     adopted: false,
     pictures: []
   });
