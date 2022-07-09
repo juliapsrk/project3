@@ -30,12 +30,7 @@ const SinglePostPage = () => {
           <div className="post-info-part">
             {' '}
             <h2>{singlePost.title}</h2>
-            <p>
-              Text: {singlePost.description} Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Laborum corrupti vel, tempora maxime
-              at iste asperiores esse error velit deleniti dicta a. Aspernatur,
-              iste ipsa veniam laborum dolorum deleniti eligendi.
-            </p>
+            <p>Text: {singlePost.description}</p>
             <p>
               Type: <strong>{singlePost.type}</strong>
             </p>
