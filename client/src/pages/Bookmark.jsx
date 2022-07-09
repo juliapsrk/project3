@@ -32,8 +32,8 @@ const Bookmark = () => {
               return (
                 <div
                   style={{
+                    textAlign: 'center',
                     width: '4rem',
-                    backgroundColor: 'lightgrey',
                     borderRadius: '0.5rem',
                     overflow: 'hidden',
                     border: '1px solid grey',
@@ -41,7 +41,8 @@ const Bookmark = () => {
                   }}
                 >
                   <Link to={`/pet/${pet._id}`} key={pet._id}>
-                    <img src={pet.pictures[0]} alt={pet.name} /> {pet.name}
+                    <img src={pet.pictures[0]} alt={pet.name} />{' '}
+                    <strong>{pet.name}</strong>
                   </Link>
                 </div>
                 // <li style={{ listStyle: 'none' }} key={item[0]}>
