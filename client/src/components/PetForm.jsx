@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 // import PetInputMap from './PetInputMap';
 import MultipleImageInput from './MultipleImageInput';
 import { MapInput, SingleMarkerMap } from '../components/MapInput';
+import './PetForm.scss';
 
 const PetForm = ({
   pet,
@@ -24,10 +25,15 @@ const PetForm = ({
     console.log({ pet });
   }, [pet]);
   return (
-    <form onSubmit={handlePetFormSubmission} method={method} action={action}>
+    <form
+      onSubmit={handlePetFormSubmission}
+      method={method}
+      action={action}
+      className='pet-form'
+    >
       {/* Name */}
       <div>
-        <label htmlFor='input-name'>Name of Pet</label>
+        <label htmlFor='input-name'>Name</label>
         <input
           id='input-name'
           type='string'
@@ -53,7 +59,7 @@ const PetForm = ({
             onPetChange({ ...pet, type: event.target.value })
           }
         >
-          <option value='--select--'></option>
+          <option>Select</option>
           <option value='dog'>Dog</option>
           <option value='cat'>Cat</option>
           <option value='rabbit'>Rabbit</option>
@@ -64,7 +70,7 @@ const PetForm = ({
         <input
           id='input-breed'
           type='string'
-          placeholder='Breed of pet'
+          placeholder='Pet breed'
           name='breed'
           value={pet.breed}
           onChange={(event) =>
@@ -83,44 +89,28 @@ const PetForm = ({
             onPetChange({ ...pet, gender: event.target.value })
           }
         >
-          <option value='--select--'></option>
+          <option>Select</option>
           <option value='female'>female</option>
           <option value='male'>male</option>
         </select>
 
-        <label htmlFor='input-age'>Age (in years)</label>
+        <label htmlFor='input-age'>Age</label>
         <input
           id='input-age'
           type='number'
           min={0}
-          placeholder='Age of pet'
+          placeholder='Pet age in years'
           name='age'
           value={pet.age}
           onChange={(event) => onPetChange({ ...pet, age: event.target.value })}
         />
       </div>
 
-      {/* Listed? */}
-      <div>
-        <label htmlFor='input-listed'>Pet is listed?</label>
-
-        <div>
-          <input
-            id='input-listed'
-            type='checkbox'
-            name='listed'
-            value={pet.listed}
-            onChange={(event) =>
-              onPetChange({ ...pet, listed: event.target.checked })
-            }
-          />
-          <label htmlFor='input-listed'>{pet.listed ? 'Yes' : 'No'}</label>
-        </div>
-      </div>
-
       {/* Adopted? */}
       <div>
-        <label htmlFor='input-adopted'>Pet is looking for a new home?</label>
+        <label htmlFor='input-adopted'>
+          Is your pet looking for a new home?
+        </label>
 
         <div>
           <input
@@ -136,12 +126,30 @@ const PetForm = ({
         </div>
       </div>
 
+      {/* Listed? */}
+      <div>
+        <label htmlFor='input-listed'>Do you want to publish your pet?</label>
+
+        <div>
+          <input
+            id='input-listed'
+            type='checkbox'
+            name='listed'
+            value={pet.listed}
+            onChange={(event) =>
+              onPetChange({ ...pet, listed: event.target.checked })
+            }
+          />
+          <label htmlFor='input-listed'>{pet.listed ? 'Yes' : 'No'}</label>
+        </div>
+      </div>
+
       {/* Description */}
       <div>
         <label htmlFor='input-description'>
           A short description of your pet
         </label>
-        <input
+        <textarea
           id='input-description'
           type='string'
           max={1000}
@@ -171,7 +179,9 @@ const PetForm = ({
         <SingleMarkerMap marker={pet.position} />
       </MapInput>
 
-      <button type='submit'>{buttonLabel}</button>
+      <button type='submit' className='edit-pet'>
+        {buttonLabel}{' '}
+      </button>
     </form>
   );
 };
