@@ -77,7 +77,7 @@ const PetDetailPage = () => {
             <Splide
               options={{
                 type: 'loop',
-                perPage: 4,
+                //perPage: 2,
                 gap: '1rem',
                 arrows: true,
                 pagination: false,
