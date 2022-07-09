@@ -31,9 +31,6 @@ const SinglePostPage = () => {
             {' '}
             <h2>{singlePost.title}</h2>
             <p>Text: {singlePost.description}</p>
-            <p>
-              Type: <strong>{singlePost.type}</strong>
-            </p>
             <br></br>
             <small style={{ display: 'flex', flexDirection: 'row' }}>
               By
