@@ -31,6 +31,7 @@ const Bookmark = () => {
 
               return (
                 <div
+                  key={pet._id}
                   style={{
                     textAlign: 'center',
                     width: '4rem',
@@ -40,7 +41,7 @@ const Bookmark = () => {
                     padding: '0.1rem'
                   }}
                 >
-                  <Link to={`/pet/${pet._id}`} key={pet._id}>
+                  <Link to={`/pet/${pet._id}`}>
                     <img src={pet.pictures[0]} alt={pet.name} />{' '}
                     <strong>{pet.name}</strong>
                   </Link>
