@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <Link to='/pet/list'>Adoptt</Link>
+      <Link to='/pet/list'>Adopt</Link>
       <Link to='/pet/'>Rehome a Pet</Link>
       <Link to='/profile'>Members</Link>
       {/* <Link to='/centers'>Centers</Link> */}
