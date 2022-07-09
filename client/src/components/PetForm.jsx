@@ -108,9 +108,7 @@ const PetForm = ({
 
       {/* Adopted? */}
       <div>
-        <label htmlFor='input-adopted'>
-          Is your pet looking for a new home?
-        </label>
+        <label htmlFor='input-adopted'>Is your pet adopted?</label>
 
         <div>
           <input
