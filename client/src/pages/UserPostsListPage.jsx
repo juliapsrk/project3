@@ -23,7 +23,7 @@ const UserPostsListPage = () => {
   return (
     <div style={{ margin: '3rem' }}>
       <h3>Posts</h3>
-      {user && Boolean(thisUserPosts.length) && (
+      {(user && Boolean(thisUserPosts.length) && (
         <ul>
           {thisUserPosts.map((post) => (
             <li key={post._id}>
@@ -31,7 +31,8 @@ const UserPostsListPage = () => {
             </li>
           ))}
         </ul>
-      )}
+      )) ||
+        'User hasn`t posted anything yet!'}
     </div>
   );
 };

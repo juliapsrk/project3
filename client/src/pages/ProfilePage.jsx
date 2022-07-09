@@ -29,7 +29,7 @@ const ProfilePage = () => {
             <div className="profile-photo">
               {(profile.picture && (
                 <img src={profile.picture} alt={profile.name} />
-              )) || <img src={placeholder} alt={profile.name} />}
+              )) || <img src={placeholder} />}
             </div>
 
             {/* profile-content */}
