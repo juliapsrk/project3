@@ -76,6 +76,13 @@ const ProfilePage = () => {
 
               <div className='division'>
                 <h3>Posts</h3>
+                {user._id === profile._id && (
+                  <ul style={{ listStyle: 'none' }}>
+                    <li>
+                      <Link to={`/post`}>Create a new post</Link>
+                    </li>
+                  </ul>
+                )}
                 <ul style={{ listStyle: 'none' }}>
                   <li>
                     <Link to={`/post`}>Create a new post</Link>

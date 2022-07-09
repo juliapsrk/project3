@@ -26,7 +26,6 @@ import AuthenticationContext from './context/authentication';
 
 import { loadUserInformation } from './services/authentication';
 
-
 const App = () => {
   const [user, setUser] = useState(null);
 
@@ -56,7 +55,7 @@ const App = () => {
           <Route path="/post/:id" element={<SinglePostPage />} />
           <Route path="/post" element={<CreatePostPage />} />
           <Route path="/post/:id/edit" element={<PostEditPage />} />
-          <Route path="/post/list" element={<UserPostsListPage />} />
+          <Route path="/post/list/:id" element={<UserPostsListPage />} />
           <Route path="/message/list" element={<MessageThreadListPage />} />
           <Route path="/message/:id" element={<MessageThreadDetailPage />} />
           <Route path="*" element={'404 page'} />
@@ -76,7 +75,10 @@ const App = () => {
           <Route path="/message/list" element={<MessageThreadListPage />} />
           <Route path="/message/:id" element={<MessageThreadDetailPage />} />
           <Route path="/community" element={<CommunityPage />} />
-          <Route path='/pet/list/user/:id' element={<PetsByUserPage></PetsByUserPage>} />
+          <Route
+            path="/pet/list/user/:id"
+            element={<PetsByUserPage></PetsByUserPage>}
+          />
           <Route path="*" element={'404 page'} />
         </Routes>
       </BrowserRouter>

@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
+import { profileEdit } from '../services/profile';
 import { signOutUser } from './../services/authentication';
 
 const Navbar = () => {
