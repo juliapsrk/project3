@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@reach/combobox": "^0.17.0",
     "@react-google-maps/api": "^2.12.0",
     "@splidejs/react-splide": "^0.7.8",
     "axios": "^0.27.2",
@@ -16,8 +15,7 @@
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "styled-components": "^5.3.5",
-    "use-places-autocomplete": "^4.0.0"
+    "styled-components": "^5.3.5"
   },
   "scripts": {
     "start": "react-scripts start",

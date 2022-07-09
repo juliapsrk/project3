@@ -43,8 +43,8 @@ export const MapInput = memo((props) => {
     zoomControl: true,
   };
   const center = {
-    lat: 52.506630,
-    lng: 13.291150,
+    lat: 52.520008,
+    lng: 13.404954,
   };
 
   const { isLoaded, loadError } = useJsApiLoader({
@@ -75,7 +75,7 @@ export const MapInput = memo((props) => {
       {isLoaded && <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
-        zoom={14}
+        zoom={12}
         center={center}
         options={options}
         onClick={handleMapClick}
