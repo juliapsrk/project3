@@ -24,7 +24,12 @@ const PetForm = ({
     console.log({ pet });
   }, [pet]);
   return (
-    <form onSubmit={handlePetFormSubmission} method={method} action={action}>
+    <form
+      onSubmit={handlePetFormSubmission}
+      method={method}
+      action={action}
+      className='pet-form'
+    >
       {/* Name */}
       <div>
         <label htmlFor='input-name'>Name of Pet</label>
