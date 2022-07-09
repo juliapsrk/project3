@@ -24,9 +24,9 @@ const ProfilePage = () => {
   return (
     <ProfileWrapper>
       {profile && (
-        <div className='page-wrapper content'>
-          <div className='profile-page'>
-            <div className='profile-photo'>
+        <div className="page-wrapper content">
+          <div className="profile-page">
+            <div className="profile-photo">
               {(profile.picture && (
                 <img src={profile.picture} alt={profile.name} />
               )) || <img src={placeholder} alt={profile.name} />}
@@ -41,13 +41,13 @@ const ProfilePage = () => {
                 </h2>
                 <p>{profile.description}</p>
 
-                <div className='flex-spa'>
+                <div className="flex-spa">
                   {user && user._id === id && (
-                    <Link className='page-btn' to='/profile/edit'>
+                    <Link className="page-btn" to="/profile/edit">
                       Edit Profile
                     </Link>
                   )}
-                  <p className='small'>
+                  <p className="small">
                     User Type:{' '}
                     {profile.userType.charAt(0).toUpperCase() +
                       profile.userType.slice(1).toLowerCase()}
@@ -55,7 +55,7 @@ const ProfilePage = () => {
                 </div>
               </div>
 
-              <div className='division'>
+              <div className="division">
                 <h3>Pets</h3>
                 {/* {Boolean(pets.length) && (
                   <ul>
@@ -74,7 +74,7 @@ const ProfilePage = () => {
                 )} */}
               </div>
 
-              <div className='division'>
+              <div className="division">
                 <h3>Posts</h3>
                 {user._id === profile._id && (
                   <ul style={{ listStyle: 'none' }}>
@@ -85,15 +85,14 @@ const ProfilePage = () => {
                 )}
                 <ul style={{ listStyle: 'none' }}>
                   <li>
-                    <Link to={`/post`}>Create a new post</Link>
-                  </li>
-                  <li>
-                    <Link to={`/post/list`}>View {profile.name}'s posts</Link>
+                    <Link to={`/post/list/${profile._id}`}>
+                      View {profile.name}'s posts
+                    </Link>
                   </li>
                 </ul>
               </div>
 
-              <div className='division'>
+              <div className="division">
                 <h3>Messages</h3>
                 {user && user._id === id && (
                   <ul>
@@ -113,14 +112,14 @@ const ProfilePage = () => {
                 )}
               </div>
 
-              <div className='division'>
+              <div className="division">
                 <h3>Pet Bookmarks</h3>
                 <Bookmark />
               </div>
 
               {user && user._id !== id && (
-                <div className='division'>
-                  <Link className='btn' to={`/message/${id}`}>
+                <div className="division">
+                  <Link className="btn" to={`/message/${id}`}>
                     Message This User
                   </Link>
                 </div>
