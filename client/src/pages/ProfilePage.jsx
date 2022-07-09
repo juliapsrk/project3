@@ -21,8 +21,6 @@ const ProfilePage = () => {
 
   const { user } = useContext(AuthenticationContext);
 
-
-
   return (
     <ProfileWrapper>
       {profile && (
@@ -78,12 +76,18 @@ const ProfilePage = () => {
 
               <div className="division">
                 <h3>Posts</h3>
+                {user._id === profile._id && (
+                  <ul style={{ listStyle: 'none' }}>
+                    <li>
+                      <Link to={`/post`}>Create a new post</Link>
+                    </li>
+                  </ul>
+                )}
                 <ul style={{ listStyle: 'none' }}>
                   <li>
-                    <Link to={`/post`}>Create a new post</Link>
-                  </li>
-                  <li>
-                    <Link to={`/post/list`}>View {profile.name}`s posts</Link>
+                    <Link to={`/post/list/${profile._id}`}>
+                      View {profile.name}`s posts
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -95,11 +99,11 @@ const ProfilePage = () => {
                     <li style={{ listStyle: 'none' }}>
                       <Link
                         to={`/message/list/`}
-                      // style={{
-                      //   display: 'block',
-                      //   marginBlock: '2rem',
-                      //   color: 'crimson'
-                      // }}
+                        // style={{
+                        //   display: 'block',
+                        //   marginBlock: '2rem',
+                        //   color: 'crimson'
+                        // }}
                       >
                         View your message inbox
                       </Link>
