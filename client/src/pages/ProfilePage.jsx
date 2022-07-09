@@ -112,18 +112,22 @@ const ProfilePage = () => {
                 )}
               </div>
 
+              {user && user._id !== id && (
+                <div className="division">
+                  <ul>
+                    <li style={{ listStyle: 'none' }}>
+                      <Link className="btn" to={`/message/${id}`}>
+                        Message This User
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
+
               <div className="division">
                 <h3>Pet Bookmarks</h3>
                 <Bookmark />
               </div>
-
-              {user && user._id !== id && (
-                <div className="division">
-                  <Link className="btn" to={`/message/${id}`}>
-                    Message This User
-                  </Link>
-                </div>
-              )}
             </div>
             {/* end profile-content */}
           </div>
