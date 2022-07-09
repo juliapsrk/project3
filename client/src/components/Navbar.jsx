@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthenticationContext from '../context/authentication';
+import { profileEdit } from '../services/profile';
 import { signOutUser } from './../services/authentication';
 
 const Navbar = () => {
@@ -25,10 +26,9 @@ const Navbar = () => {
       {user && (
         <div className='user-menu'>
           <Link to={`/profile/${user._id}`}>Your profile</Link>
-          <Link to={'message/list/'}>Message</Link>
           <Link to={`/pet/list/user/${user._id}`}>Pets</Link>
           <Link to={'message/list/'}>Messages</Link>
-          <Link to={'/'}>Posts</Link>
+          <Link to={'/post/list'}>Posts</Link>
         </div>
       )}
       <div className='auth-links'>
@@ -37,11 +37,11 @@ const Navbar = () => {
             <button onClick={handleSignOut}>Log Out</button>
           </>
         )) || (
-            <>
-              <Link to="/log-in">Log In</Link>
-              <Link to="/register">Register</Link>
-            </>
-          )}
+          <>
+            <Link to='/log-in'>Log In</Link>
+            <Link to='/register'>Register</Link>
+          </>
+        )}
       </div>
     </nav>
   );

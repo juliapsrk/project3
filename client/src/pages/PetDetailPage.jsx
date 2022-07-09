@@ -93,27 +93,27 @@ const PetDetailPage = () => {
             </Splide>
           )}
 
-          <div className="pet-detail">
-            <div className="pet-info">
-              <div className="top">
+          <div className='pet-detail'>
+            <div className='pet-info'>
+              <div className='top'>
                 {' '}
                 <h2>{pet.name}</h2>{' '}
                 {user && (
                   <>
                     {' '}
-                    <div className="bookmarks">
+                    <div className='bookmarks'>
                       {' '}
                       {bookmarks &&
                         ((bookmark && (
                           <button
-                            className="bookmark heart"
+                            className='bookmark heart'
                             onClick={handleRemoveBookmark}
                           >
                             ❤️
                           </button>
                         )) || (
                             <button
-                              className="bookmark"
+                              className='bookmark'
                               onClick={handleSetBookmark}
                             >
                               🤍
@@ -124,7 +124,7 @@ const PetDetailPage = () => {
                 )}
               </div>
               <h5>
-                {pet.type} / {pet.gender} / {pet.age} Year
+                {pet.type} | {pet.gender} | {pet.age} Year
                 {pet.age !== 1 ? 's' : ''}
               </h5>
               <p>
@@ -143,7 +143,7 @@ const PetDetailPage = () => {
                 >
                   <img
                     src={pet.owner.picture}
-                    alt="post-pic"
+                    alt='post-pic'
                     style={{
                       width: '15px',
                       height: '15px',
@@ -156,8 +156,8 @@ const PetDetailPage = () => {
               </small>
             </div>
 
-            <div className="pet-buttons">
-              <p className="post-date">
+            <div className='pet-buttons'>
+              <p className='post-date'>
                 {format(new Date(pet.updatedAt), 'dd MMMM yyyy')}
               </p>
               <p>
@@ -167,7 +167,7 @@ const PetDetailPage = () => {
                 Owner Profile
               </Link> */}
               {user && user._id !== pet.owner._id && (
-                <Link className="page-btn" to={`/message/${pet.owner._id}`}>
+                <Link className='page-btn' to={`/message/${pet.owner._id}`}>
                   Message Owner
                 </Link>
               )}
@@ -193,11 +193,11 @@ const PetDetailPage = () => {
                       ))} */}
                     {pet.owner._id === user._id && (
                       <>
-                        <Link className="page-btn" to={`/pet/${id}/edit`}>
+                        <Link className='page-btn' to={`/pet/${id}/edit`}>
                           Edit
                         </Link>
                         <button
-                          className="page-btn"
+                          className='page-btn'
                           onClick={handlePetDeletion}
                         >
                           Delete

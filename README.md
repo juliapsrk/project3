@@ -5,17 +5,17 @@
 ### Pages
 
 - Home - / - Display latest pets and posts
-- Register - /register - Allow visitor to create account with name, email, password and profile picture. ✅
-- Log In - /log-in - Allows existing user to log-in. ✅
-- Profile Search - /profile/search - Search for users. ✅
-- Profile Edit - /profile/edit - Allows authenticated user to edit their profile. ✅
+- Register - /register - Allow visitor to create account with name, email, password and profile picture.
+- Log In - /log-in - Allows existing user to log-in. 
+- Profile Search - /profile/search - Search for users. 
+- Profile Edit - /profile/edit - Allows authenticated user to edit their profile. 
 - Profile - /profile/:id - Visualize users' profile + Pet Bookmarks
   ​
-- Pet Detail - /pet/:id/detail - Display details on a single pet + comments/likes. ✅
-- Pet Create - /pet/create - Allow user to add single pet to application. ✅
-- Pet Edit - /pet/:id/edit - Allow user to update single pet. ✅
-- Pet Delete - /pet/:id/delete - Allow user to delete single pet. ✅
-- Pet Search - /pet/search - Search for pets. ✅
+- Pet Detail - /pet/:id/detail - Display details on a single pet + comments/likes. 
+- Pet Create - /pet/create - Allow user to add single pet to application. 
+- Pet Edit - /pet/:id/edit - Allow user to update single pet. 
+- Pet Delete - /pet/:id/delete - Allow user to delete single pet. 
+- Pet Search - /pet/search - Search for pets. 
 <!-- page needed for pet bookmark, or just component shown in Profile? -->
 - Pet Bookmark - /pet/bookmark -
   ​
@@ -32,12 +32,12 @@
 
 ### Services
 
-- listPets - issue GET to '/pet/list' list pets ✅ <!-- centers --> ({pets[], centers[], ? profiles[]})?
-- loadPet - issue a GET to '/pet/:id' Load details on a single pet. ✅
-- editPet - issues PATCH to '/pet/:id' - Edit single pet. ✅
-- deletePet - issues DELETE to '/pet:/id' Delete single pet. ✅
-- createPet - issues POST to '/pet' Creates single pet. ✅
-- petSearch - issues GET to '/pet/search' - Allows user to search for pets ✅ (type, area(google api), sub-filters maybe related to the pet/type).
+- listPets - issue GET to '/pet/list' list pets <!-- centers --> ({pets[], centers[], ? profiles[]})?
+- loadPet - issue a GET to '/pet/:id' Load details on a single pet. 
+- editPet - issues PATCH to '/pet/:id' - Edit single pet. 
+- deletePet - issues DELETE to '/pet:/id' Delete single pet. 
+- createPet - issues POST to '/pet' Creates single pet. 
+- petSearch - issues GET to '/pet/search' - Allows user to search for pets (type, area(google api), sub-filters maybe related to the pet/type).
   ​
   <!-- display posts + bookmarked pets of user on user's profile -->
   ​
