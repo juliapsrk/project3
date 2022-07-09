@@ -1,0 +1,38 @@
+.postForm {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  gap: '1rem';
+  form {
+    max-width: 400px;
+    border-top: 5px solid crimson;
+    padding-top: 50px;
+    gap: '1rem';
+  }
+  input,
+  textarea {
+    margin: 0.5rem;
+    width: 100%;
+    padding: 0.8rem 0.25rem;
+    border: 1px solid gray;
+    border-radius: 3px;
+  }
+
+  label {
+    text-transform: capitalize;
+  }
+
+  .btn1 {
+    display: block;
+    border: none;
+    color: #fff;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: var(--color-crimson);
+    cursor: pointer;
+    width: 40%;
+    margin: 0 auto;
+  }
+}
